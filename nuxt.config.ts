@@ -16,6 +16,10 @@ export default defineNuxtConfig({
     '@pinia-plugin-persistedstate/nuxt',
   ],
 
+  server: {
+    port: 3001, // Cambia el puerto a uno disponible
+  },
+
   piniaPersistedstate: {
     storage: 'localStorage'
   },
