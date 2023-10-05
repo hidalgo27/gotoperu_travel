@@ -1,0 +1,70 @@
+@import "/assets/css/modal.css";
+@import "/assets/css/animation.css";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import "form.css";
+@import "button.css";
+@import 'floating-vue/dist/style.css';
+body{
+    /*@apply bg-white dark:bg-gray-900 h-full*/
+    font-family: 'Lato', sans-serif;
+}
+.badged-sm{
+    @apply px-2 text-xs py-1 font-medium rounded-full text-white
+}
+
+.divider-dashed {
+    @apply border-b-2 border-dashed border-gray-300
+}
+
+.shadow-text-title{
+    text-shadow: 0px 3px 6px #000000B3;
+}
+
+.w-full-important{
+    width: 100% !important;
+}
+.calendar-w > div > div > div > div, .calendar-w > div  {
+    @apply w-full !important;
+}
+
+.slide {
+    box-shadow: 0 6px 15px -3px rgb(0 0 0/0.3);
+    padding: 25px;
+    border-radius: 5px;
+    background: rgb(202, 202, 202);
+    color: #000;
+}
+gsl-default__indicator, gsc-indicator{
+    display: none !important;
+}
+
+.aside-country {
+    @apply px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full text-center
+}
+
+.aside-country.router-link-active {
+    @apply bg-[#D6DD85] text-primary px-5 text-center py-2 font-medium rounded-full
+}
+
+.vimeo-wrapper iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*.iti__flag{*/
+/*    background-image: "images/flags.png" !important;*/
+/*    background: red;*/
+/*}*/
+
+.iti__flag {
+    background-image: url("/images/flags/flags.png") !important;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .iti__flag {background-image: url("/images/flags/flags@2x.png");}
+}
