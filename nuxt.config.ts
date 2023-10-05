@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   apps: [
     {
       name: 'NuxtAppName',
-      port: '3001',
+      port: '4000',
       exec_mode: 'cluster',
       instances: 'max',
       script: './.output/server/index.mjs',
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   ],
 
   server: {
-    port: 3001, // Cambia el puerto a uno disponible
+    port: 4000, // Cambia el puerto a uno disponible
   },
 
   piniaPersistedstate: {

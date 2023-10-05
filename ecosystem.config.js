@@ -2,7 +2,7 @@ module.exports = {
     apps: [
         {
             name: 'gotoperu-travel',
-            port: '3001',
+            port: '4000',
             exec_mode: 'cluster',
             instances: 'max',
             script: './.output/server/index.mjs'
