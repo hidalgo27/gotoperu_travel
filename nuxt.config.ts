@@ -20,6 +20,8 @@ export default defineNuxtConfig({
     port: 4000, // Cambia el puerto a uno disponible
   },
 
+  port: 4000,
+
   piniaPersistedstate: {
     storage: 'localStorage'
   },
