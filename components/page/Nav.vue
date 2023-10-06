@@ -1,7 +1,7 @@
 <template>
 
   <div class="">
-    <nuxt-link to="/"><img src="/images/logos/logo-gotolatam.svg" class="w-[150px] md:w-[240px]"></nuxt-link>
+    <nuxt-link to="/"><img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" class="w-[150px] md:w-[240px]"></nuxt-link>
   </div>
   <div class="">
     <nav class="gap-6 hidden md:flex">
