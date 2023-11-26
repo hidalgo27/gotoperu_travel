@@ -15,7 +15,6 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
   ],
-
   server: {
     port: 4000, // Cambia el puerto a uno disponible
   },

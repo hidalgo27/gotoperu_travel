@@ -15,7 +15,7 @@
               <h2 class="text-lg text-tertiary mb-5">Get a quote on this travel package:</h2>
 
               <h2 class="text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg">
-                {{ packageStore.titlePackages }}</h2>
+                {{ package_title }}</h2>
 
               <h3 class="text-lg text-tertiary my-5">Number of travelers</h3>
               <div class="grid grid-cols-7 gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
@@ -288,6 +288,8 @@ import {Notification, NotificationGroup, notify} from "notiwind";
 const packageStore = usePackageStore()
 const ipStore = useIpStore()
 
+const package_title = ref()
+
 const showLoader = ref(false)
 
 const travelDate = ref()
@@ -444,6 +446,8 @@ onMounted(async () => {
   await getIp()
 
   await getPais()
+
+  package_title.value = packageStore.titlePackages
 
   if (process.client) {
     // @ts-ignore

@@ -1,6 +1,19 @@
 <template>
+  <div>
+    <button
+        class="btn-primary wtrvl-checkout_button  z-10 hidden"
+        id="wetravel_button_widget"
+        data-env="https://www.wetravel.com"
+        data-version="v0.3"
+        data-uid="239346"
+        :data-uuid="''+packageStore.code_w"
+        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"
+        ref="targetButton" @click="targetAction">
+      Book Now
+    </button>
+  <div v-for="packages in listPackages">
 
-  <template v-for="packages in listPackages">
+
 <!--  <header class="h-[75vh] relative">-->
 <!--    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
 <!--    <div class="absolute inset-x-0 bottom-0 text-center hidden md:block">-->
@@ -16,7 +29,6 @@
       </div>
       <div class="absolute inset-x-0 bottom-0 text-center">
         <h1 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)] mb-24">{{packages.titulo}}</h1>
-
       </div>
     </div>
 
@@ -42,12 +54,14 @@
           </div>
         </div>
       </div>
-      <div class="md:col-span-3 hidden md:flex">
+      <div class="md:col-span-3 hidden md:block">
         <a href="#form-dream-adventure" class="btn-primary text-center block w-full">Get a Quote</a>
+        <button class="btn-ternary mt-2 block w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
+          Book Now
+        </button>
       </div>
     </div>
   </section>
-
   <section class="container">
     <div class="flex gap-3 my-12 overflow-x-scroll focus:touch-pan-x">
       <a href="#review"  class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Review</a>
@@ -70,12 +84,12 @@
 
 <!--          </div>-->
         <div class="grid md:grid-cols-3 gap-6">
-          <div v-for="(pais, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="pais.id" class="">
+          <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">
 
               <div class="relative">
-                <img :src="pais.imagen" alt="" class=" h-80 object-cover rounded-xl shadow-xl">
+                <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">
                 <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">
-                  {{pais.nombre}}
+                  {{destination.destinos.nombre}}
                 </div>
               </div>
 
@@ -95,16 +109,27 @@
           <div class="flex gap-2">
             <img src="/icons/location.svg" alt=""> <span class="font-bold">Start</span> Lima, Peru
           </div>
-          <div class="flex gap-2">
-            <img src="/icons/location.svg" alt=""> <span class="font-bold">Finish</span> La Paz, Bolivia
-          </div>
+<!--          <div class="flex gap-2">-->
+<!--            <img src="/icons/location.svg" alt=""> <span class="font-bold">Finish</span> La Paz, Bolivia-->
+<!--          </div>-->
           <div class="flex gap-2">
             <img src="/icons/location.svg" alt="">
             <span class="font-bold">Destinations</span>
 
-<!--            <span class="badged-sm" :class="randomColorClasses[index % randomColorClasses.length]" v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="destination.id">-->
-<!--              {{destination.nombre}}-->
-<!--            </span>-->
+
+            <span class="badged-sm" :class="randomColorClasses[index % randomColorClasses.length]" v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">
+              {{destination.destinos.nombre}}
+            </span>
+
+<!--            <div class="flex flex-nowrap overflow-x-auto">-->
+<!--              <div class="flex text-xs font-semibold gap-1 items-center" v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
+<!--&lt;!&ndash;                <span class="truncate" :class="[destination.destinos.nombre.toLowerCase() == destino.replace('-',' ') ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 text-gray-800']">{{destination.destinos.nombre}}</span>&ndash;&gt;-->
+<!--                {{destination.destinos.nombre}}-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < p.length - 1">-->
+<!--                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--            </div>-->
 
 <!--            <span class="badged-sm bg-primary">Perú</span>
             <span class="badged-sm bg-secondary">Bolivia</span>
@@ -415,7 +440,10 @@
 <!--            <h4 class="text-center text-primary font-semibold">¡Hello, I'm Yoa!</h4>-->
             <p class="text-sm text-center font-light mt-3">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best travel advisors.</p>
           </div>
-          <a href="#form-dream-adventure" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 text-center block duration-300">Get a Quote</a>
+<!--          <a href="#form-dream-adventure" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 text-center block duration-300">Get a Quote</a>-->
+          <button class="btn-ternary animate-bounce w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
+            Book Now
+          </button>
 <!--          <button type="button" class="rounded-lg py-2 w-full px-6 text-primary border border-primary hover:bg-primary hover:text-white duration-300 mt-3">Write Us</button>-->
         </div>
       </div>
@@ -423,24 +451,41 @@
   </section>
 
 <!--    <ModalItinerary></ModalItinerary>-->
-  </template>
+  </div>
+
+  </div>
 </template>
 
 <script lang="ts" setup>
+// useHead({
+//   script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
+// })
 // import InquireHome from "~/components/form/InquireHome.vue";
-
+useHead({
+  script: [
+    {
+      src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
+      async: true,
+    },
+  ],
+})
 definePageMeta({
   layout: 'detail',
 })
 
 import {usePackageStore} from "~/stores/packages";
 
+const triggerButton = ref(null);
+const targetButton = ref(null);
 
 const packageStore = usePackageStore()
 
 const route = useRoute()
 
 const router = useRouter()
+
+const codeWetravel = ref()
+const viewButton = ref(false)
 
 
 const listPackages = ref([])
@@ -454,20 +499,30 @@ const randomColorClasses = ['bg-primary', 'bg-secondary', 'bg-gray-800', 'bg-yel
 
 const randomColorBorder = ['border-primary','border-primary', 'border-secondary', 'border-gray-800', 'border-yellow-500', 'border-indigo-500'];
 
+const clickOtherButton = async (item:any) => {
+  // @ts-ignore
+  codeWetravel.value = item
+  await nextTick();
+  targetButton.value.click();
+};
 
-const getQuote = (item:any) => {
+const targetAction = () => {
+  console.log('Botón objetivo clickeado!');
+};
+
+const getQuote = (item) => {
   router.push("#form-dream-adventure")
   packageStore.hotelDetail = item
 }
 
-function openPopover(val:number){
+function openPopover(val){
   if (val){
     viewPopover.value = val
   }else {
     viewPopover.value = 0
   }
 }
-function closePopover(val:number){
+function closePopover(val){
   setTimeout(() => {
     if (mouseIsOverPopover) {
       if (val){
@@ -490,7 +545,7 @@ const items = ref([
   { title: 'Título 6', content: 'Contenido 6' },
   { title: 'Título 7', content: 'Contenido 7' },
 ]);
-const toggleItem = (index:any) => {
+const toggleItem = (index) => {
   if (currentItem.value === index) {
     currentItem.value = null;
   } else {
@@ -514,8 +569,8 @@ const canLoadLess = computed(() => displayedItems.value.length > 2);
 const canLoadMore = computed(() => items.value.length > displayedItems.value.length);
 
 
-const getPackageItinerary = async (url:any) => {
-  const res:any = await packageStore.getItinerary(url)
+const getPackageItinerary = async (url) => {
+  const res = await packageStore.getItinerary(url)
   listPackages.value = res
 
   packageStore.titlePackages = res[0].titulo
@@ -538,7 +593,7 @@ const getThreeStarPrice = (arr:any) => {
       : '';
 };*/
 
-const getGroupedByCountry = (arr:any) => {
+const getGroupedByCountry = (arr) => {
   const grouped = {};
   for (const paqueteDestino of arr) {
     const { destinos } = paqueteDestino;
@@ -554,56 +609,81 @@ const getGroupedByCountry = (arr:any) => {
   return grouped;
 };
 
-const paisesUnicos = (destinos:any) => {
-  const paisesVistos = new Set();
-  return destinos.filter((destino: { destinos: { pais: any; }; }) => {
-    const pais = destino.destinos.pais;
-    if (!paisesVistos.has(pais.id)) {
-      paisesVistos.add(pais.id);
-      return true;
-    }
-    return false;
-  }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
-};
+// const paisesUnicos = (destinos:any) => {
+//   const paisesVistos = new Set();
+//   return destinos.filter((destino: { destinos: { pais: any; }; }) => {
+//     const pais = destino.destinos.pais;
+//     if (!paisesVistos.has(pais.id)) {
+//       paisesVistos.add(pais.id);
+//       return true;
+//     }
+//     return false;
+//   }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
+// };
 
 
-const obtenerDestinosPorPais = (paisId:number) => {
-  const destinos: any[] = [];
-  listPackages.value.forEach(paquete => {
-    paquete.paquetes_destinos.forEach((destino: { destinos: { pais: { id: number; }; }; }) => {
-      if (destino.destinos.pais.id === paisId) {
-        destinos.push(destino.destinos);
-      }
-    });
-  });
-  return destinos;
-};
+// const obtenerDestinosPorPais = (paisId:number) => {
+//   const destinos: any[] = [];
+//   listPackages.value.forEach(paquete => {
+//     paquete.paquetes_destinos.forEach((destino: { destinos: { pais: { id: number; }; }; }) => {
+//       if (destino.destinos.pais.id === paisId) {
+//         destinos.push(destino.destinos);
+//       }
+//     });
+//   });
+//   return destinos;
+// };
 
 
-const expand = (id:any) => {
+const expand = (id) => {
   // @ts-ignore
   const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
   // @ts-ignore
   showCount.value[id] = Math.min(showCount.value[id] + 8, totalLength); // Aumentar de 2 en 2
 };
 
-const contract = (id:any) => {
+
+const contract = (id) => {
   // @ts-ignore
   showCount.value[id] = Math.max(4, showCount.value[id] - 4); // Reducir de 2 en 2, mínimo 2
 };
 
 
+// const loadScript = () => {
+//   const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
+//   if (!scriptExists) {
+//     const script = document.createElement('script');
+//     script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
+//     script.type = 'text/javascript';
+//     script.async = true;
+//     document.head.appendChild(script);
+//   }
+// }
+
+
 onMounted(async () => {
 
+  // loadScript()
   // console.log(route)
   await getPackageItinerary(route.params.itinerary)
   listPackages.value.forEach(p => {
     // @ts-ignore
     showCount.value[p.id] = 8;
   });
+
+  // await nextTick();
+  codeWetravel.value = packageStore.code_w
+  viewButton.value = true
+
 })
 
 
+// onUnmounted(() => {
+//   const script = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]');
+//   if (script) {
+//     script.remove();
+//   }
+// });
 
 
 </script>
