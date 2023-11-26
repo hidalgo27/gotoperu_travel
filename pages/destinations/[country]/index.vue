@@ -8,18 +8,19 @@
     </div>
   </header>
 
-  <section class="mt-12">
-    <div class="container">
-      <div class="flex md:justify-center w-full gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-        <a :href="'/destinations/'+country.url" class="px-5 py-2 font-medium rounded-full" :class="[countries == country.url ? 'bg-[#D6DD85] text-primary':'bg-gray-50 text-gray-800']" v-for="country in listCountry">{{country.nombre}}</a>
-      </div>
-    </div>
-  </section>
+<!--  <section class="mt-12">-->
+<!--    <div class="container">-->
+<!--      <div class="flex md:justify-center w-full gap-3 my-6 overflow-x-scroll focus:touch-pan-x">-->
+<!--        <a :href="'/destinations/'+country.url" class="px-5 py-2 font-medium rounded-full" :class="[countries == country.url ? 'bg-[#D6DD85] text-primary':'bg-gray-50 text-gray-800']" v-for="country in listCountry">{{country.nombre}}</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
 
   <section class="my-12">
     <div class="container my-6">
       <div class="grid text-center px-6 text-lg">
-        <p>The countries of South America hide the most beautiful destinations that every traveler wishes to visit. You will have the chance to learn about the cultures of each LATAM country, experience in person the great geographic diversity of each destination, and visit both the Wonders of the World and the Natural Wonders that are on this continent. Get ready for your trip to this continent full of dream destinations.</p>
+        <p>GOTOPERU packages are created by our team of travel specialists so that you can enjoy the most of your time in every destination in Peru.</p>
+        <p>Every detail of your travel itinerary is planned and executed to perfection by our partners in each Peru destination. If you are looking for an activity or destination not listed in our travel packages, do not hesitate to contact us for more information.</p>
       </div>
     </div>
     <div class="container grid md:grid-cols-3 gap-12">
@@ -52,13 +53,13 @@ const country = ref('peru')
 
 const listCountry = ref()
 
-const getPais = async (url:any) => {
+const getDestinations = async (url:any) => {
   const res:any = await packageStore.getCountry(url)
   console.log(res)
   listDestination.value = res
 
-  const response:any = await packageStore.getPais()
-  listCountry.value = response
+  // const response:any = await packageStore.getPais()
+  // listCountry.value = response
 
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
@@ -67,6 +68,6 @@ const getPais = async (url:any) => {
 }
 
 onMounted(async () => {
-  await getPais(route.params.country)
+  await getDestinations(route.params.country)
 })
 </script>

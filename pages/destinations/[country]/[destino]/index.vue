@@ -3,7 +3,7 @@
     <img src="https://gotolatam.com/images/banners/country/calafate.jpg" alt="" class="object-cover w-screen h-full">
     <div class="absolute inset-x-0 bottom-0 text-center">
       <h1 class="mb-24 font-bold text-6xl text-white capitalize">
-        {{ destino }} Tours
+        {{ destino.replace('-',' ') }} Tours
       </h1>
     </div>
   </header>
@@ -21,6 +21,22 @@
         <p>Every detail of your travel itinerary is planned and executed to perfection by our partners in each Peru destination. If you are looking for an activity or destination not listed in our travel packages, do not hesitate to contact us for more information.</p>
       </div>
     </div>
+
+    <div class="container col-span-12 md:col-span-10 flex justify-center my-9 md:grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
+    <div class="flex" v-for="destino2 in listDestination">
+
+        <nuxt-link :to="destino2.url" :for="destino2.id" class="w-full text-center gap-2 select-none cursor-pointer  text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out grayscale peer-checked:grayscale-0 peer-checked:text-primary"
+               :class="[destino2.url == destino ? 'bg-[#D6DD85]' : 'bg-gray-100']"
+        >
+
+          <!--                  <img :src="destino.imagen" alt="" class=" w-8 h-8 rounded-full shadow-lg float-left">-->
+          <span class="overflow-auto">{{ destino2.nombre }}</span>
+
+        </nuxt-link>
+
+    </div>
+    </div>
+
     <div class="container grid md:grid-cols-3 gap-12">
 
       <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
@@ -34,7 +50,7 @@
           <h3 class="text-left text-lg font-semibold my-3">{{ packages.paquetes.titulo }}</h3>
           <div class="flex flex-nowrap overflow-x-auto">
             <div class="flex text-xs font-semibold gap-1 items-center" v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">
-              <span class="truncate" :class="[destination.destinos.nombre.toLowerCase() == destino.replace('-',' ') ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 text-gray-800']">{{destination.destinos.nombre}}</span>
+              <span class="truncate" :class="[destination.destinos.url == destino ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 text-gray-800']">{{destination.destinos.nombre}}</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < p.length - 1">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
               </svg>
@@ -69,6 +85,10 @@ import {usePackageStore} from "~/stores/packages";
 const packageStore = usePackageStore()
 
 const listPackages = ref([])
+
+const listDestination = ref([])
+
+const destinoImagen = ref([])
 
 const destino = ref('')
 
@@ -126,13 +146,31 @@ const paisesUnicos = (destinos:any) => {
   }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
 };
 
+
+
+// const destinoFiltrado = computed(() => {
+//   return destinos.find(destino => destino.url === urlParam.value);
+// });
+
 const getThreeStarPrice = (arr:any) => {
   const price = arr.find((priceInfo: { estrellas: number; }) => priceInfo.estrellas === 3);
   return price ? price.precio_d : 'No disponible';
 }
 
+const getDestinations = async (url:any) => {
+  const res:any = await packageStore.getCountry(url)
+  destinoImagen.value = res.filter(desti => desti.url === destino.value);
+  listDestination.value = res
+  // if (res.token) {
+  //   policyStore['tokenLogin'] = res.token
+  //   loadingUser.value = false
+  // }
+}
+
 onMounted(async () => {
   await getPackage()
   destino.value = route.params.destino
+  await getDestinations(route.params.country)
+
 })
 </script>

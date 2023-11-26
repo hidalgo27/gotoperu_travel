@@ -1,6 +1,6 @@
 <template>
 
-  <div class="">
+  <div>
     <nuxt-link to="/"><img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" class="w-[150px] md:w-[240px]"></nuxt-link>
   </div>
   <div class="">

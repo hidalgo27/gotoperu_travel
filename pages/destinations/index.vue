@@ -50,7 +50,7 @@ const country = ref('peru')
 
 const listCountry = ref()
 
-const getPais = async () => {
+const getDestinations = async () => {
   const res:any = await packageStore.getCountry(country.value)
   listDestination.value = res
 
@@ -65,6 +65,6 @@ const getPais = async () => {
 }
 
 onMounted(async () => {
-  await getPais()
+  await getDestinations()
 })
 </script>
