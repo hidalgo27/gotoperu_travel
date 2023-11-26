@@ -22,17 +22,18 @@
             </div>
             <div class="col-span-12 md:col-span-10 grid grid-cols-2 md:grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
 <!--              {{listDestination}}-->
-              <div class="flex" v-for="destino in listDestination">
-                <template v-if="destino.form == 1">
+              <div class="flex" v-for="destino in listDestination" >
+
                 <input type="checkbox" :id="destino.id" class="peer hidden" :value="destino.url" v-model="packageStore.destination" />
-                <label :for="destino.id" class="w-full text-center gap-2 select-none cursor-pointer bg-gray-100 text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out grayscale peer-checked:grayscale-0 peer-checked:bg-[#D6DD85] peer-checked:text-primary">
+                <label  :for="destino.id" class="w-full text-center gap-2 select-none cursor-pointer bg-gray-100 text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out grayscale peer-checked:grayscale-0 peer-checked:bg-[#D6DD85] peer-checked:text-primary">
 
 <!--                  <img :src="destino.imagen" alt="" class=" w-8 h-8 rounded-full shadow-lg float-left">-->
                   <span class="overflow-auto">{{ destino.nombre }}</span>
 
                 </label>
-                </template>
-              </div>
+
+                </div>
+
 
 
               <!--                <div class="p-8">-->
@@ -538,7 +539,8 @@ const handleSubmit = async () => {
 
 const getPais = async () => {
   const res:any = await packageStore.getCountry('peru')
-  listDestination.value = res
+  // listDestination.value = res
+  listDestination.value = res.filter(desti => desti.form === 1);
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
   //   loadingUser.value = false
