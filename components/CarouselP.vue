@@ -29,7 +29,7 @@
             <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div>
           </div>
 
-          <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id" @click="codeW(packages.codigo_f)">
+          <nuxt-link :to="'/latam-travel-packages/'+packages.url" @click="codeW(packages.codigo_f)" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
             <div class="relative">
               <img :src="packages.imagen" alt="" class="w-full rounded-lg">
               <div class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
@@ -59,7 +59,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          </nuxt-link>
 
           <!--          </div>-->
         </div>
