@@ -17,7 +17,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 
 	const btnDetail = ref("")
 
-	const code_w = ref()
+	const code_w = ref(0)
 
 	const $reset = () => {
 		travelDate.value = []

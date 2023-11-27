@@ -449,7 +449,7 @@
         data-env="https://www.wetravel.com"
         data-version="v0.3"
         data-uid="239346"
-        :data-uuid="''+packageStore.code_w"
+        :data-uuid="''+codeWetravel"
         :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"
         ref="targetButton" @click="targetAction">
       Book Now

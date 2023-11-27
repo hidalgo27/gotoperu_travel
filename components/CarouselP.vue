@@ -107,6 +107,7 @@ const nextSlide = () => {
 }
 
 const codeW = (item:any) => {
+  console.log(item)
   packageStore.code_w = item
 }
 
