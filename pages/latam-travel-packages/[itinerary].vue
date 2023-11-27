@@ -675,8 +675,13 @@ onMounted(async () => {
   // await nextTick();
   codeWetravel.value = packageStore.code_w
   viewButton.value = true
-  await nextTick();
-  loadScript()
+  if (packageStore.counterPay == 1){
+    packageStore.counterPay = 2
+    window.location.reload()
+  }
+
+  // await nextTick();
+  // loadScript()
 })
 
 

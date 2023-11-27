@@ -147,6 +147,7 @@ const getThreeStarPrice = (arr:any) => {
 
 onMounted(async () => {
   await getPackage()
+  packageStore.counterPay = 1
 })
 
 

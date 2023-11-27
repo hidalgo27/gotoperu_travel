@@ -19,6 +19,8 @@ export const usePackageStore = defineStore('PackageStore', () => {
 
 	const code_w = ref(0)
 
+	const counterPay = ref(1)
+
 	const $reset = () => {
 		travelDate.value = []
 		destination.value = []
@@ -263,6 +265,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		showModalInquireGlobal,
 		showModalItinerary,
 		code_w,
+		counterPay,
 		$reset
 	}
 },{persist: true})
