@@ -652,21 +652,19 @@ const contract = (id) => {
 };
 
 
-// const loadScript = () => {
-//   const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
-//   if (!scriptExists) {
-//     const script = document.createElement('script');
-//     script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
-//     script.type = 'text/javascript';
-//     script.async = true;
-//     document.head.appendChild(script);
-//   }
-// }
+const loadScript = () => {
+  const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
+  if (!scriptExists) {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.head.appendChild(script);
+  }
+}
 
 
 onMounted(async () => {
-
-  // loadScript()
   // console.log(route)
   await getPackageItinerary(route.params.itinerary)
   listPackages.value.forEach(p => {
@@ -677,7 +675,8 @@ onMounted(async () => {
   // await nextTick();
   codeWetravel.value = packageStore.code_w
   viewButton.value = true
-
+  await nextTick();
+  loadScript()
 })
 
 
