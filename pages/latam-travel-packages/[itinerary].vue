@@ -1,8 +1,31 @@
 <template>
-  <div>
 
+<!--    <button-->
+<!--        class="btn-primary wtrvl-checkout_button  z-10 "-->
+<!--        id="wetravel_button_widget"-->
+<!--        data-env="https://www.wetravel.com"-->
+<!--        data-version="v0.3"-->
+<!--        data-uid="239346"-->
+<!--        data-uuid="73545253"-->
+<!--        href="https://www.wetravel.com/checkout_embed?uuid=73545253"-->
+<!--        >-->
+<!--      Book Now-->
+<!--    </button>-->
+  <client-only>
+  <wetravel></wetravel>
+  </client-only>
   <div v-for="packages in listPackages">
-
+    <button
+        class="btn-primary wtrvl-checkout_button  z-10 "
+        id="wetravel_button_widget"
+        data-env="https://www.wetravel.com"
+        data-version="v0.3"
+        data-uid="239346"
+        data-uuid="73545253"
+        href="https://www.wetravel.com/checkout_embed?uuid=73545253"
+    >
+      Book Now
+    </button>
 
 <!--  <header class="h-[75vh] relative">-->
 <!--    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
@@ -443,19 +466,10 @@
 <!--    <ModalItinerary></ModalItinerary>-->
   </div>
 
-    <button
-        class="btn-primary wtrvl-checkout_button  z-10 hidden"
-        id="wetravel_button_widget"
-        data-env="https://www.wetravel.com"
-        data-version="v0.3"
-        data-uid="239346"
-        :data-uuid="''+codeWetravel"
-        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"
-        ref="targetButton" @click="targetAction">
-      Book Now
-    </button>
+<!--  <button class="wtrvl-checkout_button" id="wetravel_button_widget" data-env="https://www.wetravel.com" data-version="v0.3" data-uid="239346" data-uuid="73545253" href="https://www.wetravel.com/checkout_embed?uuid=73545253" style="background-color:#33ae3f;color:#ffffff;border: 0px;border-radius: 5px;font-family: 'Poppins', sans-serif;font-weight: 400;font-size: 14px;-webkit-font-smoothing: antialiased;text-transform: capitalize;padding: 13px 24px;text-decoration: none;text-align: center;line-height: 14px;display: inline-block; cursor: pointer;">Book Now</button>-->
+<!--  -->
+<!--  <script src="https://cdn.wetravel.com/widgets/embed_checkout.js"></script>-->
 <!--    {{packageStore.code_w}} {{codeWetravel}}-->
-  </div>
 </template>
 
 <script lang="ts" setup>
@@ -463,14 +477,16 @@
 //   script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
 // })
 // import InquireHome from "~/components/form/InquireHome.vue";
-useHead({
-  script: [
-    {
-      src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
-      // async: true,
-    },
-  ],
-})
+// useHead({
+//   script: [
+//     {
+//       src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
+//       async: true,
+//     },
+//   ],
+// })
+import Wetravel from "~/components/page/Wetravel.vue";
+
 definePageMeta({
   layout: 'detail',
 })
@@ -502,10 +518,8 @@ const randomColorClasses = ['bg-primary', 'bg-secondary', 'bg-gray-800', 'bg-yel
 const randomColorBorder = ['border-primary','border-primary', 'border-secondary', 'border-gray-800', 'border-yellow-500', 'border-indigo-500'];
 
 const clickOtherButton = async (item:any) => {
-  // @ts-ignore
   codeWetravel.value = item
   await nextTick();
-  // @ts-ignore
   targetButton.value.click();
 };
 
@@ -673,11 +687,16 @@ onMounted(async () => {
   });
 
   // await nextTick();
-  codeWetravel.value = packageStore.code_w
-  viewButton.value = true
+  // codeWetravel.value = packageStore.code_w
+  // viewButton.value = true
 
   // await nextTick();
   // loadScript()
+  // if (process.client) {
+  //   // import('mi-libreria-cliente-especifica');
+  //   // @ts-ignore
+  //   import('https://cdn.wetravel.com/widgets/embed_checkout.js');
+  // }
 })
 
 

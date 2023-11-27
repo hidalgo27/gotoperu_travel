@@ -15,6 +15,18 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
   ],
+
+  // app: {
+  //   head: {
+  //     script: [
+  //       {
+  //         src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
+  //         async: true,
+  //       },
+  //     ],
+  //   }
+  // },
+
   server: {
     port: 4000, // Cambia el puerto a uno disponible
   },

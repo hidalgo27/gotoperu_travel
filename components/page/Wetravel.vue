@@ -5,14 +5,21 @@
 </template>
 
 <script setup >
-import 'https://cdn.wetravel.com/widgets/embed_checkout.js';
-
+// import 'https://cdn.wetravel.com/widgets/embed_checkout.js';
+useHead({
+  script: [
+    {
+      src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
+      async: true,
+    },
+  ],
+})
 // onMounted( () => {
 //
 //     // import('https://cdn.wetravel.com/widgets/embed_checkout.js')
 //     const script = document.createElement('script');
 //     script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
-//     script.async = false;
+//     script.async = true;
 //     script.onerror = (error) => {
 //       console.error('Error loading script:', error);
 //     };
