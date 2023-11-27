@@ -1,17 +1,17 @@
 <template>
   <div>
     <button
-        class="btn-primary wtrvl-checkout_button  z-10 hidden"
+        class="btn-primary wtrvl-checkout_button hidden z-10 "
         id="wetravel_button_widget"
         data-env="https://www.wetravel.com"
         data-version="v0.3"
         data-uid="239346"
-        :data-uuid="codeWetravel"
-        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"
+        data-uuid="73545253"
+        href="https://www.wetravel.com/checkout_embed?uuid=73545253"
         ref="targetButton" @click="targetAction">
       Book Now
     </button>
-    
+
     <div v-for="packages in listPackages">
 
 
@@ -502,8 +502,8 @@ const randomColorBorder = ['border-primary','border-primary', 'border-secondary'
 
 const clickOtherButton = async (item:any) => {
   // @ts-ignore
-  codeWetravel.value = item
-  await nextTick();
+  // codeWetravel.value = item
+  // await nextTick();
   targetButton.value.click();
 };
 
