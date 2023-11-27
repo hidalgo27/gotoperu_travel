@@ -20,6 +20,14 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  script: [
+    {
+      src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
+      async: true,
+    },
+  ],
+})
 import Nav from "~/components/page/Nav.vue";
 import Footer from "~/components/page/Footer.vue";
 import {usePackageStore} from "~/stores/packages";

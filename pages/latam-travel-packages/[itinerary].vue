@@ -1,17 +1,16 @@
 <template>
   <div>
     <button
-        class="btn-primary wtrvl-checkout_button hidden z-10 "
+        class="btn-primary wtrvl-checkout_button  z-10 hidden"
         id="wetravel_button_widget"
         data-env="https://www.wetravel.com"
         data-version="v0.3"
         data-uid="239346"
-        data-uuid="73545253"
-        href="https://www.wetravel.com/checkout_embed?uuid=73545253"
+        :data-uuid="''+packageStore.code_w"
+        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"
         ref="targetButton" @click="targetAction">
       Book Now
     </button>
-
     <div v-for="packages in listPackages">
 
 
@@ -462,14 +461,7 @@
 //   script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
 // })
 // import InquireHome from "~/components/form/InquireHome.vue";
-useHead({
-  script: [
-    {
-      src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
-      async: true,
-    },
-  ],
-})
+
 definePageMeta({
   layout: 'detail',
 })
@@ -502,8 +494,8 @@ const randomColorBorder = ['border-primary','border-primary', 'border-secondary'
 
 const clickOtherButton = async (item:any) => {
   // @ts-ignore
-  // codeWetravel.value = item
-  // await nextTick();
+  codeWetravel.value = item
+  await nextTick();
   targetButton.value.click();
 };
 
