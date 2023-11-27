@@ -467,7 +467,7 @@ useHead({
   script: [
     {
       src: 'https://cdn.wetravel.com/widgets/embed_checkout.js',
-      async: true,
+      // async: true,
     },
   ],
 })
@@ -513,19 +513,19 @@ const targetAction = () => {
   console.log('Botón objetivo clickeado!');
 };
 
-const getQuote = (item) => {
+const getQuote = (item:any) => {
   router.push("#form-dream-adventure")
   packageStore.hotelDetail = item
 }
 
-function openPopover(val){
+function openPopover(val:any){
   if (val){
     viewPopover.value = val
   }else {
     viewPopover.value = 0
   }
 }
-function closePopover(val){
+function closePopover(val:any){
   setTimeout(() => {
     if (mouseIsOverPopover) {
       if (val){
@@ -548,7 +548,7 @@ const items = ref([
   { title: 'Título 6', content: 'Contenido 6' },
   { title: 'Título 7', content: 'Contenido 7' },
 ]);
-const toggleItem = (index) => {
+const toggleItem = (index:any) => {
   if (currentItem.value === index) {
     currentItem.value = null;
   } else {
@@ -572,7 +572,7 @@ const canLoadLess = computed(() => displayedItems.value.length > 2);
 const canLoadMore = computed(() => items.value.length > displayedItems.value.length);
 
 
-const getPackageItinerary = async (url) => {
+const getPackageItinerary = async (url:any) => {
   const res = await packageStore.getItinerary(url)
   listPackages.value = res
 
@@ -596,7 +596,7 @@ const getThreeStarPrice = (arr:any) => {
       : '';
 };*/
 
-const getGroupedByCountry = (arr) => {
+const getGroupedByCountry = (arr:any) => {
   const grouped = {};
   for (const paqueteDestino of arr) {
     const { destinos } = paqueteDestino;
@@ -638,7 +638,7 @@ const getGroupedByCountry = (arr) => {
 // };
 
 
-const expand = (id) => {
+const expand = (id:any) => {
   // @ts-ignore
   const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
   // @ts-ignore
@@ -646,22 +646,22 @@ const expand = (id) => {
 };
 
 
-const contract = (id) => {
+const contract = (id:any) => {
   // @ts-ignore
   showCount.value[id] = Math.max(4, showCount.value[id] - 4); // Reducir de 2 en 2, mínimo 2
 };
 
 
-const loadScript = () => {
-  const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
-  if (!scriptExists) {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
-    script.type = 'text/javascript';
-    script.async = true;
-    document.head.appendChild(script);
-  }
-}
+// const loadScript = () => {
+//   const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
+//   if (!scriptExists) {
+//     const script = document.createElement('script');
+//     script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
+//     script.type = 'text/javascript';
+//     script.async = true;
+//     document.head.appendChild(script);
+//   }
+// }
 
 
 onMounted(async () => {
@@ -675,10 +675,6 @@ onMounted(async () => {
   // await nextTick();
   codeWetravel.value = packageStore.code_w
   viewButton.value = true
-  if (packageStore.counterPay == 1){
-    packageStore.counterPay = 2
-    window.location.reload()
-  }
 
   // await nextTick();
   // loadScript()
