@@ -41,7 +41,7 @@
 
       <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-      <a :href="'/latam-travel-packages/'+packages.paquetes.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.paquetes.id">
+      <a :href="'/peru-travel-packages/'+packages.paquetes.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.paquetes.id">
         <div class="relative">
           <img :src="packages.paquetes.imagen" alt="" class="rounded-lg w-full">
           <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>

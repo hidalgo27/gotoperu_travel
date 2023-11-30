@@ -32,7 +32,7 @@
           <slide v-for="packages in listPackages" :key="packages.id">
             <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-            <a :href="'/latam-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer">
+            <a :href="'/peru-travel-packages/'+packages.url" class="mx-3 p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer">
               <div class="relative">
                 <img :src="packages.imagen" alt="" class="w-full rounded-lg">
                 <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>

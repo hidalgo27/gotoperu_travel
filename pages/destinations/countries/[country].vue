@@ -28,7 +28,7 @@
         <h1 class="text-3xl font-bold uppercase">{{ route.params.country }} Travel Packages</h1>
         <hr class="my-6">
           <div class="grid md:grid-cols-2 gap-12">
-            <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl shadow-md cursor-pointer" v-for="packages in paquetesPeru" :key="packages.id">
+            <a :href="'/peru-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl shadow-md cursor-pointer" v-for="packages in paquetesPeru" :key="packages.id">
               <div class="relative">
                 <img :src="packages.imagen" alt="" class="rounded-lg w-full">
                 <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
@@ -65,7 +65,7 @@
 
 
         <div class="grid md:grid-cols-2 gap-12">
-          <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl shadow-md cursor-pointer" v-for="packages in paquetesConPeruYDosPaisesMinimo" :key="packages.id">
+          <a :href="'/peru-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl shadow-md cursor-pointer" v-for="packages in paquetesConPeruYDosPaisesMinimo" :key="packages.id">
             <div class="relative">
               <img :src="packages.imagen" alt="" class="rounded-lg w-full">
               <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>

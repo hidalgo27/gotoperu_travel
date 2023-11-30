@@ -19,8 +19,7 @@
   <section class="my-12">
     <div class="container my-6">
       <div class="grid text-center px-6 text-lg">
-        <p>GOTOPERU packages are created by our team of travel specialists so that you can enjoy the most of your time in every destination in Peru.</p>
-        <p>Every detail of your travel itinerary is planned and executed to perfection by our partners in each Peru destination. If you are looking for an activity or destination not listed in our travel packages, do not hesitate to contact us for more information.</p>
+        <p>Peru has countless destinations to discover and thousands of activities to do in the enchanting land of the Incas. Peru has remained the best tourist and culinary destination worldwide, so it is an option that no traveler misses when planning a trip to South America. Another factor that characterizes every destination in Peru is its biodiversity and its climatic variety since you can take a flight no more than 2 hours from the coast to the Andes and experience a drastic change in landscape, temperature, and altitude.</p>
       </div>
     </div>
     <div class="container grid md:grid-cols-3 gap-12">

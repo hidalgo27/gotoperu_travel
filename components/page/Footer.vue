@@ -7,10 +7,10 @@
 
     <div class="container pt-12">
       <div class="text-center mb-20  p-6">
-        <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-          <img src="https://gotolatam.com/images/logos/logo-gotolatam-white.png" alt="" class="mx-auto">
-        </a>
-        <span class="text-white px-3">part of</span>
+<!--        <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">-->
+<!--          <img src="https://gotolatam.com/images/logos/logo-gotolatam-white.png" alt="" class="mx-auto">-->
+<!--        </a>-->
+<!--        <span class="text-white px-3">part of</span>-->
         <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
           <img src="https://gotolatam.com/images/logos/logo-gotoperu-white.png" alt="" class="mx-auto">
         </a>
@@ -19,7 +19,7 @@
       <div class="grid grid-cols-2 gap-4 dark:text-gray-300 md:grid-cols-5 mb-24">
         <div>
           <p class="font-semibold tracking-wide text-secondary mb-6">
-            Latam Travel Packages
+            Peru Travel Packages
           </p>
 
           <ul class="mt-2 space-y-2">
@@ -38,15 +38,15 @@
           <ul class="mt-2 space-y-2">
 
             <li v-for="country in listPais">
-              <nuxt-link :to="'/destinations/countries/'+country.url" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">{{ country.nombre }}</nuxt-link>
+              <nuxt-link :to="'/destinations/peru/'+country.url" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">{{ country.nombre }}</nuxt-link>
             </li>
           </ul>
         </div>
         <div>
-          <p class="font-semibold tracking-wide text-secondary mb-6">South America</p>
+          <p class="font-semibold tracking-wide text-secondary mb-6">Peru</p>
           <ul class="mt-2 space-y-2">
             <li>
-              <nuxt-link to="/destinations/countries" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Countries</nuxt-link>
+              <nuxt-link to="/peru-travel-packages" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Peru Travel Packages</nuxt-link>
             </li>
           </ul>
         </div>
@@ -131,8 +131,8 @@ const packageStore = usePackageStore()
 const listPais = ref([])
 const countries = ref('peru')
 
-const getPais = async () => {
-  const res:any = await packageStore.getPais()
+const getCountry = async () => {
+  const res:any = await packageStore.getCountry('peru')
 
   listPais.value = res
   // if (res.token) {
@@ -147,7 +147,7 @@ const paises = computed(() => {
 
 
 onMounted(async () => {
-  await getPais()
+  await getCountry()
 
 })
 </script>

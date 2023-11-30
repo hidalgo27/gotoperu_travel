@@ -56,9 +56,9 @@
           </div>
           <div class="md:col-span-3 hidden md:block">
             <a href="#form-dream-adventure" class="btn-primary text-center block w-full">Get a Quote</a>
-            <button class="btn-ternary mt-2 block w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
-              Book Now
-            </button>
+<!--            <button class="btn-ternary mt-2 block w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">-->
+<!--              Book Now-->
+<!--            </button>-->
           </div>
         </div>
       </section>
@@ -76,14 +76,14 @@
       <section class="shadow pb-24">
         <div class="container grid md:grid-cols-12 gap-12">
           <div class="md:col-span-9">
-            <!--        <img src="/images/banners/map.png" alt="" class="rounded-2xl w-full">-->
+
 
 
             <!--          <div class="" v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)" :key="destination.id">-->
             <!--            <img :src="destination.imagen" alt="" class="w-full aspect-video rounded-xl shadow-xl">-->
 
             <!--          </div>-->
-            <div class="grid md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-3 text-xs md:grid-cols-5  gap-6">
               <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">
 
                 <div class="relative">
@@ -157,6 +157,7 @@
               <h2 class="text-2xl font-bold mb-8">Overview</h2>
               <div v-html="packages.descripcion">
               </div>
+              <img :src="packages.mapa" alt="" class="rounded-2xl mt-12 w-full">
             </article>
 
             <article class="my-12" id="itinerary">
@@ -165,10 +166,11 @@
 
                 <div class="w-full mx-auto relative">
 
-                  <div v-for="(itinerary, index) in packages.paquete_itinerario.slice(0, showCount[packages.id])" :key="itinerary.id" class="flex item">
+                  <div v-for="(itinerary, index) in iti =  packages.paquete_itinerario.slice(0, showCount[packages.id])" :key="itinerary.id" class="flex item">
+
                     <div class="relative w-20 text-center gap-12">
                       <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300"></div>
-                      <div class="bg-white py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">DAY {{index + 1}}</div>
+                      <div class="bg-white py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">DAY <span class="rounded-full px-2 py-1  text-white" :class="{'bg-red-700': iti.length == index + 1, 'bg-primary': index + 1 ==  1, 'bg-gray-500': index + 1 > 1}">{{index + 1}}</span></div>
                     </div>
                     <div class="space-y-2 w-full " :class="[index + 1 == items.length ? 'border-y' : 'border-t']">
                       <div>
@@ -438,12 +440,12 @@
               </div>
               <div class="p-6 rounded-2xl bg-white my-4">
                 <!--            <h4 class="text-center text-primary font-semibold">¡Hello, I'm Yoa!</h4>-->
-                <p class="text-sm text-center font-light mt-3">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best travel advisors.</p>
+                <p class="text-sm text-center font-light mt-3">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of Peru best travel advisors.</p>
               </div>
               <!--          <a href="#form-dream-adventure" class="rounded-lg py-2 w-full px-6 text-white bg-green-500 hover:bg-opacity-95 text-center block duration-300">Get a Quote</a>-->
-              <button class="btn-ternary animate-bounce w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
-                Book Now
-              </button>
+<!--              <button class="btn-ternary animate-bounce w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">-->
+<!--                Book Now-->
+<!--              </button>-->
               <!--          <button type="button" class="rounded-lg py-2 w-full px-6 text-primary border border-primary hover:bg-primary hover:text-white duration-300 mt-3">Write Us</button>-->
             </div>
           </div>

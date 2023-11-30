@@ -10,22 +10,25 @@
     <!--    <button type="button" class="px-5 py-2 bg-gray-100 text-gray-800 font-medium rounded-full">Brasil</button>-->
   </div>
   <template v-for="country2 in listPais">
-    <div class="grid md:grid-cols-12 md:gap-24 gap-6 items-center my-12" v-if="countries == country2.url">
+
+    <div class="grid container md:grid-cols-12 md:gap-24 gap-6 items-center my-12" v-if="countries == country2.url">
       <div class="col-span-6">
         <!--      <transition name="pop" appear>-->
         <!--        <img :src="country2.imagen_s" alt="" class=" rounded-xl w-full object-cover">-->
         <!--      </transition>-->
-<!--        <img src="/images/banners/maps.png" alt="">-->
-      </div>
-      <div class="col-span-6">
+<!--        <img src="/images/banners/mapa.png" alt="">-->
         <h3 class="text-3xl font-bold"><nuxt-link :to="'/destinations/countries/'+country2.url">{{ country2.nombre }}</nuxt-link></h3>
         <div class="md:pr-24">
           <transition name="left" appear>
-            <div class="my-6" v-html="country2.descripcion"></div>
+            <div class="my-6" v-html="country2.resumen"></div>
           </transition>
+          <nuxt-link :to="'/destinations/peru/'+country2.url" class="btn-primary">View {{ country2.nombre }} Tours</nuxt-link>
         </div>
+      </div>
+      <div class="col-span-6">
+
         <transition name="pop" appear>
-          <img :src="country2.imagen_s" alt="" class=" rounded-xl w-full object-cover h-96">
+          <img :src="country2.imagen" alt="" class=" rounded-xl  object-cover h-96">
         </transition>
       </div>
 
@@ -40,10 +43,10 @@ import {usePackageStore} from "~/stores/packages";
 const packageStore = usePackageStore()
 
 const listPais = ref([])
-const countries = ref('peru')
+const countries = ref('cusco')
 
-const getPais = async () => {
-  const res:any = await packageStore.getPais()
+const getCountry = async () => {
+  const res:any = await packageStore.getCountry('peru')
 
   listPais.value = res
   // if (res.token) {
@@ -58,7 +61,7 @@ const paises = computed(() => {
 
 
 onMounted(async () => {
-  await getPais()
+  await getCountry()
 
 })
 

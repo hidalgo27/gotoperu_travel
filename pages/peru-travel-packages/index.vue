@@ -17,15 +17,15 @@
   <section class="my-12">
     <div class="container my-6">
       <div class="grid text-center text-lg">
-        <p>LATAM's packages are created by our team of travel specialists so that you can enjoy the most of your time in every destination in South America.</p>
-        <p>Every detail of your travel itinerary is planned and executed to perfection by our partners in each South American destination. If you are looking for an activity or destination not listed in our travel packages, do not hesitate to contact us for more information.</p>
+        <p>The magic of Peru is waiting for you. Gotoperu offers the best Peru travel packages, so you can visit the various destinations that Peru offers and participate in the activities that can be done at each destination. Live the unforgettable experience of visiting the most emblematic neighborhoods on a Lima city tour, practicing kayaking in the beautiful Vilcanota River, or visiting the wonder of the world, Machu Picchu citadel, with the best operators in Peru.</p>
+        <p class="mt-5">Gotoperu offers Peru travel packages covering the main Peru destinations such as Machu Picchu, Rainbow Mountain, Cusco, Lima, Sacred Valley, Titicaca Lake, Puno, Arequipa, Nazca, the Amazon, and many more.</p>
       </div>
     </div>
     <div class="container grid md:grid-cols-3 gap-12">
 
       <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-      <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
+      <a :href="'/peru-travel-packages/'+packages.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
         <div class="relative">
           <img :src="packages.imagen" alt="" class="rounded-lg w-full">
           <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>

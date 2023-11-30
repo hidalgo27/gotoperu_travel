@@ -4,10 +4,10 @@
     <div class="relative">
       <div class="h-[75vh] relative overflow-hidden vimeo-wrapper ">
         <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
-        <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
+        <iframe src="https://player.vimeo.com/video/381676880?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
       <div class="absolute inset-x-0 mb-52 bottom-0 z-10 text-center">
-        <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION IN <span class="text-primary">SOUTH AMERICA</span> <span class="text-secondary">WITH THE BEST</span> LATAM OPERATOR</h2>
+        <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION IN <span class="text-primary">SOUTH AMERICA</span> <span class="text-secondary">WITH THE BEST</span> PERU OPERATOR</h2>
 
         <!--        <InquireHome></InquireHome>-->
 
@@ -69,7 +69,7 @@
 
     <section class="my-12 container">
       <div class="w-10/12 mx-auto">
-        <div class="grid md:grid-cols-2 justify-center gap-6 md:gap-24">
+        <div class="grid md:grid-cols-2 justify-center items-center gap-6 md:gap-24">
           <div class="">
             <div class="columns-2 gap-3 space-y-4 floa">
               <img src="/images/home/operator1.jpg" alt="" class="mt-3 rounded-xl">
@@ -80,14 +80,11 @@
           </div>
 
           <div>
-            <h2 class="text-3xl font-bold">LATAM Travel Operator</h2>
-            <p class="my-6 md:hidden">Travel fills our hearts and souls, and what better way to do it than with a tailor-made program created by one of LATAM's best operators
-              Our family of travel specialists has the goal of keeping our organization positioned among the best operators in LATAM,
-              <br>providing all the amenities that all our travelers need.</p>
+            <h2 class="text-3xl font-bold">PERU Travel Operator</h2>
+            <p class="my-6 md:hidden">Traveling fills our soul with magical and unforgettable experiences. The best way to visit Peru is with one of the best operators in Peru. Our family of travel and operations specialists aims to provide
+              <br> you with all the facilities to customize your travel program and make the most of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
 
-            <p class="my-6 hidden md:block">Travel fills our hearts and souls, and what <br> better way to do it than with a tailor-made <br> program created by one of LATAM's best operators?
-              <br> Our family of travel specialists <br> has the goal of keeping our organization <br> positioned among the best operators in LATAM,
-              <br>providing all the amenities that all our travelers need.</p>
+            <p class="mt-6 mb-12 hidden md:block">Traveling fills our soul with magical and unforgettable experiences. The best way to visit Peru is with one of the best operators in Peru. Our family of travel and operations specialists aims to provide you with all the facilities to customize your travel program and make the most of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
 
             <a href="#form-dream-adventure" class="btn-primary">Create My Trip Now</a>
           </div>
@@ -254,7 +251,7 @@
           <div class="grid grid-cols-12 items-center">
             <img src="/icons/person.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">
             <div class="col-span-8">
-              <h3 class="font-semibold text-sm">Trusted local South America Travel</h3>
+              <h3 class="font-semibold text-sm">Trusted local Peruvian Operators </h3>
               <p class="text-sm mt-3">Professional service from trusted local experts.</p>
             </div>
             <div class="col-span-4">

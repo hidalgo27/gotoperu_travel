@@ -19,17 +19,19 @@
 
           <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">
             <img src="https://www.peruforless.com/content-files/uploads/v2/be-machu-picchu-1-c.webp" alt="" class="object-cover  h-full">
-            <div class="absolute text-center mt-12 text-white top-0 inset-x-0 z-10">
-              <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>
-              <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>
+            <div class="absolute p-6 mt-12 text-white top-0 inset-x-0 z-10">
+              <h2 class="text-6xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>
+              <p class="my-6 hidden text-xl md:block">Discover the most popular destinations in Peru with <br> the best selection of Peru travel packages.</p>
 
-              <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>
-              <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>
+              <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all</nuxt-link>
+
+              <h2 class="text-4xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>
+              <p class="my-6 md:hidden">Discover the most popular destinations in Peru with the best selection of Peru travel packages.</p>
             </div>
             <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div>
           </div>
 
-          <a :href="'/latam-travel-packages/'+packages.url" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
+          <a :href="'/peru-travel-packages/'+packages.url" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
             <div class="relative">
               <img :src="packages.imagen" alt="" class="w-full rounded-lg">
               <div class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>
