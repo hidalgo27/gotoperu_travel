@@ -3,7 +3,7 @@
     <img src="https://gotolatam.com/images/banners/country/calafate.jpg" alt="" class="object-cover w-screen h-full">
     <div class="absolute inset-x-0 bottom-0 text-center">
       <h1 class="mb-24 font-bold text-6xl text-white">
-        LATAM Travel Packages
+        Peru Travel Packages
       </h1>
     </div>
   </header>
