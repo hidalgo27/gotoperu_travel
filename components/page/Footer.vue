@@ -14,7 +14,7 @@
         <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
           <img src="https://gotolatam.com/images/logos/logo-gotoperu-white.png" alt="" class="mx-auto">
         </a>
-        <p class="mt-4 font-semibold text-secondary">CONTACT US ALSO VIA EMAIL: admin@gotolatam.travel</p>
+        <p class="mt-4 font-semibold text-secondary">CONTACT US ALSO VIA EMAIL: info@gotoperu.com</p>
       </div>
       <div class="grid grid-cols-2 gap-4 dark:text-gray-300 md:grid-cols-5 mb-24">
         <div>
@@ -62,6 +62,18 @@
             </li>
             <li>
               <nuxt-link to="/about" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">About us</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="https://www.tripadvisor.com/Attraction_Review-g294314-d15202262-Reviews-Gotoperu-Cusco_Cusco_Region.html" target="_blank" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Tripadvisor</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="https://g.page/r/CaB25zxYNJutEB0/review" target="_blank" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Google Reviews</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="https://www.wetravel.com/users/gotoperu" target="_blank" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">WeTravel Reviews</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="https://www.trustpilot.com/review/gotoperu.com" target="_blank" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Trustpilot</nuxt-link>
             </li>
             <!--            <li>-->
             <!--              <a href="#" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">sdsdsdsd</a>-->

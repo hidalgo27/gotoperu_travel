@@ -5,7 +5,7 @@
           <div class="grid grid-cols-1">
 
             <section class="pb-8 text-center">
-              <img src="/images/logos/logo-gotolatam.svg" alt="" class="mx-auto w-64">
+              <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto w-64">
               <h3 class="my-3 font-semibold text-gray-700 text-2xl">Free Quote</h3>
               <p class="text-gray-500">Select your travel preferences and we will send you a travel proposal.</p>
             </section>

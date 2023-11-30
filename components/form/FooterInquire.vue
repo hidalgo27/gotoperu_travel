@@ -5,13 +5,13 @@
       <div class="grid grid-cols-1">
 
         <section class="pb-8 text-center">
-          <img src="/images/logos/logo-gotolatam.svg" alt="" class="mx-auto w-64">
+          <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto w-64">
           <h3 class="my-3 font-semibold text-gray-700 text-2xl">Free Quote</h3>
           <p class="text-gray-500">We're flexible! Postpone your tour with zero cost up to 10 days prior to departure.</p>
         </section>
         <div class="divider-dashed"></div>
         <div class="text-left mt-6">
-          <h2 class="text-lg text-tertiary omnes-semibold mb-5">What countries do you want to visit?</h2>
+          <h2 class="text-lg text-tertiary omnes-semibold mb-5">My prefer destinations:</h2>
           <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-50">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -53,7 +53,7 @@
 
             </div>
           </div>
-          <h3 class="text-xs text-tertiary omnes-semibold mt-3">You can choose one or more countries</h3>
+          <h3 class="text-xs text-tertiary omnes-semibold mt-3">You can choose one or more destinations</h3>
           <h3 class="text-lg text-tertiary omnes-semibold my-5">Number of travelers</h3>
           <div class="grid grid-cols-12 gap-6 my-6 overflow-x-scroll focus:touch-pan-x">
 
