@@ -58,6 +58,9 @@
 
     <section class="py-12 bg-gray-100" id="top-12">
       <carousel-p></carousel-p>
+      <div class="container text-center mt-12">
+        <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all travel packages</nuxt-link>
+      </div>
     </section>
 
 

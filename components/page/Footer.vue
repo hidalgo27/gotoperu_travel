@@ -27,7 +27,7 @@
               <a href="#top-12" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Top Tours</a>
             </li>
             <li>
-              <nuxt-link to="/latam-travel-packages" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Travel Packages</nuxt-link>
+              <nuxt-link to="/peru-travel-packages" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Travel Packages</nuxt-link>
             </li>
           </ul>
         </div>

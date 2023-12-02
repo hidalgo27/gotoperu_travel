@@ -15,7 +15,7 @@
         </div>
         <nav class="divide-y">
           <nuxt-link to="/destinations/countries" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/location.svg"> Destinations</nuxt-link>
-          <nuxt-link to="/latam-travel-packages" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/map.svg"> LATAM Travel Packages</nuxt-link>
+          <nuxt-link to="/peru-travel-packages" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/map.svg"> Peru Travel Packages</nuxt-link>
           <nuxt-link to="/#top-12" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/star.svg"> Top tours</nuxt-link>
           <nuxt-link to="/reviews" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/search.svg"> Reviews</nuxt-link>
           <nuxt-link to="/about" @click="statusModal" class="flex py-4 gap-2 items-center"><img src="/icons/user.svg"> About us</nuxt-link>
