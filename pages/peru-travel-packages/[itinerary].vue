@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-        class="btn-primary wtrvl-checkout_button  z-10 hidden"
+        class="btn-primary wtrvl-checkout_button hidden z-10 "
         id="wetravel_button_widget"
         data-env="https://www.wetravel.com"
         data-version="v0.3"
@@ -56,9 +56,9 @@
           </div>
           <div class="md:col-span-3 hidden md:block">
             <a href="#form-dream-adventure" class="btn-primary text-center block w-full">Get a Quote</a>
-<!--            <button class="btn-ternary mt-2 block w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">-->
-<!--              Book Now-->
-<!--            </button>-->
+            <button class="btn-ternary mt-2 block w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
+              Book Now
+            </button>
           </div>
         </div>
       </section>
@@ -459,9 +459,9 @@
 </template>
 
 <script lang="ts" setup>
-// useHead({
-//   script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
-// })
+useHead({
+  script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
+})
 // import InquireHome from "~/components/form/InquireHome.vue";
 
 definePageMeta({

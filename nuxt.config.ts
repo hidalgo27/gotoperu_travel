@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  app: {
+    head: {
+      script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
+    }
+  },
   // @ts-ignore
   apps: [
     {
