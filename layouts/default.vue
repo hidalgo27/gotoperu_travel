@@ -2,7 +2,7 @@
   <div class="tpl-snow">
     <div v-for="index in 50" :key="index"></div>
   </div>
-  
+
   <Headers></Headers>
 
   <slot />
