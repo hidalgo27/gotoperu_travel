@@ -58,6 +58,16 @@
 
     <section class="py-12 bg-gray-100" id="top-12">
       <carousel-p></carousel-p>
+      <section class="my-12 container">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="rounded-xl overflow-hidden">
+            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/amazing.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>
+          </div>
+          <div class="rounded-xl overflow-hidden">
+            <a href="/peru-travel-packages/honeymoon-Cusco-and-Machu-Picchu"><img src="/images/banners/honeymoon.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>
+          </div>
+        </div>
+      </section>
       <div class="container text-center mt-12">
         <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all travel packages</nuxt-link>
       </div>
@@ -110,6 +120,8 @@
         <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
       </div>
     </section>
+
+
 
     <!--    <section class="py-12 bg-gray-100">-->
     <!--      <div class="container">-->
@@ -224,7 +236,7 @@
     <!--    </section>-->
 
 
-    <section class="container py-16">
+    <section class="container pb-12">
       <div class="grid md:grid-cols-3 gap-6">
         <div class="rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
           <div class="grid grid-cols-12 items-center">
@@ -274,6 +286,16 @@
         <!--        </div>-->
       </div>
     </section>
+
+    <section class="pb-12">
+      <div class="container md:mx-auto">
+        <div class="rounded-xl overflow-hidden bg-gray-500">
+        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50" data-elfsight-app-lazy></div>
+        </div>
+      </div>
+    </section>
+
+
 
     <!--    <section class="container pb-16 text-center">-->
     <!--      <img src="/images/logos/logo-gotolatam.svg" alt="" class="mx-auto w-52">-->

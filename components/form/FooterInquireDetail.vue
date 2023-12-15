@@ -1,5 +1,5 @@
 <template>
-  <div class="container md:w-1/2 my-24" id="form-dream-adventure">
+  <div class="container md:w-1/2 2xl:w-1/3 my-24" id="form-dream-adventure">
 
         <div class="w-full">
           <div class="grid grid-cols-1">
@@ -17,9 +17,71 @@
               <h2 class="text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg">
                 {{ package_title }}</h2>
 
-              <h3 class="text-lg text-tertiary my-5">Number of travelers</h3>
-              <div class="grid grid-cols-7 gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
+              <h3 class="text-lg text-tertiary my-5">Hotel Category</h3>
+              <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
+                <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-50">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                  </svg>
+                </div>
+                <div class="col-span-12 md:col-span-10 grid grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
 
+                <div class="flex flex-col">
+                  <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="packageStore.hotelDetail" />
+                  <label for="hotel_5" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                    <div class="pb-1">
+                      <!--                      <img src="/icons/hotel.svg" alt="">-->
+                      <h4 class=" pt-1 text-center">Luxury</h4>
+                    </div>
+                    <div class="flex pt-2 gap-1 justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3 h-3 text-secondary" v-for="(index) in 5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                      </svg>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="flex flex-col">
+                  <input type="checkbox" id="hotel_4" class="peer hidden" value="4" v-model="packageStore.hotelDetail" />
+                  <label for="hotel_4" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                    <div class="pb-1">
+                      <!--                      <img src="/icons/hotel.svg" alt="">-->
+                      <h4 class=" pt-1 text-center">Superior</h4>
+                    </div>
+                    <div class="flex pt-2 gap-1 justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3 h-3 text-secondary" v-for="(index) in 4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                      </svg>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="flex flex-col">
+                  <input type="checkbox" id="hotel_3" class="peer hidden" value="3" v-model="packageStore.hotelDetail" />
+                  <label for="hotel_3" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                    <div class="pb-1">
+                      <!--                      <img src="/icons/hotel.svg" alt="">-->
+                      <h4 class=" pt-1 text-center">Best Value</h4>
+                    </div>
+                    <div class="flex pt-2 gap-1 justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3 h-3 text-secondary" v-for="(index) in 3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                      </svg>
+                    </div>
+                  </label>
+                </div>
+
+              </div>
+              </div>
+              <h3 class="text-lg text-tertiary my-5">Number of travelers</h3>
+              <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
+                <div class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-50">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                  </svg>
+                </div>
+
+                <div class="col-span-12 md:col-span-10 grid grid-cols-7 gap-3">
                 <div class="flex" v-for="n in 6" :key="n">
                   <input type="radio" :id="'radio_'+n" class="peer hidden" :value="n" v-model="traveller" />
                   <label :for="'radio_'+n" class="select-none w-full text-center cursor-pointer bg-gray-100 text-gray-800 rounded-lg px-5 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-primary peer-checked:text-white"> {{ n }} </label>
@@ -29,66 +91,15 @@
                   <input type="radio" :id="'radio_7'" class="peer hidden" value="7+" v-model="traveller" />
                   <label :for="'radio_7'" class="select-none w-full text-center cursor-pointer bg-gray-100 text-gray-800 rounded-lg py-2 transition-colors duration-200 ease-in-out peer-checked:bg-primary peer-checked:text-white"> 11+ </label>
                 </div>
-
-              </div>
-              <h3 class="text-lg text-tertiary my-5">Hotel Category</h3>
-              <div class="flex justify-start gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-
-                <div class="flex">
-                  <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="packageStore.hotelDetail" />
-                  <label for="hotel_5" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
-                    <div class="pb-1">
-                      <img src="/icons/hotel.svg" alt="">
-                      <h4 class=" pt-1">Luxury</h4>
-                    </div>
-                    <div class="flex pt-2 gap-1">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                    </div>
-                  </label>
-                </div>
-
-                <div class="flex">
-                  <input type="checkbox" id="hotel_4" class="peer hidden" value="4" v-model="packageStore.hotelDetail" />
-                  <label for="hotel_4" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
-                    <div class="pb-1">
-                      <img src="/icons/hotel.svg" alt="">
-                      <h4 class=" pt-1">Superior</h4>
-                    </div>
-                    <div class="flex pt-2 gap-1">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                    </div>
-                  </label>
-                </div>
-
-                <div class="flex">
-                  <input type="checkbox" id="hotel_3" class="peer hidden" value="3" v-model="packageStore.hotelDetail" />
-                  <label for="hotel_3" class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
-                    <div class="pb-1">
-                      <img src="/icons/hotel.svg" alt="">
-                      <h4 class=" pt-1">Best Value</h4>
-                    </div>
-                    <div class="flex pt-2 gap-1">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                      <img src="/icons/star.svg" alt="" class="w-2">
-                    </div>
-                  </label>
                 </div>
 
               </div>
 
 
-              <h3 class="text-lg text-tertiary my-5">Contact information</h3>
+<!--              <h3 class="text-lg text-tertiary my-5">Contact information</h3>-->
 
               <form @submit.prevent="handleSubmit">
-                <div class="grid grid-cols-1 gap-3">
+                <div class="grid grid-cols-1 mt-6 gap-3">
                   <div class="relative">
                     <div class="relative">
                       <input

@@ -170,7 +170,7 @@
 
                     <div class="relative w-20 text-center gap-12">
                       <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300"></div>
-                      <div class="bg-white py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">DAY <span class="rounded-full px-2 py-1  text-white" :class="{'bg-red-700': iti.length == index + 1, 'bg-primary': index + 1 ==  1, 'bg-gray-500': index + 1 > 1}">{{index + 1}}</span></div>
+                      <div class="bg-white py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">DAY <span class="rounded-full px-2 py-1  text-white" :class="{'bg-red-700': packages.duracion == index + 1, 'bg-primary': index + 1 ==  1, 'bg-gray-500': index + 1 > 1}">{{index + 1}}</span></div>
                     </div>
                     <div class="space-y-2 w-full " :class="[index + 1 == items.length ? 'border-y' : 'border-t']">
                       <div>
@@ -328,7 +328,7 @@
               </div>
             </article>
 
-            <article class="hidden" id="prices">
+            <article class="hidden" id="price2s">
               <div class="grid grid-cols-12 bg-gray-800 rounded-t-xl py-3 text-white divide-x items-center">
                 <div class="col-span-2 text-center pl-6">
                   Nights
