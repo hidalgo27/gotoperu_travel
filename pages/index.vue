@@ -115,11 +115,7 @@
       </div>
     </section>
 
-    <section class="mb-12 mt-12">
-      <div class="container">
-        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
-      </div>
-    </section>
+
 
 
 
@@ -236,7 +232,8 @@
     <!--    </section>-->
 
 
-    <section class="container pb-12">
+
+    <section class="container py-12">
       <div class="grid md:grid-cols-3 gap-6">
         <div class="rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
           <div class="grid grid-cols-12 items-center">
@@ -287,15 +284,25 @@
       </div>
     </section>
 
-    <section class="pb-12">
-      <div class="container md:mx-auto">
-        <div class="rounded-xl overflow-hidden bg-gray-500">
-        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50" data-elfsight-app-lazy></div>
-        </div>
+
+    <section class="mb-12 py-12 bg-gray-100">
+      <div class="container">
+        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
       </div>
     </section>
 
 
+    <section class="pb-6">
+      <blog></blog>
+    </section>
+
+    <section class="pb-12">
+      <div class="container md:mx-auto">
+        <div class="rounded-xl overflow-hidden bg-gray-500">
+          <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50" data-elfsight-app-lazy></div>
+        </div>
+      </div>
+    </section>
 
     <!--    <section class="container pb-16 text-center">-->
     <!--      <img src="/images/logos/logo-gotolatam.svg" alt="" class="mx-auto w-52">-->
@@ -309,6 +316,7 @@
 <script lang="ts" setup>
 import Destinations from "~/components/sections/destinations.vue";
 import {usePackageStore} from "~/stores/packages";
+import Blog from "~/components/sections/Blog.vue";
 const packageStore = usePackageStore()
 
 const youtube2 = ref(null);

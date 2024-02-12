@@ -19,7 +19,7 @@
   <section class="my-12">
     <div class="container my-6">
       <div class="grid text-center px-6 text-lg">
-        <p>Peru has countless destinations to discover and thousands of activities to do in the enchanting land of the Incas. Peru has remained the best tourist and culinary destination worldwide, so it is an option that no traveler misses when planning a trip to South America. Another factor that characterizes every destination in Peru is its biodiversity and its climatic variety since you can take a flight no more than 2 hours from the coast to the Andes and experience a drastic change in landscape, temperature, and altitude.</p>
+        <p><span class="font-semibold">Peru</span> has countless destinations to discover and thousands of activities to do in the enchanting land of the Incas. Peru has remained the best tourist and culinary destination worldwide, so it is an option that no traveler misses when planning a trip to South America. Another factor that characterizes every destination in Peru is its biodiversity and its climatic variety since you can take a flight no more than 2 hours from the coast to the Andes and experience a drastic change in landscape, temperature, and altitude.</p>
       </div>
     </div>
     <div class="container grid md:grid-cols-3 gap-12">
