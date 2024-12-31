@@ -292,9 +292,9 @@
     </section>
 
 
-    <section class="pb-6">
-      <blog></blog>
-    </section>
+<!--    <section class="pb-6">-->
+<!--      <blog></blog>-->
+<!--    </section>-->
 
     <section class="pb-12">
       <div class="container md:mx-auto">

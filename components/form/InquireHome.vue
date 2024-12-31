@@ -14,7 +14,7 @@
             </svg>
           </div>
           <transition name="top" appear>
-            <div class="bg-white" :class="[shouldOpenUpwardsFirst?'box-option-select-top':'box-option-select']" v-show="viewPopover == 1" ref="dropdownFirst">
+            <div class="bg-white box-option-select-top" :class="[shouldOpenUpwardsFirst?'box-option-select-top':'box-option-select']" v-show="viewPopover == 1" ref="dropdownFirst">
               <div class="grid items-start text-left p-2">
 <!--                <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer" @click="selectDestination(destino.url)" v-for="destino in listDestination">-->
 <!--                  {{ destino.nombre }}</div>-->
