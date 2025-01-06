@@ -233,7 +233,7 @@
   </div>
 
   <NotificationGroup group="foo">
-    <div class="fixed inset-0 flex z-50 items-start justify-end p-6 px-4 py-6 pointer-events-none">
+    <div class="fixed inset-0 flex z-100 items-start justify-end p-6 px-4 py-6 pointer-events-none">
       <div class="w-full max-w-sm">
         <Notification
             v-slot="{ notifications }"

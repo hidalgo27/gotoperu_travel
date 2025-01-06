@@ -17,20 +17,20 @@
           <!--          <div v-for="packages in listPackages" :key="packages.id">-->
           <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-          <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">
+<!--          <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">-->
 
-            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/banner-navidad.jpg" alt="" class="object-cover  h-full">
-<!--            <div class="absolute p-6 mt-12 text-white top-0 inset-x-0 z-10">-->
-<!--              <h2 class="text-6xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>-->
-<!--              <p class="my-6 hidden text-xl md:block">Discover the most popular destinations in Peru with <br> the best selection of Peru travel packages.</p>-->
+<!--            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/banner-navidad.jpg" alt="" class="object-cover  h-full">-->
+<!--&lt;!&ndash;            <div class="absolute p-6 mt-12 text-white top-0 inset-x-0 z-10">&ndash;&gt;-->
+<!--&lt;!&ndash;              <h2 class="text-6xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="my-6 hidden text-xl md:block">Discover the most popular destinations in Peru with <br> the best selection of Peru travel packages.</p>&ndash;&gt;-->
 
-<!--              <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all</nuxt-link>-->
+<!--&lt;!&ndash;              <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all</nuxt-link>&ndash;&gt;-->
 
-<!--              <h2 class="text-4xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>-->
-<!--              <p class="my-6 md:hidden">Discover the most popular destinations in Peru with the best selection of Peru travel packages.</p>-->
-<!--            </div>-->
-            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>
-          </div>
+<!--&lt;!&ndash;              <h2 class="text-4xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;              <p class="my-6 md:hidden">Discover the most popular destinations in Peru with the best selection of Peru travel packages.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
+<!--          </div>-->
 
           <a :href="'/peru-travel-packages/'+packages.url" class="p-3 bg-white col-span-1 w-full rounded-xl my-2 block shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.id">
             <div class="relative">

@@ -58,16 +58,16 @@
 
     <section class="py-12 bg-gray-100" id="top-12">
       <carousel-p></carousel-p>
-      <section class="my-12 container">
-        <div class="grid grid-cols-2 gap-6">
-          <div class="rounded-xl overflow-hidden">
-            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/amazing.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>
-          </div>
-          <div class="rounded-xl overflow-hidden">
-            <a href="/peru-travel-packages/honeymoon-Cusco-and-Machu-Picchu"><img src="/images/banners/honeymoon.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>
-          </div>
-        </div>
-      </section>
+<!--      <section class="my-12 container">-->
+<!--        <div class="grid grid-cols-2 gap-6">-->
+<!--          <div class="rounded-xl overflow-hidden">-->
+<!--            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/amazing.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
+<!--          </div>-->
+<!--          <div class="rounded-xl overflow-hidden">-->
+<!--            <a href="/peru-travel-packages/honeymoon-Cusco-and-Machu-Picchu"><img src="/images/banners/honeymoon.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
       <div class="container text-center mt-12">
         <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all travel packages</nuxt-link>
       </div>
