@@ -1,6 +1,7 @@
 {
   "name": "nuxt-app",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -8,28 +9,29 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
-    "@types/node": "^20",
-    "autoprefixer": "^10.4.16",
-    "nuxt": "^3.8.2",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5"
-  },
   "dependencies": {
-    "@gtm-support/vue-gtm": "^2.2.0",
-    "@pinia/nuxt": "^0.5.1",
+    "@nuxt/image": "^1.7.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@pinia/nuxt": "^0.5.3",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
-    "floating-vue": "^2.0.0-beta.24",
-    "intl-tel-input": "^18.2.1",
+    "floating-vue": "^5.2.2",
+    "intl-tel-input": "^23.8.0",
     "notiwind": "^2.0.2",
-    "pinia": "^2.1.7",
-    "vue-tailwind-datepicker": "^1.6.1",
-    "vue3-carousel": "^0.3.1"
+    "pinia": "^2.2.1",
+    "vue": "latest",
+    "vue3-carousel": "^0.3.3"
   },
-  "overrides": {
-    "vue": "latest"
+  "devDependencies": {
+    "@hypernym/nuxt-gsap": "^2.4.3",
+    "@nuxt/scripts": "^0.9.5",
+    "@nuxtjs/device": "^3.2.4",
+    "@nuxtjs/moment": "^1.6.1",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
+    "@samk-dev/nuxt-vcalendar": "^1.0.4",
+    "autoprefixer": "^10.4.20",
+    "nuxt": "^3.12.4",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.10"
   }
 }

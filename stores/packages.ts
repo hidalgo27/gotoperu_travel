@@ -178,6 +178,30 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
+
+	const saveInquire = async (obj:any) => {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+
+		return new Promise(async (resolve, reject) => {
+			try {
+				const res = await fetch(config.public.apiInquire, {
+					method: 'POST',
+					headers: headers,
+					body: JSON.stringify(obj)
+				})
+				const data = await res.json()
+				if (data) {
+					resolve(data)
+				}else {
+					reject(data)
+				}
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
+
 	const getCountry = async (url:any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
@@ -309,6 +333,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		getCountryShow,
 		getBlog,
 		getBlogShow,
+		saveInquire,
 		showModalInquireGlobal,
 		showModalItinerary,
 		code_w,
