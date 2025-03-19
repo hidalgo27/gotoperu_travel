@@ -1,18 +1,22 @@
 <template>
   <div>
-    <button
-        class="btn-primary wtrvl-checkout_button hidden z-10 "
-        id="wetravel_button_widget"
-        data-env="https://www.wetravel.com"
-        data-version="v0.3"
-        data-uid="239346"
-        :data-uuid="''+packageStore.code_w"
-        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"
-        ref="targetButton" @click="targetAction">
-      Book Now
-    </button>
-    <div v-for="packages in listPackages">
+<!--    <button-->
+<!--        class="btn-primary wtrvl-checkout_button hidden z-10 "-->
+<!--        id="wetravel_button_widget"-->
+<!--        data-env="https://www.wetravel.com"-->
+<!--        data-version="v0.3"-->
+<!--        data-uid="239346"-->
+<!--        :data-uuid="''+packageStore.code_w"-->
+<!--        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"-->
+<!--        ref="targetButton" @click="targetAction">-->
+<!--      Book Now-->
+<!--    </button>-->
 
+
+
+    <div v-if="listPackages && listPackages.length">
+    <div v-for="packages in listPackages" :key="packages.id">
+<!--      <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button>-->
 
       <!--  <header class="h-[75vh] relative">-->
       <!--    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
@@ -59,6 +63,7 @@
             <button class="btn-ternary mt-2 block w-full" ref="triggerButton" @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
               Book Now
             </button>
+
           </div>
         </div>
       </section>
@@ -454,14 +459,14 @@
 
       <!--    <ModalItinerary></ModalItinerary>-->
     </div>
-
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-useHead({
-  script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
-})
+// useHead({
+//   script: [ { src: 'https://cdn.wetravel.com/widgets/embed_checkout.js' } ]
+// })
 // import InquireHome from "~/components/form/InquireHome.vue";
 
 definePageMeta({

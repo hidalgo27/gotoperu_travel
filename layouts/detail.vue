@@ -16,10 +16,12 @@
   <modal-menu></modal-menu>
   <FooterInquireDetail></FooterInquireDetail>
   <Footer></Footer>
-
+  <Float></Float>
 </template>
 
 <script lang="ts" setup>
+import Float from "~/components/page/Float.vue";
+
 useHead({
   script: [
     {

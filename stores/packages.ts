@@ -21,6 +21,8 @@ export const usePackageStore = defineStore('PackageStore', () => {
 
 	const counterPay = ref(1)
 
+	const paymentLink = ref("")
+
 	const $reset = () => {
 		travelDate.value = ''
 		destination.value = []
@@ -313,6 +315,9 @@ export const usePackageStore = defineStore('PackageStore', () => {
 			}
 		})
 	}
+
+
+
 	return {
 		showModalInquireHome,
 		travelDate,
@@ -338,6 +343,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		showModalItinerary,
 		code_w,
 		counterPay,
+		paymentLink,
 		$reset
 	}
 },{persist: true})

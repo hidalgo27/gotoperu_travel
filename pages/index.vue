@@ -17,6 +17,9 @@
       <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
 
+
+<!--    <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button>-->
+
     <!--    <div>-->
     <!--      &lt;!&ndash; Primer dropdown &ndash;&gt;-->
     <!--      <div class="relative" @click="toggle('first')" ref="dropdownFirst">-->
@@ -84,7 +87,7 @@
       <div class="w-10/12 mx-auto">
         <div class="grid md:grid-cols-2 justify-center items-center gap-6 md:gap-24">
           <div class="">
-            <div class="columns-2 gap-3 space-y-4 floa">
+            <div class="columns-2 gap-3 space-y-4 float">
               <img src="/images/home/operator1.jpg" alt="" class="mt-3 rounded-xl">
               <img src="/images/home/operator2.jpg" alt="" class="rounded-xl">
               <img src="/images/home/operator3.jpg" alt="" class="rounded-xl">
@@ -317,6 +320,8 @@
 import Destinations from "~/components/sections/destinations.vue";
 import {usePackageStore} from "~/stores/packages";
 import Blog from "~/components/sections/Blog.vue";
+import ButtonW from "~/components/wetravel/ButtonW.vue";
+import ModalW from "~/components/wetravel/ModalW.vue";
 const packageStore = usePackageStore()
 
 const youtube2 = ref(null);
@@ -386,6 +391,7 @@ const youtube2 = ref(null);
 //     youtube2.value.playVideo();
 //   }
 // };
+
 
 onMounted(async () => {
   // if (youtube.value && youtube.value.playVideo) {

@@ -79,5 +79,5 @@ export default defineNuxtConfig({
       gtmContainerId: process.env.NUXT_PUBLIC_GTM_CONTAINER_ID || 'GTM-M4FTLKV3',
       // apiBase: process.env.API_BASE_TEST || "http://localhost:8080/api",
     }
-  },
+  }
 })
