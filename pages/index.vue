@@ -8,15 +8,26 @@
           src="https://player.vimeo.com/video/381676880?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"
           frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
-      <div class="absolute inset-x-0 mb-52 bottom-0 z-10 text-center">
+      <div class="absolute inset-x-0 bottom-1/4 z-10 text-center flex flex-col">
+        <div class="justify-center flex ">
+          <button class="backdrop-blur-md text-white px-4 py-2 rounded-md flex items-center">
+            <span class="mr-2">See our 4,778 reviews on</span>
+            <span class="text-green-400 font-bold">Trustpilot</span>
+          </button>
+        </div>
+        <h1
+          class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight md:text-5xl 2xl:text-7xl tracking-wide font-semibold my-12">
+          DO WILD THINGS</h1>
+
         <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION
           IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span> PERUVIAN OPERATOR
         </h2>
-
+        <div class="mt-8 justify-center flex">
+          <NuxtLink to="/peru-travel-packages" class="btn-primary hover:bg-opacity-75 duration-500 transition">
+            View all Adventures
+          </NuxtLink>
+        </div>
         <!--        <InquireHome></InquireHome>-->
-
-
-
       </div>
       <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
@@ -86,7 +97,7 @@
     <!--        ref="youtube2" />-->
 
     <!--    <button type="button" @click="play">sdsds</button>-->
-
+    <SliderBanner></SliderBanner>
     <section class="my-12 container">
       <div class="w-10/12 mx-auto">
         <div class="grid md:grid-cols-2 justify-center items-center gap-6 md:gap-24">
@@ -101,16 +112,20 @@
 
           <div>
             <h2 class="text-3xl font-bold">PERU Travel Operator</h2>
-            <p class="my-6 md:hidden">Traveling fills our soul with magical and unforgettable experiences. The best way
+            <p class="my-6 md:hidden">Traveling fills our soul with magical and unforgettable experiences. The best
+              way
               to visit Peru is with one of the best operators in Peru. Our family of travel and operations specialists
               aims to provide
-              <br> you with all the facilities to customize your travel program and make the most of your visit to Peru.
+              <br> you with all the facilities to customize your travel program and make the most of your visit to
+              Peru.
               The GOTOPERU team is here to help you and provide personalized attention.
             </p>
 
             <p class="mt-6 mb-12 hidden md:block">Traveling fills our soul with magical and unforgettable experiences.
-              The best way to visit Peru is with one of the best operators in Peru. Our family of travel and operations
-              specialists aims to provide you with all the facilities to customize your travel program and make the most
+              The best way to visit Peru is with one of the best operators in Peru. Our family of travel and
+              operations
+              specialists aims to provide you with all the facilities to customize your travel program and make the
+              most
               of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
 
             <a href="#form-dream-adventure" class="btn-primary">Create My Trip Now</a>
@@ -330,6 +345,7 @@
 <script lang="ts" setup>
 import Destinations from "~/components/sections/destinations.vue";
 import { usePackageStore } from "~/stores/packages";
+import SliderBanner from "~/components/page/SliderBanner.vue";
 import Blog from "~/components/sections/Blog.vue";
 import ButtonW from "~/components/wetravel/ButtonW.vue";
 import ModalW from "~/components/wetravel/ModalW.vue";
