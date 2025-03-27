@@ -4,10 +4,14 @@
     <div class="relative">
       <div class="h-[75vh] relative overflow-hidden vimeo-wrapper ">
         <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
-        <iframe src="https://player.vimeo.com/video/381676880?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1" frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
+        <iframe
+          src="https://player.vimeo.com/video/381676880?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"
+          frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
       <div class="absolute inset-x-0 mb-52 bottom-0 z-10 text-center">
-        <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span> PERUVIAN OPERATOR</h2>
+        <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION
+          IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span> PERUVIAN OPERATOR
+        </h2>
 
         <!--        <InquireHome></InquireHome>-->
 
@@ -18,7 +22,7 @@
     </div>
 
 
-<!--    <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button>-->
+    <!-- <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button> -->
 
     <!--    <div>-->
     <!--      &lt;!&ndash; Primer dropdown &ndash;&gt;-->
@@ -61,16 +65,16 @@
 
     <section class="py-12 bg-gray-100" id="top-12">
       <carousel-p></carousel-p>
-<!--      <section class="my-12 container">-->
-<!--        <div class="grid grid-cols-2 gap-6">-->
-<!--          <div class="rounded-xl overflow-hidden">-->
-<!--            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/amazing.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
-<!--          </div>-->
-<!--          <div class="rounded-xl overflow-hidden">-->
-<!--            <a href="/peru-travel-packages/honeymoon-Cusco-and-Machu-Picchu"><img src="/images/banners/honeymoon.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </section>-->
+      <!--      <section class="my-12 container">-->
+      <!--        <div class="grid grid-cols-2 gap-6">-->
+      <!--          <div class="rounded-xl overflow-hidden">-->
+      <!--            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/amazing.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
+      <!--          </div>-->
+      <!--          <div class="rounded-xl overflow-hidden">-->
+      <!--            <a href="/peru-travel-packages/honeymoon-Cusco-and-Machu-Picchu"><img src="/images/banners/honeymoon.jpg" alt="" class="object-cover  h-full"><div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </section>-->
       <div class="container text-center mt-12">
         <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all travel packages</nuxt-link>
       </div>
@@ -97,10 +101,17 @@
 
           <div>
             <h2 class="text-3xl font-bold">PERU Travel Operator</h2>
-            <p class="my-6 md:hidden">Traveling fills our soul with magical and unforgettable experiences. The best way to visit Peru is with one of the best operators in Peru. Our family of travel and operations specialists aims to provide
-              <br> you with all the facilities to customize your travel program and make the most of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
+            <p class="my-6 md:hidden">Traveling fills our soul with magical and unforgettable experiences. The best way
+              to visit Peru is with one of the best operators in Peru. Our family of travel and operations specialists
+              aims to provide
+              <br> you with all the facilities to customize your travel program and make the most of your visit to Peru.
+              The GOTOPERU team is here to help you and provide personalized attention.
+            </p>
 
-            <p class="mt-6 mb-12 hidden md:block">Traveling fills our soul with magical and unforgettable experiences. The best way to visit Peru is with one of the best operators in Peru. Our family of travel and operations specialists aims to provide you with all the facilities to customize your travel program and make the most of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
+            <p class="mt-6 mb-12 hidden md:block">Traveling fills our soul with magical and unforgettable experiences.
+              The best way to visit Peru is with one of the best operators in Peru. Our family of travel and operations
+              specialists aims to provide you with all the facilities to customize your travel program and make the most
+              of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
 
             <a href="#form-dream-adventure" class="btn-primary">Create My Trip Now</a>
           </div>
@@ -295,9 +306,9 @@
     </section>
 
 
-<!--    <section class="pb-6">-->
-<!--      <blog></blog>-->
-<!--    </section>-->
+    <!--    <section class="pb-6">-->
+    <!--      <blog></blog>-->
+    <!--    </section>-->
 
     <section class="pb-12">
       <div class="container md:mx-auto">
@@ -318,7 +329,7 @@
 
 <script lang="ts" setup>
 import Destinations from "~/components/sections/destinations.vue";
-import {usePackageStore} from "~/stores/packages";
+import { usePackageStore } from "~/stores/packages";
 import Blog from "~/components/sections/Blog.vue";
 import ButtonW from "~/components/wetravel/ButtonW.vue";
 import ModalW from "~/components/wetravel/ModalW.vue";
