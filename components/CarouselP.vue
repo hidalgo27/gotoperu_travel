@@ -37,7 +37,7 @@ const nextSlide = () => {
 
 const getPackage = async () => {
   const res: any = await packageStore.getPackageTop()
-  listPackages.value = res.slice(0, 8)
+  listPackages.value = res.slice(0, 7)
   console.log(listPackages.value)
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
@@ -104,51 +104,70 @@ onMounted(async () => {
           <!--&lt;!&ndash;            </div>&ndash;&gt;-->
           <!--            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
           <!--          </div>-->
+          <template v-for="(packages, index) in listPackages" :key="packages.id">
+            <div v-if="index === 2"
+              class="relative col-span-1 w-full rounded-xl my-2 shadow-md group flex flex-col h-full overflow-hidden">
 
-          <a :href="'/peru-travel-packages/' + packages.url"
-            class="p-3 bg-white col-span-1 w-full rounded-xl my-2 shadow-md cursor-pointer group flex flex-col h-full"
-            v-for="packages in listPackages" :key="packages.id">
-            <div class="relative over">
-              <img :src="packages.imagen" alt="" class="w-full rounded-lg">
-              <div
-                class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
-                PAQUETE</div>
-              <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+              <!-- Imagen -->
+              <NuxtImg src="/images/packages/package1.png" alt="Banner"
+                class="w-full h-full object-cover rounded-xl shadow-md brightness-75" />
+
+              <!-- Contenido sobre la imagen -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
+                <div class="bg-black bg-opacity-50 p-4 rounded-lg">
+                  <NuxtImg src="/images/packages/best-offer-tag.webp" alt="Offer"
+                    class="w-full h-full object-cover rounded-xl shadow-md" />
+                </div>
+                <p class="mt-4 text-lg font-semibold">Book before 8th April</p>
+                <button class="mt-4 bg-white text-gray-900 font-bold py-2 px-4 rounded-full">DEALS THIS WAY</button>
+              </div>
             </div>
-            <div class="relative">
-              <div class="my-3">{{ packages.duracion }} day tour</div>
-              <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
-              <!-- <div class="flex text-xs font-semibold gap-1 items-center">
-                <template
-                  v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
-                  :key="destination.id">
-                  {{ destination.nombre }}
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < uniqueDestinos.length - 1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                  </svg>
-                </template>
+
+            <a :href="'/peru-travel-packages/' + packages.url"
+              class="p-3 bg-white col-span-1 w-full rounded-xl my-2 shadow-md cursor-pointer group flex flex-col h-full">
+              <div class="relative">
+                <img :src="packages.imagen" alt="" class="w-full rounded-lg">
+                <div
+                  class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
+                  PAQUETE</div>
+                <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+              </div>
+              <div class="relative">
+                <div class="my-3">{{ packages.duracion }} day tour</div>
+                <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
+                <!-- <div class="flex text-xs font-semibold gap-1 items-center">
+                  <template
+                    v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
+                    :key="destination.id">
+                    {{ destination.nombre }}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                      stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < uniqueDestinos.length - 1">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                    </svg>
+                  </template>
 </div> -->
-              <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
-                <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
-              </div>
-              <div v-else class="text-2xl font-semibold">
-                <sup class="italic light text-xs">Price </sup>Inquire
-              </div>
-              <!-- <div class="flex gap-2 mt-3 text-sm">
+                <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
+                  <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
+                </div>
+                <div v-else class="text-2xl font-semibold">
+                  <sup class="italic light text-xs">Price </sup>Inquire
+                </div>
+                <!-- <div class="flex gap-2 mt-3 text-sm">
                 <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
                   packages.codigo_vuelo }}</span>
               </div> -->
-              <!-- <div class="border my-4"></div>
+                <!-- <div class="border my-4"></div>
               <div class="flex justify-between text-lg font-semibold">
 
               </div> -->
-            </div>
-            <a :href="'/peru-travel-packages/' + packages.url"
-              class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
-              itinerary</a>
-          </a>
+              </div>
+              <a :href="'/peru-travel-packages/' + packages.url"
+                class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
+                itinerary</a>
+            </a>
+          </template>
+
           <!--          </div>-->
         </div>
         <!--        </Carousel>-->

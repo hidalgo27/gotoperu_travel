@@ -1,6 +1,107 @@
+<script lang="ts" setup>
+import Destinations from "~/components/sections/destinations.vue";
+import { usePackageStore } from "~/stores/packages";
+import SliderBanner from "~/components/page/SliderBanner.vue";
+import ReservationPolicies from "~/components/page/ReservationPolicies.vue";
+import Benefits from "~/components/page/Benefits.vue";
+import Blog from "~/components/sections/Blog.vue";
+import ButtonW from "~/components/wetravel/ButtonW.vue";
+import ModalW from "~/components/wetravel/ModalW.vue";
+const packageStore = usePackageStore()
+const listDestinations = ref([])
+
+const getDestinations = async (url: any) => {
+  const res: any = await packageStore.getCountry(url)
+  listDestinations.value = res.slice(0, 7)
+  console.log(listDestinations.value)
+}
+
+const youtube2 = ref(null);
+
+// // Estados del primer dropdown
+// const showFirst = ref(false);
+// const selectedItemsFirst = ref([]);
+// const dropdownFirst = ref(null);
+// const itemsFirst = [
+//   { id: 1, name: 'Opción 1' },
+//   { id: 2, name: 'Opción 2' },
+//   { id: 3, name: 'Opción 3' },
+// ];
+//
+// // Estados del segundo dropdown
+// const showSecond = ref(false);
+// const selectedItemsSecond = ref([]);
+// const dropdownSecond = ref(null);
+// const itemsSecond = [
+//   { id: 4, name: 'Opción 4' },
+//   { id: 5, name: 'Opción 5' },
+//   { id: 6, name: 'Opción 6' },
+// ];
+//
+// const handleClickOutside = (event) => {
+//   if (dropdownFirst.value && !dropdownFirst.value.contains(event.target)) {
+//     showFirst.value = false;
+//   }
+//   if (dropdownSecond.value && !dropdownSecond.value.contains(event.target)) {
+//     showSecond.value = false;
+//   }
+// };
+//
+// onMounted(() => {
+//   document.addEventListener('click', handleClickOutside);
+// });
+//
+// onBeforeUnmount(() => {
+//   document.removeEventListener('click', handleClickOutside);
+// });
+//
+// const toggle = (dropdown) => {
+//   if (dropdown === 'first') {
+//     showFirst.value = !showFirst.value;
+//   } else if (dropdown === 'second') {
+//     showSecond.value = !showSecond.value;
+//   }
+// };
+//
+// const toggleSelection = (item, dropdown) => {
+//   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
+//   const index = selectedItems.value.findIndex(i => i.id === item.id);
+//   if (index === -1) {
+//     selectedItems.value.push(item);
+//   } else {
+//     selectedItems.value.splice(index, 1);
+//   }
+// };
+//
+// const isSelected = (item, dropdown) => {
+//   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
+//   return selectedItems.value.some(i => i.id === item.id);
+// };
+
+// const play = () => {
+//   if (youtube2.value && youtube2.value.playVideo) {
+//     youtube2.value.playVideo();
+//   }
+// };
+
+
+onMounted(async () => {
+  // if (youtube.value && youtube.value.playVideo) {
+  //   youtube.value.playVideo();
+  // }
+
+  await getDestinations('peru')
+  if (process.client) {
+    // @ts-ignore
+    import('https://static.elfsight.com/platform/platform.js').then((module) => {
+
+    });
+  }
+})
+
+</script>
 <template>
   <div class="shadow">
-
     <div class="relative">
       <div class="h-[75vh] relative overflow-hidden vimeo-wrapper ">
         <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
@@ -17,8 +118,8 @@
         </div>
         <h1
           class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight md:text-5xl 2xl:text-7xl tracking-wide font-semibold my-12">
-          DO WILD THINGS</h1>
-
+          DO WILD THINGS
+        </h1>
         <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION
           IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span> PERUVIAN OPERATOR
         </h2>
@@ -31,8 +132,19 @@
       </div>
       <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
-
-
+    <Benefits></Benefits>
+    <section class="container py-12 justify-center text-center flex flex-row items-center">
+      <NuxtImg src="/images/banners/banner-detail.png" alt="" class="w-52" />
+      <div class="flex flex-col w-2/3 text-center">
+        <h1 class="font-bold text-3xl ">
+          Must-Experience Peru:
+        </h1>
+        <h1 class="font-bold text-3xl ">
+          Our Top Travel Packages
+        </h1>
+        <span> Our adventures are tailored to meet a variety of fitness levels so you can pick the perfect match.</span>
+      </div>
+    </section>
     <!-- <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button> -->
 
     <!--    <div>-->
@@ -72,8 +184,6 @@
     <!--        </div>-->
     <!--      </div>-->
     <!--    </div>-->
-
-
     <section class="py-12 bg-gray-100" id="top-12">
       <carousel-p></carousel-p>
       <!--      <section class="my-12 container">-->
@@ -87,17 +197,20 @@
       <!--        </div>-->
       <!--      </section>-->
       <div class="container text-center mt-12">
-        <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all travel packages</nuxt-link>
+        <nuxt-link to="/peru-travel-packages" type="button" class="btn-primary">View all travel
+          packages</nuxt-link>
       </div>
     </section>
-
-
     <!--    <YouTube-->
     <!--        src="https://www.youtube.com/watch?v=jNQXAC9IVRw"-->
     <!--        ref="youtube2" />-->
 
     <!--    <button type="button" @click="play">sdsds</button>-->
     <SliderBanner></SliderBanner>
+    <ReservationPolicies></ReservationPolicies>
+    <section>
+
+    </section>
     <section class="my-12 container">
       <div class="w-10/12 mx-auto">
         <div class="grid md:grid-cols-2 justify-center items-center gap-6 md:gap-24">
@@ -127,7 +240,6 @@
               specialists aims to provide you with all the facilities to customize your travel program and make the
               most
               of your visit to Peru. The GOTOPERU team is here to help you and provide personalized attention.</p>
-
             <a href="#form-dream-adventure" class="btn-primary">Create My Trip Now</a>
           </div>
         </div>
@@ -143,11 +255,6 @@
         <destinations></destinations>
       </div>
     </section>
-
-
-
-
-
     <!--    <section class="py-12 bg-gray-100">-->
     <!--      <div class="container">-->
     <!--        <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>-->
@@ -340,96 +447,3 @@
 
   </div>
 </template>
-
-
-<script lang="ts" setup>
-import Destinations from "~/components/sections/destinations.vue";
-import { usePackageStore } from "~/stores/packages";
-import SliderBanner from "~/components/page/SliderBanner.vue";
-import Blog from "~/components/sections/Blog.vue";
-import ButtonW from "~/components/wetravel/ButtonW.vue";
-import ModalW from "~/components/wetravel/ModalW.vue";
-const packageStore = usePackageStore()
-
-const youtube2 = ref(null);
-
-// // Estados del primer dropdown
-// const showFirst = ref(false);
-// const selectedItemsFirst = ref([]);
-// const dropdownFirst = ref(null);
-// const itemsFirst = [
-//   { id: 1, name: 'Opción 1' },
-//   { id: 2, name: 'Opción 2' },
-//   { id: 3, name: 'Opción 3' },
-// ];
-//
-// // Estados del segundo dropdown
-// const showSecond = ref(false);
-// const selectedItemsSecond = ref([]);
-// const dropdownSecond = ref(null);
-// const itemsSecond = [
-//   { id: 4, name: 'Opción 4' },
-//   { id: 5, name: 'Opción 5' },
-//   { id: 6, name: 'Opción 6' },
-// ];
-//
-// const handleClickOutside = (event) => {
-//   if (dropdownFirst.value && !dropdownFirst.value.contains(event.target)) {
-//     showFirst.value = false;
-//   }
-//   if (dropdownSecond.value && !dropdownSecond.value.contains(event.target)) {
-//     showSecond.value = false;
-//   }
-// };
-//
-// onMounted(() => {
-//   document.addEventListener('click', handleClickOutside);
-// });
-//
-// onBeforeUnmount(() => {
-//   document.removeEventListener('click', handleClickOutside);
-// });
-//
-// const toggle = (dropdown) => {
-//   if (dropdown === 'first') {
-//     showFirst.value = !showFirst.value;
-//   } else if (dropdown === 'second') {
-//     showSecond.value = !showSecond.value;
-//   }
-// };
-//
-// const toggleSelection = (item, dropdown) => {
-//   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
-//   const index = selectedItems.value.findIndex(i => i.id === item.id);
-//   if (index === -1) {
-//     selectedItems.value.push(item);
-//   } else {
-//     selectedItems.value.splice(index, 1);
-//   }
-// };
-//
-// const isSelected = (item, dropdown) => {
-//   const selectedItems = dropdown === 'first' ? selectedItemsFirst : selectedItemsSecond;
-//   return selectedItems.value.some(i => i.id === item.id);
-// };
-
-// const play = () => {
-//   if (youtube2.value && youtube2.value.playVideo) {
-//     youtube2.value.playVideo();
-//   }
-// };
-
-
-onMounted(async () => {
-  // if (youtube.value && youtube.value.playVideo) {
-  //   youtube.value.playVideo();
-  // }
-  if (process.client) {
-    // @ts-ignore
-    import('https://static.elfsight.com/platform/platform.js').then((module) => {
-
-    });
-  }
-})
-
-</script>
