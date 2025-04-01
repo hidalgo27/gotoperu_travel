@@ -7,6 +7,7 @@ import Benefits from "~/components/page/Benefits.vue";
 import Blog from "~/components/sections/Blog.vue";
 import ButtonW from "~/components/wetravel/ButtonW.vue";
 import ModalW from "~/components/wetravel/ModalW.vue";
+import MiniReviews from "~/components/sections/MiniReviews.vue";
 const packageStore = usePackageStore()
 const listDestinations = ref([])
 
@@ -208,10 +209,7 @@ onMounted(async () => {
     <!--    <button type="button" @click="play">sdsds</button>-->
     <SliderBanner></SliderBanner>
     <ReservationPolicies></ReservationPolicies>
-    <section>
-
-    </section>
-    <section class="my-12 container">
+    <!-- <section class="my-12 container">
       <div class="w-10/12 mx-auto">
         <div class="grid md:grid-cols-2 justify-center items-center gap-6 md:gap-24">
           <div class="">
@@ -244,7 +242,7 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!--    <section class="md:py-12 pb-12 bg-gray-100">-->
     <!--      <carousel-h></carousel-h>-->
@@ -255,6 +253,7 @@ onMounted(async () => {
         <destinations></destinations>
       </div>
     </section>
+    <MiniReviews></MiniReviews>
     <!--    <section class="py-12 bg-gray-100">-->
     <!--      <div class="container">-->
     <!--        <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>-->
@@ -369,7 +368,7 @@ onMounted(async () => {
 
 
 
-    <section class="container py-12">
+    <!-- <section class="container py-12">
       <div class="grid md:grid-cols-3 gap-6">
         <div class="rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">
           <div class="grid grid-cols-12 items-center">
@@ -406,36 +405,46 @@ onMounted(async () => {
               <img src="/images/home/operator7.jpg" alt="" class="bg-primary rounded-xl h-full w-full">
             </div>
           </div>
-        </div>
-        <!--        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">-->
-        <!--          <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">-->
-        <!--          <div class="">-->
-        <!--            <h3 class="font-semibold text-sm">Book with Confidence</h3>-->
-        <!--            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>-->
-        <!--          </div>-->
-        <!--          <div class="">-->
-        <!--            <div class="bg-primary rounded-xl h-full w-full"></div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </div>
-    </section>
+        </div> -->
+    <!--        <div class="grid grid-cols-2 rounded-xl relative bg-gray-100 px-4 py-8 border gap-12">-->
+    <!--          <img src="/icons/shield.svg" alt="" class="absolute left-0 top-0 ml-3 -mt-6">-->
+    <!--          <div class="">-->
+    <!--            <h3 class="font-semibold text-sm">Book with Confidence</h3>-->
+    <!--            <p class="text-sm mt-3">Keep calm! We will help you plan your dream trip.</p>-->
+    <!--          </div>-->
+    <!--          <div class="">-->
+    <!--            <div class="bg-primary rounded-xl h-full w-full"></div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!-- </div>
+  </section> -->
 
 
-    <section class="mb-12 py-12 bg-gray-100">
+    <!-- <section class="mb-12 py-12 bg-gray-100">
       <div class="container">
         <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
       </div>
-    </section>
+    </section> -->
 
 
     <!--    <section class="pb-6">-->
     <!--      <blog></blog>-->
     <!--    </section>-->
 
-    <section class="pb-12">
+    <!-- <section class="pb-12">
       <div class="container md:mx-auto">
         <div class="rounded-xl overflow-hidden bg-gray-500">
           <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50" data-elfsight-app-lazy></div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="">
+      <div class="flex items-center justify-center h-52 bg-orange-700 bg-opacity-90">
+        <div class="text-center">
+          <h1 class="text-white text-3xl md:text-4xl font-bold mb-6 tracking-wider">SO, READY TO START?</h1>
+          <a class="bg-gray-900 text-white py-2 px-4 rounded text-sm" href="#form-dream-adventure">GET IN
+            TOUCH</a>
         </div>
       </div>
     </section>
