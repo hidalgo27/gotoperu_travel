@@ -2,7 +2,7 @@
   <div class=" text-gray-900">
     <div class="container mx-auto px-4 py-8">
       <h1 class="text-2xl font-bold text-center mb-2">Travel Destinations</h1>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <NuxtLink :to="'/destinations/peru/' + country.url"
           class="relative group overflow-hidden rounded-lg cursor-pointer" v-for="(country, index) in listPais"
           :key="country.url" :class="index == listPais.length - 1 ? 'hidden' : ''">

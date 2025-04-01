@@ -7,7 +7,7 @@ const { $gsap } = useNuxtApp()
 $gsap.registerPlugin(ScrollTrigger);
 
 const breakpoints = {
-  350: { itemsToShow: 2, snapAlign: 'start' },
+  350: { itemsToShow: 1, snapAlign: 'start' },
   700: { itemsToShow: 3, snapAlign: 'center' },
   1024: { itemsToShow: 4, snapAlign: 'start', enabled: false, mouseDrag: false, touchDrag: false },
 };

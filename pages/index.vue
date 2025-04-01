@@ -118,7 +118,7 @@ onMounted(async () => {
           </button>
         </div>
         <h1
-          class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight md:text-5xl 2xl:text-7xl tracking-wide font-semibold my-12">
+          class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-4xl 2xl:text-7xl tracking-wide font-semibold my-12">
           DO WILD THINGS
         </h1>
         <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION

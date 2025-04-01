@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide } from "vue3-carousel"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Carousel, Slide } from "vue3-carousel";
+import 'vue3-carousel/dist/carousel.css';
 
 const { $gsap } = useNuxtApp()
 $gsap.registerPlugin(ScrollTrigger);
 
 const breakpoints = {
-  350: { itemsToShow: 2, snapAlign: 'start' },
+  350: { itemsToShow: 1, snapAlign: 'start' },
   700: { itemsToShow: 3, snapAlign: 'center' },
   1024: { itemsToShow: 5, snapAlign: 'start', enabled: false, mouseDrag: false, touchDrag: false },
 };
@@ -71,7 +71,8 @@ onMounted(() => {
 <template>
   <section class="bg-primary bg-opacity-75 p-6 text-white justify-center flex flex-col items-center gap-6">
     <span class="text-2xl font-bold">Why choose GOTOPERU?</span>
-    <div class="relative inset-y-10 items-center justify-between w-full flex lg:hidden">
+    <div
+      class="relative translate-y-6 md:translate-y-10 inset-y-10 items-center justify-between w-full flex lg:hidden ">
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
           class="h-4 w-4">
