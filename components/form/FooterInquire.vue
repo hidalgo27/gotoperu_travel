@@ -522,12 +522,12 @@ onMounted(async () => {
                   <client-only>
                     <VDatePicker v-model="travelDate" mode="date" :min-date="today">
                       <template #default="{ togglePopover }">
-                        <button type="button" class="is-input-ico text-start bg-white" @click="togglePopover"
+                        <button type="button" class="is-input-ico text-start bg-white relative" @click="togglePopover"
                           min-date="today">
                           <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
                           <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
                           <span class="text-gray-500" v-else>Tentative travel date</span>
-                          <span class="is-input-ico-label text">Inquire Date</span>
+                          <span class="is-input-ico-label">Inquire Date</span>
 
                           <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
