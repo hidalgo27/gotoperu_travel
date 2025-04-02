@@ -201,20 +201,21 @@ onMounted(async () => {
       </div>
     </div>
     <h3 class="flex justify-center font-bold text-4xl my-12">Top Peru Tours</h3>
-    <div class="container grid md:grid-cols-3 gap-12">
+    <div class="container grid md:grid-cols-2 lg:grid-cols-3 gap-12">
 
       <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
       <a :href="'/peru-travel-packages/' + packages.url"
-        class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages"
-        :key="packages.id">
+        class="p-3 bg-white col-span-1 w-full rounded-xl my-2 shadow-md cursor-pointer group flex flex-col h-full"
+        v-for="packages in listPackages" :key="packages.id">
         <div class="relative">
           <img :src="packages.imagen" alt="" class="rounded-lg w-full">
           <div
             class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
             PAQUETE</div>
         </div>
-        <div class="">
+        <div class="relative">
+          <div class="my-3">{{ packages.duracion }} day tour</div>
           <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
           <div class="flex text-xs font-semibold gap-1 items-center">
             <template v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
@@ -226,21 +227,25 @@ onMounted(async () => {
               </svg>
             </template>
           </div>
-          <div class="flex gap-2 mt-3 text-sm">
+          <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
+            <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
+          </div>
+          <div v-else>
+            <sup class="italic light text-xs">Price </sup>Inquire
+          </div>
+          <!-- <div class="flex gap-2 mt-3 text-sm">
             <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
               packages.codigo_vuelo }}</span>
-          </div>
-          <div class="border my-4"></div>
-          <div class="flex justify-between text-lg font-semibold">
+          </div> -->
+          <!-- <div class="border my-4"></div> -->
+          <!-- <div class="flex justify-between text-lg font-semibold">
             <div>{{ packages.duracion }} days</div>
-            <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
-              <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
-            </div>
-            <div v-else>
-              <sup class="italic light text-xs">Price </sup>Inquire
-            </div>
-          </div>
+          </div> -->
+
         </div>
+        <a :href="'/peru-travel-packages/' + packages.url"
+          class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
+          itinerary</a>
       </a>
     </div>
   </section>

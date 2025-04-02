@@ -6,7 +6,6 @@ const listDestination = ref([]);
 
 const getDestinations = async (url: any) => {
   const res: any = await packageStore.getCountry(url);
-  console.log(res);
   listDestination.value = res;
   listDestination.value = res.map((dest) => ({
     name: dest.nombre,

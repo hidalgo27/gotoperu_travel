@@ -63,16 +63,16 @@ const progressWidth = computed(() => {
 
 <template>
   <section class="my-20" v-if="images.length > 0">
-    <div class="flex gap-6">
-      <h1 class="text-4xl font-bold text-start mb-4 mx-3">#GOTO moments - Our community of travelers</h1>
-      <div>
-        <button @click="prev" class="p-2 rounded-full border ml-6">
+    <div class="flex flex-col md:flex-row justify-between gap-6 items-center mb-4 mx-3">
+      <h1 class="text-4xl font-bold text-start ">#GOTO moments - Our community of travelers</h1>
+      <div class="flex flex-row gap-3 h-full">
+        <button @click="prev" class="p-2 rounded-full border ">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>
         </button>
-        <button @click="next" class="p-2 rounded-full border ml-6">
+        <button @click="next" class="p-2 rounded-full border ">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -80,7 +80,6 @@ const progressWidth = computed(() => {
         </button>
       </div>
     </div>
-
     <Carousel ref="carouselRef" v-if="images.length > 2" :breakpoints="breakpoints"
       @update:modelValue="(index) => currentSlide = index" class="">
       <Slide v-for="(image, index) in images" :key="index" class="px-3 relative w-full h-full">

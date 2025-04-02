@@ -19,7 +19,7 @@ const props = defineProps({
 
 const breakpoints = {
   350: { itemsToShow: 1, snapAlign: 'start' },
-  700: { itemsToShow: 2, snapAlign: 'center' },
+  700: { itemsToShow: 2, snapAlign: 'start' },
   1024: { itemsToShow: props.slides.slides.length, snapAlign: 'start', enabled: false, mouseDrag: false, touchDrag: false },
 };
 
@@ -33,7 +33,7 @@ onMounted(() => {
       stagger: 0.3,
       ease: 'power3.out',
       scrollTrigger: {
-        trigger: '.slide',
+        trigger: '.animated-slide',
         start: 'top 90%',
         toggleActions: 'play none none none',
       },
@@ -42,11 +42,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="p-12  bg-opacity-10 justify-center flex flex-col items-center gap-8"
-    :class="reservationPolicies ? 'bg-primary' : 'bg-secondary'">
+  <section class="py-12  bg-opacity-10 justify-center flex flex-col items-center gap-8"
+    :class="reservationPolicies ? 'bg-secondary' : ' bg-primary'">
     <span class="text-2xl font-bold">{{ slides.title }}</span>
     <div class="container">
-      <div class="relative inset-y-10 items-center justify-between w-full flex lg:hidden">
+      <div class="relative items-center justify-between w-full flex lg:hidden mx-3"
+        :class="reservationPolicies ? 'inset-y-10' : 'inset-y-24'">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"
             class="h-4 w-4">
