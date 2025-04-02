@@ -4,6 +4,7 @@ import { Carousel, Slide } from "vue3-carousel";
 import { usePackageStore } from "~/stores/packages";
 import ReservationPolicies from '~/components/page/ReservationPolicies.vue';
 import ImgSlider from '~/components/page/ImgSlider.vue';
+import FAQ from '~/components/sections/FAQ.vue';
 
 const packageStore = usePackageStore()
 
@@ -251,4 +252,5 @@ onMounted(async () => {
   <ReservationPolicies :slides="why_visit_slides" :reservationPolicies="false"></ReservationPolicies>
   <ReservationPolicies :slides="reservation_slides" :reservationPolicies="true"></ReservationPolicies>
   <ImgSlider :imagen_paquetes="imagen_paquetes"></ImgSlider>
+  <FAQ></FAQ>
 </template>

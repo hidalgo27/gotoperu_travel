@@ -1,4 +1,4 @@
-import {defineStore} from "pinia";
+import { defineStore } from "pinia";
 
 export const usePackageStore = defineStore('PackageStore', () => {
 	const config = useRuntimeConfig()
@@ -43,7 +43,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -64,7 +64,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -85,7 +85,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -93,20 +93,20 @@ export const usePackageStore = defineStore('PackageStore', () => {
 			}
 		})
 	}
-	const getItinerary = async (url:any) => {
+	const getItinerary = async (url: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
 		return new Promise(async (resolve, reject) => {
 			try {
-				const res = await fetch(config.public.apiBase + "/latam-travel-packages/"+url, {
+				const res = await fetch(config.public.apiBase + "/latam-travel-packages/" + url, {
 					method: 'GET',
 					headers: headers,
 				})
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -128,7 +128,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -150,7 +150,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -171,7 +171,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -181,7 +181,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 	}
 
 
-	const saveInquire = async (obj:any) => {
+	const saveInquire = async (obj: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
@@ -195,7 +195,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -204,20 +204,20 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
-	const getCountry = async (url:any) => {
+	const getCountry = async (url: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
 		return new Promise(async (resolve, reject) => {
 			try {
-				const res = await fetch(config.public.apiBase + "/destinations/"+url, {
+				const res = await fetch(config.public.apiBase + "/destinations/" + url, {
 					method: 'GET',
 					headers: headers,
 				})
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -226,20 +226,20 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
-	const getCountryShow = async (urlCountry:any, urlDestino:any) => {
+	const getCountryShow = async (urlCountry: any, urlDestino: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
 		return new Promise(async (resolve, reject) => {
 			try {
-				const res = await fetch(config.public.apiBase + "/destinations/"+urlCountry+"/"+urlDestino, {
+				const res = await fetch(config.public.apiBase + "/destinations/" + urlCountry + "/" + urlDestino, {
 					method: 'GET',
 					headers: headers,
 				})
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -262,7 +262,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -271,20 +271,20 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
-	const getBlogShow = async (url:any) => {
+	const getBlogShow = async (url: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
 		return new Promise(async (resolve, reject) => {
 			try {
-				const res = await fetch(config.public.apiBase + "/blog/"+url, {
+				const res = await fetch(config.public.apiBase + "/blog/" + url, {
 					method: 'GET',
 					headers: headers,
 				})
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -293,7 +293,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
-	const getInquire = async (obj:any) => {
+	const getInquire = async (obj: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
@@ -307,7 +307,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 				const data = await res.json()
 				if (data) {
 					resolve(data)
-				}else {
+				} else {
 					reject(data)
 				}
 			} catch (error) {
@@ -316,7 +316,27 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
+	const getFAQ = async () => {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
 
+		return new Promise(async (resolve, reject) => {
+			try {
+				const res = await fetch(config.public.apiBase + "/faq", {
+					method: 'GET',
+					headers: headers,
+				})
+				const data = await res.json()
+				if (data) {
+					resolve(data)
+				} else {
+					reject(data)
+				}
+			} catch (error) {
+				reject(error)
+			}
+		})
+	}
 
 	return {
 		showModalInquireHome,
@@ -338,6 +358,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		getCountryShow,
 		getBlog,
 		getBlogShow,
+		getFAQ,
 		saveInquire,
 		showModalInquireGlobal,
 		showModalItinerary,
@@ -346,4 +367,4 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		paymentLink,
 		$reset
 	}
-},{persist: true})
+}, { persist: true })
