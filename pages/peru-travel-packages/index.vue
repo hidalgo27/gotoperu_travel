@@ -243,9 +243,8 @@ onMounted(async () => {
           </div> -->
 
         </div>
-        <a :href="'/peru-travel-packages/' + packages.url"
-          class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
-          itinerary</a>
+        <button class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
+          itinerary</button>
       </a>
     </div>
   </section>

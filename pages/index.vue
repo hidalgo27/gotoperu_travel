@@ -14,7 +14,7 @@ const listDestinations = ref([])
 const getDestinations = async (url: any) => {
   const res: any = await packageStore.getCountry(url)
   listDestinations.value = res.slice(0, 7)
-  console.log(listDestinations.value)
+  // console.log(listDestinations.value)
 }
 
 const youtube2 = ref(null);

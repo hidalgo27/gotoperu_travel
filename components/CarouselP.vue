@@ -38,7 +38,7 @@ const nextSlide = () => {
 const getPackage = async () => {
   const res: any = await packageStore.getPackageTop()
   listPackages.value = res.slice(0, 7)
-  console.log(listPackages.value)
+  // console.log(listPackages.value)
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
   //   loadingUser.value = false
@@ -107,7 +107,6 @@ onMounted(async () => {
           <template v-for="(packages, index) in listPackages" :key="packages.id">
             <div v-if="index === 2"
               class="relative col-span-1 w-full rounded-xl my-2 shadow-md group flex flex-col h-full overflow-hidden">
-
               <!-- Imagen -->
               <NuxtImg src="/images/packages/package1.png" alt="Banner"
                 class="w-full h-full object-cover rounded-xl shadow-md brightness-75" />
@@ -162,12 +161,10 @@ onMounted(async () => {
 
               </div> -->
               </div>
-              <a :href="'/peru-travel-packages/' + packages.url"
-                class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
-                itinerary</a>
+              <button class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
+                itinerary</button>
             </a>
           </template>
-
           <!--          </div>-->
         </div>
         <!--        </Carousel>-->
