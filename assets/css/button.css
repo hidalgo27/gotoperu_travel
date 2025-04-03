@@ -26,7 +26,11 @@
     @apply rounded-md py-3 float-right px-5 text-secondary border-2 border-secondary hover:bg-secondary hover:text-white duration-300
 }
 .btn-ternary-outline {
-    @apply rounded-md py-3 float-right px-5 text-gray-800 border-2 border-gray-800 hover:bg-gray-800 hover:text-white duration-300
+    @apply rounded-md py-3 px-5 text-gray-800 border-2 border-gray-800 hover:bg-gray-800 hover:text-white duration-300
+}
+
+.btn-ternary-outline-white {
+    @apply rounded-md py-3 px-5 text-white border-2 border-white hover:bg-white hover:text-gray-700 duration-300
 }
 .btn-secondary-outline-sm {
     @apply rounded-md py-1.5 float-right px-5 text-secondary border-2 border-secondary hover:bg-opacity-95 hover:text-white duration-300
