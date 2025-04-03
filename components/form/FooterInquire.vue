@@ -1,6 +1,6 @@
 <template>
 
-  <div class="container md:w-1/2 2xl:w-1/3 my-24" id="form-dream-adventure">
+  <div class="container md:w-2/3 2xl:w-1/3 my-24" id="form-dream-adventure">
     <div class="w-full">
       <div class="grid grid-cols-1">
 
@@ -82,7 +82,7 @@
                   class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-center text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                   <div class="pb-1">
                     <!--                    <img src="/icons/hotel.svg" alt="">-->
-                    <h4 class=" pt-1">Luxury</h4>
+                    <h4 class="text-sm lg:text-base pt-1 text-center">Luxury</h4>
                   </div>
                   <div class="flex pt-2 gap-1 justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -100,7 +100,7 @@
                   class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                   <div class="pb-1 text-center">
                     <!--                    <img src="/icons/hotel.svg" alt="">-->
-                    <h4 class=" pt-1">Superior</h4>
+                    <h4 class="text-sm lg:text-base pt-1 text-center">Superior</h4>
                   </div>
                   <div class="flex pt-2 gap-1 justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -118,7 +118,7 @@
                   class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                   <div class="pb-1 text-center">
                     <!--                    <img src="/icons/hotel.svg" alt="">-->
-                    <h4 class=" pt-1">Best Value</h4>
+                    <h4 class="text-sm lg:text-base pt-1 text-center">Best Value</h4>
                   </div>
                   <div class="flex pt-2 gap-1 justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -268,7 +268,7 @@
                 <div v-if="$v.fullName.$error" class="text-xs text-red-500">Full name required</div>
               </div>
 
-              <div class="grid grid-cols-2 gap-3">
+              <div class="grid md:grid-cols-2 gap-3">
 
                 <div class="relative">
                   <div class="relative">

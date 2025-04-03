@@ -28,7 +28,7 @@ onMounted(async () => {
 
       <div class="space-y-4">
         <div v-for="(item, index) in faq" :key="index"
-          class="cursor-pointer p-6 bg-gray-50 rounded-lg border border-gray-200 " @click="toggle(index)">
+          class="cursor-pointer p-6 bg-white rounded-lg border border-gray-200 " @click="toggle(index)">
           <div class="flex justify-between items-center">
             <h3 class=" text-lg font-medium text-gray-900">{{ item.titulo }}</h3>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

@@ -76,7 +76,6 @@ function getBrowserName() {
 }
 
 const handleSubmit = async () => {
-
   $v.value.$validate();
   if ($v.value.$invalid) {
     // manejar errores
@@ -185,11 +184,8 @@ const handleSubmit = async () => {
         text: "Error :(",
       }, 4000) // 4s
     })
-
-
   }
 };
-
 
 const getPais = async () => {
   const res: any = await packageStore.getPais()
@@ -208,7 +204,6 @@ const getIp = async () => {
   //   loadingUser.value = false
   // }
 }
-
 
 onMounted(async () => {
   await getIp()
@@ -244,9 +239,9 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="container 2xl:w-1/2 my-24" id="form-dream-adventure">
-    <div class="w-full bg-primary bg-opacity-25 p-8">
-      <div class="grid grid-cols-1 p-8 border-4 border-white">
+  <div class="container md:w-2/3 2xl:w-1/3 my-24" id="form-dream-adventure">
+    <div class="w-full">
+      <div class="grid grid-cols-1">
         <section class="pb-8 text-center">
           <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt=""
             class="mx-auto w-64">
@@ -254,33 +249,29 @@ onMounted(async () => {
           <p class="text-gray-500">Select your travel preferences and we will send you a travel proposal.</p>
         </section>
         <div class="divider-dashed"></div>
-
         <div class="text-left mt-6">
           <h2 class="text-lg text-tertiary mb-5">Get a quote on this travel package:</h2>
-
           <h2
-            class="text-xl text-tertiary mb-5 text-center px-5 py-2 border bg-white border-gray-300 text-primary font-semibold rounded-lg">
+            class="text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg">
             {{ package_title }}</h2>
-
           <h3 class="text-lg text-tertiary my-5">Hotel Category</h3>
-          <div class="grid grid-cols-12 gap-6 my-3 ">
+          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
             <div
-              class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-full bg-primary bg-opacity-25 bg-fixed text-white">
+              class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-50">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="size-8">
+                stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
               </svg>
             </div>
-            <div class="col-span-12 md:col-span-10 grid grid-cols-3 gap-3 ">
-
+            <div class="col-span-12 md:col-span-10 grid grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
               <div class="flex flex-col">
                 <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="packageStore.hotelDetail" />
                 <label for="hotel_5"
-                  class="select-none cursor-pointer px-2 md:px-5 py-2 border bg-white bg-fixed text-center text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary">
+                  class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
                   <div class="pb-1">
                     <!--                      <img src="/icons/hotel.svg" alt="">-->
-                    <h4 class="text-xs md:text-base pt-1">Luxury</h4>
+                    <h4 class="text-sm lg:text-base pt-1 text-center">Luxury</h4>
                   </div>
                   <div class="flex pt-2 gap-1 justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -295,10 +286,10 @@ onMounted(async () => {
               <div class="flex flex-col">
                 <input type="checkbox" id="hotel_4" class="peer hidden" value="4" v-model="packageStore.hotelDetail" />
                 <label for="hotel_4"
-                  class="select-none cursor-pointer px-2 md:px-5 py-2 border bg-white bg-fixed text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary">
-                  <div class="pb-1 text-center">
+                  class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                  <div class="pb-1">
                     <!--                      <img src="/icons/hotel.svg" alt="">-->
-                    <h4 class="text-xs md:text-base pt-1">Superior</h4>
+                    <h4 class="text-sm lg:text-base pt-1 text-center">Superior</h4>
                   </div>
                   <div class="flex pt-2 gap-1 justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -313,10 +304,10 @@ onMounted(async () => {
               <div class="flex flex-col">
                 <input type="checkbox" id="hotel_3" class="peer hidden" value="3" v-model="packageStore.hotelDetail" />
                 <label for="hotel_3"
-                  class="select-none cursor-pointer px-2 md:px-5 py-2 border bg-white bg-fixed text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary">
-                  <div class="pb-1 text-center">
+                  class="select-none cursor-pointer px-5 py-2 border border-gray-300 text-gray-400 rounded-lg divide-y divide-gray-400 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary peer-checked:divide-primary  ">
+                  <div class="pb-1">
                     <!--                      <img src="/icons/hotel.svg" alt="">-->
-                    <h4 class="text-xs md:text-base pt-1">Best Value</h4>
+                    <h4 class="text-sm lg:text-base pt-1 text-center">Best Value</h4>
                   </div>
                   <div class="flex pt-2 gap-1 justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
@@ -330,78 +321,65 @@ onMounted(async () => {
             </div>
           </div>
           <h3 class="text-lg text-tertiary my-5">Number of travelers</h3>
-          <div class="grid grid-cols-12 gap-6 my-3 ">
+          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
             <div
-              class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-full bg-primary bg-opacity-25 bg-fixed text-white py-2">
+              class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-50">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="size-8">
+                stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
               </svg>
             </div>
-
-            <div class="col-span-12 md:col-span-10 grid grid-cols-7 gap-3 items-center">
-              <div class="flex items-center" v-for="n in 6" :key="n">
+            <div class="col-span-12 md:col-span-10 grid grid-cols-7 gap-3">
+              <div class="flex" v-for="n in 6" :key="n">
                 <input type="radio" :id="'radio_' + n" class="peer hidden" :value="n" v-model="traveller" />
                 <label :for="'radio_' + n"
-                  class="select-none w-full cursor-pointer border border-gray-300 bg-white bg-fixed text-gray-400 rounded-lg text-center py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
+                  class="select-none w-full text-center cursor-pointer bg-gray-100 text-gray-800 rounded-lg px-4 py-2 transition-colors duration-200 ease-in-out peer-checked:bg-primary peer-checked:text-white">
                   {{ n }} </label>
               </div>
-
               <div class="flex">
                 <input type="radio" :id="'radio_7'" class="peer hidden" value="7+" v-model="traveller" />
                 <label :for="'radio_7'"
-                  class="w-full select-none cursor-pointer bg-white bg-fixed border border-gray-300 text-gray-400 rounded-lg text-center py-2 transition-colors duration-200 ease-in-out peer-checked:border-2 peer-checked:border-primary peer-checked:text-primary">
+                  class="select-none w-full text-center cursor-pointer bg-gray-100 text-gray-800 rounded-lg py-2 transition-colors duration-200 ease-in-out peer-checked:bg-primary peer-checked:text-white">
                   11+ </label>
               </div>
             </div>
-
           </div>
-
 
           <!--              <h3 class="text-lg text-tertiary my-5">Contact information</h3>-->
 
           <form @submit.prevent="handleSubmit">
             <div class="grid grid-cols-1 mt-6 gap-3">
-              <div class="grid grid-cols-2 gap-3">
+              <div class="relative">
                 <div class="relative">
-                  <div class="relative">
-                    <input type="text" name="search" class="is-input-ico peer" placeholder=" " autocomplete="off"
-                      v-model="fullName" />
-                    <label class="is-input-ico-label">Full Name</label>
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                      </svg>
-                    </div>
-
-                    <div v-if="$v.fullName.$error" class="text-xs text-red-500">El nombre es requerido</div>
+                  <input type="text" name="search" class="is-input-ico peer" placeholder=" " autocomplete="off"
+                    v-model="fullName" />
+                  <label class="is-input-ico-label">Full Name</label>
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
                   </div>
-                </div>
-
-                <div class="relative">
-                  <div class="relative">
-                    <input type="email" name="search" class="is-input-ico peer" placeholder=" " autocomplete="off"
-                      v-model="userEmail" />
-                    <label class="is-input-ico-label">Email</label>
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
-                      </svg>
-                    </div>
-
-                    <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
-                      <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
-                    </div>
-                  </div>
+                  <div v-if="$v.fullName.$error" class="text-xs text-red-500">El nombre es requerido</div>
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-3 z-20">
+              <div class="grid md:grid-cols-2 gap-3">
+                <div class="relative">
+                  <input type="text" class="is-input-ico peer" placeholder=" " autocomplete="off" v-model="phone"
+                    ref="phoneInputRef" id="phoneNumber" />
+                  <!--                    <input ref="phoneInputRef" v-model="phone" class="is-input-ico peer" placeholder=" " id="phoneNumber" type="tel" />-->
+                  <label class="is-input-ico-label">Phone Number</label>
+                  <!--                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">-->
+                  <!--                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
+                  <!--                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />-->
+                  <!--                      </svg>-->
+                  <!--                    </div>-->
+                  <div v-if="$v.phone.$error" class="text-xs text-red-500">El nombre es requerido</div>
+                </div>
+
                 <div class="relative">
                   <!--                      <VMenu>-->
                   <!--                        <input type="text" class="is-input-ico peer" placeholder=" " v-model="packageStore.travelDate" @focus="showModalProcess = true">-->
@@ -419,8 +397,8 @@ onMounted(async () => {
                   <client-only>
                     <VDatePicker v-model="travelDate" mode="date" :min-date="today">
                       <template #default="{ togglePopover }">
-                        <button type="button" class="is-input-ico peer text-left bg-white relative"
-                          @click="togglePopover">
+                        <button class="is-input-ico peer text-left relative" @click="togglePopover">
+
                           <!--                        <span v-if="filters.created_start && filters.created_end">{{ filters.created_start+' to '+filters.created_end }}</span>-->
                           <span v-if="travelDate">{{ moment(travelDate).format('YYYY-MM-DD') }}</span>
                           <span class="text-gray-500" v-else>Tentative travel date</span>
@@ -439,31 +417,29 @@ onMounted(async () => {
                   </client-only>
                   <div v-if="$v.travelDate.$error" class="text-xs text-red-500">Travel date required</div>
                 </div>
-                <div class="relative">
-                  <input type="text" class="is-input-ico peer" placeholder=" " autocomplete="off" v-model="phone"
-                    ref="phoneInputRef" id="phoneNumber" />
-                  <!--                    <input ref="phoneInputRef" v-model="phone" class="is-input-ico peer" placeholder=" " id="phoneNumber" type="tel" />-->
-                  <label class="is-input-ico-label">Phone Number</label>
-                  <!--                    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">-->
-                  <!--                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">-->
-                  <!--                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" />-->
-                  <!--                      </svg>-->
-                  <!--                    </div>-->
-                  <div v-if="$v.phone.$error" class="text-xs text-red-500">El nombre es requerido</div>
-
-                </div>
-
-
-
 
                 <!--                    <div class="relative">-->
                 <!--                      <vue-tailwind-datepicker as-single no-input :formatter="formatter" v-model="packageStore.travelDate" @click="onClickSomething()" class="calendar-w"/>-->
                 <!--                    </div>-->
-
-
               </div>
 
-
+              <div class="relative">
+                <div class="relative">
+                  <input type="email" name="search" class="is-input-ico peer" placeholder=" " autocomplete="off"
+                    v-model="userEmail" />
+                  <label class="is-input-ico-label">Email</label>
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
+                    </svg>
+                  </div>
+                  <div v-if="$v.userEmail.$error" class="text-xs text-red-500">
+                    <span v-if="$v.userEmail.email.$message">{{ $v.userEmail.email.$message }}</span>
+                  </div>
+                </div>
+              </div>
 
               <div class="relative">
                 <div class="relative">
@@ -481,7 +457,6 @@ onMounted(async () => {
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div class="flex justify-center mt-12">
@@ -498,7 +473,6 @@ onMounted(async () => {
                 Processing...
               </button>
             </div>
-
           </form>
         </div>
       </div>
@@ -551,9 +525,7 @@ onMounted(async () => {
       </div>
     </div>
   </NotificationGroup>
-
 </template>
-
 <style>
 @import 'intl-tel-input/build/css/intlTelInput.css';
 </style>
