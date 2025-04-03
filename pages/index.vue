@@ -182,6 +182,9 @@ onMounted(async () => {
     <!--      </div>-->
     <!--    </div>-->
     <section class="py-24 bg-gray-100">
+      <div class="mb-16">
+        <DescriptionWithLine :text="welcome_text" :line="1"></DescriptionWithLine>
+      </div>
       <div class="container">
 <!--      <section class="container  pb-12 text-center flex gap-6 items-center justify-center">-->
 
@@ -193,10 +196,6 @@ onMounted(async () => {
 <!--          <p class="mt-2"> Our adventures are tailored to meet a variety of fitness levels so you can pick the perfect match.</p>-->
 <!--        </div>-->
 <!--      </section>-->
-
-      <div class="mb-16">
-        <DescriptionWithLine :text="welcome_text" :line="1"></DescriptionWithLine>
-      </div>
 
       <carousel-p></carousel-p>
       <!--      <section class="my-12 container">-->
@@ -211,7 +210,7 @@ onMounted(async () => {
       <!--      </section>-->
       <div class="-mt-32">
         <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
-          <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"  stroke-dasharray="0.1 8" class="animatedSvgDown text-secondary"></line>
+          <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"  stroke-dasharray="0.1 8" class=" text-secondary"></line>
           <g class="g-svg-down">
             <circle cx="200" cy="170.765" r="24" transform="rotate(180 200 170.765)" fill="#FDEEE9" fill-opacity="0.4">
             </circle>
@@ -275,7 +274,7 @@ onMounted(async () => {
         <destinations></destinations>
         <div class="-mt-32">
           <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
-            <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"  stroke-dasharray="0.1 8" class="animatedSvgDown text-primary"></line>
+            <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"  stroke-dasharray="0.1 8" class=" text-primary"></line>
             <g class="g-svg-down">
               <circle cx="200" cy="170.765" r="24" transform="rotate(180 200 170.765)" fill="#7D8506" fill-opacity="0.1">
               </circle>

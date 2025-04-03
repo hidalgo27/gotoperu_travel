@@ -19,7 +19,13 @@ import PromoBanner from "~/components/page/PromoBanner.vue";
 
   <modal-menu></modal-menu>
 
+  <section class="relative z-0  h-auto overflow-hidden bg-[url(/images/banners/machu-picchu.webp)] bg-top bg-cover bg-fixed ">
+<!--    <div class="absolute inset-x-0 z-10 h-full">-->
+<!--      <nuxt-img src="/images/banners/machu-picchu.jpg" class="w-full object-cover object-center"></nuxt-img>-->
+<!--    </div>-->
   <FooterInquire></FooterInquire>
+
+  </section>
   <Footer></Footer>
   <Float></Float>
 </template>
