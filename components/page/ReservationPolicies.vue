@@ -19,9 +19,11 @@ const props = defineProps({
 
 const breakpoints = {
   350: { itemsToShow: 1, snapAlign: 'start' },
-  700: { itemsToShow: 2, snapAlign: 'start' },
-  1024: { itemsToShow: props.slides.slides.length, snapAlign: 'start', enabled: false, mouseDrag: false, touchDrag: false },
+  700: { itemsToShow: 3, snapAlign: 'center' },
+  1024: { itemsToShow: 4, snapAlign: 'start', enabled: false, mouseDrag: true, touchDrag: false },
 };
+
+
 
 onMounted(() => {
   $gsap.fromTo('.animated-slide',
@@ -64,7 +66,7 @@ onMounted(() => {
       <carousel :wrap-around="true" :breakpoints="breakpoints">
         <slide v-for="(slide, index) in slides.slides" :key="index" class="animated-slide text-md px-2">
           <div class="text-start flex flex-row items-center gap-6">
-            <div class="bg-gray-900 text-white rounded-full p-4">
+            <div class="bg-gray-700 text-white rounded-full p-4 my-6">
               <div v-html="slide.icon"></div>
             </div>
             <div class="text-start flex flex-col">
@@ -75,7 +77,6 @@ onMounted(() => {
         </slide>
       </carousel>
     </div>
-    <button v-if="reservationPolicies"
-      class="rounded-full border border-gray-900 py-2 px-4 font-bold tracking-wide">Find out More</button>
+    <button class="btn-ternary-outline tracking-wide">Find out More</button>
   </section>
 </template>

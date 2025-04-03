@@ -1,6 +1,7 @@
 @import "/assets/css/modal.css";
 @import "/assets/css/animation.css";
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "form.css";
 @import "button.css";
 @import 'floating-vue/dist/style.css';
@@ -19,6 +20,13 @@ body{
 
 .shadow-text-title{
     text-shadow: 0px 3px 6px #000000B3;
+}
+
+.border-title-primary{
+    @apply border border-primary w-8;
+}
+.border-title-secondary{
+    @apply border border-secondary w-8;
 }
 
 .w-full-important{

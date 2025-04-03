@@ -8,6 +8,7 @@ import Blog from "~/components/sections/Blog.vue";
 import ButtonW from "~/components/wetravel/ButtonW.vue";
 import ModalW from "~/components/wetravel/ModalW.vue";
 import MiniReviews from "~/components/sections/MiniReviews.vue";
+import DescriptionWithLine from "~/components/page/DescriptionWithLine.vue";
 const packageStore = usePackageStore()
 const listDestinations = ref([])
 
@@ -122,7 +123,10 @@ const reservation_slides = {
 //   }
 // };
 
-
+const welcome_text = {
+  title: 'Why South America Company?',
+  description: 'At South America Company, we specialize in tailor-made trips that immortalize the best days exploring Peru and South America. Every detail is meticulously designed to offer the maximum comfort, exclusivity, and luxury. From private villas and luxury cruises to customized itineraries, we make sure you only worry about enjoying your luxury vacation.',
+}
 onMounted(async () => {
   // if (youtube.value && youtube.value.playVideo) {
   //   youtube.value.playVideo();
@@ -141,48 +145,40 @@ onMounted(async () => {
 <template>
   <div class="shadow">
     <div class="relative">
-      <div class="h-[75vh] relative overflow-hidden vimeo-wrapper ">
-        <div class="absolute bg-gradient-to-r from-gray-800 h-[75vh] opacity-20 z-10 inset-0"></div>
+      <div class="h-[90vh] relative overflow-hidden vimeo-wrapper ">
+        <div class="absolute bg-gradient-to-r from-gray-800 h-[90vh] opacity-20 z-10 inset-0"></div>
         <iframe
-          src="https://player.vimeo.com/video/381676880?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"
+          src="https://player.vimeo.com/video/1049078603?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"
           frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
       </div>
-      <div class="absolute inset-x-0 bottom-1/4 z-10 text-center flex flex-col">
-        <div class="justify-center flex ">
-          <button class="backdrop-blur-md text-white px-4 py-2 rounded-md flex items-center">
-            <span class="mr-2">See our 4,778 reviews on</span>
-            <span class="text-green-400 font-bold">Trustpilot</span>
-          </button>
-        </div>
-        <h1
-          class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-4xl 2xl:text-7xl tracking-wide font-semibold my-12">
-          DO WILD THINGS
-        </h1>
-        <h2 class="text-white text-xl md:text-3xl container drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION
-          IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span> PERUVIAN OPERATOR
-        </h2>
-        <div class="mt-8 justify-center flex">
-          <NuxtLink to="/peru-travel-packages" class="btn-primary hover:bg-opacity-75 duration-500 transition">
-            View all Adventures
-          </NuxtLink>
+      <div class="absolute inset-x-0 bottom-12 z-10 h-full   flex  items-end">
+        <div class="container text-center">
+
+            <button class="backdrop-blur-md text-white px-4 py-2 rounded-md ">
+              <span class="mr-2">See our 4,778 reviews on</span>
+              <span class="text-green-400 font-bold">Trustpilot</span>
+            </button>
+
+          <!--        <h1-->
+          <!--          class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-4xl 2xl:text-7xl tracking-wide font-semibold my-12">-->
+          <!--          DO WILD THINGS-->
+          <!--        </h1>-->
+          <h2 class="text-white text-xl mt-4 md:text-3xl  drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION
+
+            IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span>  PERUVIAN OPERATOR
+          </h2>
+          <div class="mt-6 justify-center flex">
+            <NuxtLink to="/peru-travel-packages" class="btn-primary hover:bg-opacity-75 duration-500 transition">
+              View all Adventures
+            </NuxtLink>
+          </div>
         </div>
         <!--        <InquireHome></InquireHome>-->
       </div>
       <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
     <Benefits></Benefits>
-    <section class="container py-12 justify-center text-center flex flex-row items-center">
-      <NuxtImg src="/images/banners/banner-detail.png" alt="" class="w-52" />
-      <div class="flex flex-col w-2/3 text-center">
-        <h1 class="font-bold text-3xl ">
-          Must-Experience Peru:
-        </h1>
-        <h1 class="font-bold text-3xl ">
-          Our Top Travel Packages
-        </h1>
-        <span> Our adventures are tailored to meet a variety of fitness levels so you can pick the perfect match.</span>
-      </div>
-    </section>
+
     <!-- <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button> -->
 
     <!--    <div>-->
@@ -222,7 +218,23 @@ onMounted(async () => {
     <!--        </div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <section class="py-12 bg-gray-100" id="top-12">
+    <section class="py-24 bg-gray-100">
+      <div class="container">
+<!--      <section class="container  pb-12 text-center flex gap-6 items-center justify-center">-->
+
+<!--        <div class="text-center grid space-y-3">-->
+<!--          <NuxtImg src="/images/banners/banner-detail.png" alt="" class="w-80 mx-auto mb-3" />-->
+<!--          <div class="border-title-secondary mx-auto"></div>-->
+<!--          <h1 class="font-bold text-4xl ">Must-Experience Peru: Our Top Travel Packages</h1>-->
+<!--&lt;!&ndash;          <h2 class="font-bold text-4xl mt-2"></h2>&ndash;&gt;-->
+<!--          <p class="mt-2"> Our adventures are tailored to meet a variety of fitness levels so you can pick the perfect match.</p>-->
+<!--        </div>-->
+<!--      </section>-->
+
+      <div class="mb-16">
+        <DescriptionWithLine :text="welcome_text" :line="1"></DescriptionWithLine>
+      </div>
+
       <carousel-p></carousel-p>
       <!--      <section class="my-12 container">-->
       <!--        <div class="grid grid-cols-2 gap-6">-->
@@ -234,9 +246,19 @@ onMounted(async () => {
       <!--          </div>-->
       <!--        </div>-->
       <!--      </section>-->
-      <div class="container text-center mt-12">
-        <nuxt-link to="/peru-travel-packages" type="button" class="btn-primary">View all travel
-          packages</nuxt-link>
+      <div class="-mt-32">
+        <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
+          <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"  stroke-dasharray="0.1 8" class="animatedSvgDown text-secondary"></line>
+          <g class="g-svg-down">
+            <circle cx="200" cy="170.765" r="24" transform="rotate(180 200 170.765)" fill="#FDEEE9" fill-opacity="0.4">
+            </circle>
+            <circle cx="200" cy="171.104" r="4" transform="rotate(180 200 171.104)" fill="#F05B2A"></circle>
+          </g>
+        </svg>
+      </div>
+      <div class="container text-center ">
+        <nuxt-link to="/peru-travel-packages" type="button" class="btn-primary inline-block mt-4">View all travel packages</nuxt-link>
+      </div>
       </div>
     </section>
     <!--    <YouTube-->
@@ -285,12 +307,26 @@ onMounted(async () => {
     <!--      <carousel-h></carousel-h>-->
     <!--    </section>-->
 
-    <section class="py-12 bg-gray-100">
+    <section class="py-24 ">
       <div class="container">
         <destinations></destinations>
+        <div class="-mt-32">
+          <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
+            <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"  stroke-dasharray="0.1 8" class="animatedSvgDown text-primary"></line>
+            <g class="g-svg-down">
+              <circle cx="200" cy="170.765" r="24" transform="rotate(180 200 170.765)" fill="#7D8506" fill-opacity="0.1">
+              </circle>
+              <circle cx="200" cy="171.104" r="4" transform="rotate(180 200 171.104)" fill="#7D8506"></circle>
+            </g>
+          </svg>
+        </div>
+        <div class="text-center ">
+          <nuxt-link to="/peru-travel-packages" type="button" class="btn-primary inline-block mt-4">View all destinations</nuxt-link>
+        </div>
       </div>
+
     </section>
-    <MiniReviews></MiniReviews>
+<!--    <MiniReviews></MiniReviews>-->
     <!--    <section class="py-12 bg-gray-100">-->
     <!--      <div class="container">-->
     <!--        <h2 class="text-3xl font-bold text-center">Reviews and Testimonials</h2>-->
@@ -457,24 +493,27 @@ onMounted(async () => {
   </section> -->
 
 
-    <!-- <section class="mb-12 py-12 bg-gray-100">
+    <section class="py-24 bg-gray-100">
       <div class="container">
-        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
+<!--        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>-->
+        <div class="elfsight-app-0205a974-5637-4472-a992-5e12bca31e38" data-elfsight-app-lazy></div>
       </div>
-    </section> -->
+    </section>
+
+
 
 
     <!--    <section class="pb-6">-->
     <!--      <blog></blog>-->
     <!--    </section>-->
 
-    <!-- <section class="pb-12">
-      <div class="container md:mx-auto">
-        <div class="rounded-xl overflow-hidden bg-gray-500">
-          <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50" data-elfsight-app-lazy></div>
-        </div>
-      </div>
-    </section> -->
+<!--    <section class="pb-12">-->
+<!--      <div class="container md:mx-auto">-->
+<!--        <div class="rounded-xl overflow-hidden bg-gray-500">-->
+<!--          <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50" data-elfsight-app-lazy></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
 
     <section class="">
       <div class="flex items-center justify-center h-52 bg-orange-700 bg-opacity-90">

@@ -72,7 +72,7 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div class="container">
+  <div class="">
     <div class="grid grid-cols-7">
       <!--      <div class="col-span-7 md:col-span-2">-->
       <!--        <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>-->
@@ -106,7 +106,8 @@ onMounted(async () => {
           <!--          </div>-->
           <template v-for="(packages, index) in listPackages" :key="packages.id">
             <div v-if="index === 2"
-              class="relative col-span-1 w-full rounded-xl my-2 shadow-md group flex flex-col h-full overflow-hidden">
+              class="relative col-span-1 w-full rounded-xl shadow-md group flex flex-col h-full overflow-hidden">
+
               <!-- Imagen -->
               <NuxtImg src="/images/packages/package1.png" alt="Banner"
                 class="w-full h-full object-cover rounded-xl shadow-md brightness-75" />
@@ -123,7 +124,7 @@ onMounted(async () => {
             </div>
 
             <a :href="'/peru-travel-packages/' + packages.url"
-              class="p-3 bg-white col-span-1 w-full rounded-xl my-2 shadow-md cursor-pointer group flex flex-col h-full">
+              class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full">
               <div class="relative">
                 <img :src="packages.imagen" alt="" class="w-full rounded-lg">
                 <div
@@ -131,9 +132,9 @@ onMounted(async () => {
                   PAQUETE</div>
                 <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
               </div>
-              <div class="relative">
+              <div class="relative p-4">
                 <div class="my-3">{{ packages.duracion }} day tour</div>
-                <h3 class="text-left text-lg font-semibold my-3">{{ packages.titulo }}</h3>
+                <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}</h3>
                 <!-- <div class="flex text-xs font-semibold gap-1 items-center">
                   <template
                     v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
@@ -160,9 +161,13 @@ onMounted(async () => {
               <div class="flex justify-between text-lg font-semibold">
 
               </div> -->
+                <!--                <a :href="'/peru-travel-packages/' + packages.url"-->
+                <!--                   class="btn-secondary group-hover:bg-opacity-75  text-center inline-block mt-6">View-->
+                <!--                  itinerary</a>-->
               </div>
-              <button class="btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
-                itinerary</button>
+              <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">
+                View itinerary
+              </button>
             </a>
           </template>
           <!--          </div>-->

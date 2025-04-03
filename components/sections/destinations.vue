@@ -1,13 +1,14 @@
 <template>
   <div class=" text-gray-900">
-    <div class="container mx-auto px-4 py-8">
-      <h1 class="text-2xl font-bold text-center mb-2">Travel Destinations</h1>
+    <div class="">
+      <div class="border-title-secondary mx-auto"></div>
+      <h2 class="font-bold text-4xl text-center mb-12 mt-4">Travel Destinations</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <NuxtLink :to="'/destinations/peru/' + country.url"
           class="relative group overflow-hidden rounded-lg cursor-pointer" v-for="(country, index) in listPais"
           :key="country.url" :class="index == listPais.length - 1 ? 'hidden' : ''">
           <NuxtImg :alt="'Image of ' + country.nombre"
-            class="w-full h-full object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
+            class="w-full h-[450px] object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
             :src="country.imagen" />
           <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
             <span class="text-white text-lg font-semibold">{{ country.nombre }}</span>
@@ -16,7 +17,7 @@
         <NuxtLink to="/destinations" class="relative group overflow-hidden rounded-lg cursor-pointer"
           v-if="listPais.length">
           <NuxtImg alt="See all destinations"
-            class="w-full h-full object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
+            class="w-full h-[450px] object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
             :src="listPais[listPais.length - 1].imagen" />
           <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
             <span class="text-white text-lg font-semibold">See all destinations</span>
