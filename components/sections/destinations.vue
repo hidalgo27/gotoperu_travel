@@ -8,7 +8,7 @@
           class="relative group overflow-hidden rounded-lg cursor-pointer" v-for="(country, index) in listPais"
           :key="country.url" :class="index == listPais.length - 1 ? 'hidden' : ''">
           <NuxtImg :alt="'Image of ' + country.nombre"
-            class="w-full h-[450px] object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
+            class="w-full h-[400px] object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
             :src="country.imagen" />
           <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
             <span class="text-white text-lg font-semibold">{{ country.nombre }}</span>
@@ -17,7 +17,7 @@
         <NuxtLink to="/destinations" class="relative group overflow-hidden rounded-lg cursor-pointer"
           v-if="listPais.length">
           <NuxtImg alt="See all destinations"
-            class="w-full h-[450px] object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
+            class="w-full h-[400px] object-cover rounded-lg transition duration-500 ease-in-out transform group-hover:scale-105"
             :src="listPais[listPais.length - 1].imagen" />
           <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-lg">
             <span class="text-white text-lg font-semibold">See all destinations</span>

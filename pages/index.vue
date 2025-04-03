@@ -219,7 +219,7 @@ onMounted(async () => {
         </svg>
       </div>
       <div class="container text-center ">
-        <nuxt-link to="/peru-travel-packages" type="button" class="btn-primary inline-block mt-4">View all travel packages</nuxt-link>
+        <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary inline-block mt-4">View all travel packages</nuxt-link>
       </div>
       </div>
     </section>
