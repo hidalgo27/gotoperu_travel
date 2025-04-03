@@ -262,6 +262,9 @@ onMounted(async () => {
     <!--      </div>-->
     <!--    </div>-->
     <section class="py-24 bg-gray-100">
+      <div class="mb-16">
+        <DescriptionWithLine :text="welcome_text" :line="1"></DescriptionWithLine>
+      </div>
       <div class="container">
         <!--      <section class="container  pb-12 text-center flex gap-6 items-center justify-center">-->
 
@@ -273,10 +276,6 @@ onMounted(async () => {
         <!--          <p class="mt-2"> Our adventures are tailored to meet a variety of fitness levels so you can pick the perfect match.</p>-->
         <!--        </div>-->
         <!--      </section>-->
-
-        <div class="mb-16">
-          <DescriptionWithLine :text="welcome_text" :line="1"></DescriptionWithLine>
-        </div>
 
         <carousel-p></carousel-p>
         <!--      <section class="my-12 container">-->
