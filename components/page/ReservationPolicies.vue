@@ -20,7 +20,7 @@ const props = defineProps({
 const breakpoints = {
   350: { itemsToShow: 1, snapAlign: 'start' },
   700: { itemsToShow: 3, snapAlign: 'center' },
-  1024: { itemsToShow: 4, snapAlign: 'start', enabled: false, mouseDrag: true, touchDrag: false },
+  1024: { itemsToShow: props.slides.slides.length, snapAlign: 'start', enabled: false, mouseDrag: true, touchDrag: false },
 };
 
 
