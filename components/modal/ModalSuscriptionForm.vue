@@ -278,8 +278,8 @@ onMounted(async () => {
         ✕
       </button>
 
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="rounded-lg">
+      <div class="flex flex-col md:flex-row items-center ">
+        <div class="rounded-lg md:w-3/4 lg:w-1/2">
           <NuxtImg class="w-full h-full object-cover"
             src="https://storage.googleapis.com/a1aa/image/vf1v5dKLg2bJhnxOv-nLT47rxpiDEB-mf457k6XB-CY.jpg">
           </NuxtImg>
