@@ -294,7 +294,7 @@ onMounted(async () => {
         <div class="-mt-32">
           <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
             <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-dasharray="0.1 8" class="animatedSvgDown text-secondary"></line>
+              stroke-dasharray="0.1 8" class=" text-secondary"></line>
             <g class="g-svg-down">
               <circle cx="200" cy="170.765" r="24" transform="rotate(180 200 170.765)" fill="#FDEEE9"
                 fill-opacity="0.4">
@@ -304,7 +304,7 @@ onMounted(async () => {
           </svg>
         </div>
         <div class="container text-center ">
-          <nuxt-link to="/peru-travel-packages" type="button" class="btn-primary inline-block mt-4">View all travel
+          <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary inline-block mt-4">View all travel
             packages</nuxt-link>
         </div>
       </div>

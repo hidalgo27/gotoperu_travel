@@ -147,12 +147,7 @@ onMounted(async () => {
                     </svg>
                   </template>
 </div> -->
-                <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
-                  <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
-                </div>
-                <div v-else class="text-2xl font-semibold">
-                  <sup class="italic light text-xs">Price </sup>Inquire
-                </div>
+
                 <!-- <div class="flex gap-2 mt-3 text-sm">
                 <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
                   packages.codigo_vuelo }}</span>
@@ -161,9 +156,22 @@ onMounted(async () => {
               <div class="flex justify-between text-lg font-semibold">
 
               </div> -->
+                <div class="flex items-center gap-6">
+                  <div class="">
+                    <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
+                      <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.precio_paquetes) }}
+                    </div>
+                    <div v-else class="text-2xl font-semibold text-red-500">
+                      <sup class="italic light text-xs">Price </sup>Inquire
+                    </div>
+                  </div>
+                  <a :href="'/peru-travel-packages/' + packages.url"
+                    class="btn-primary group-hover:bg-opacity-75 text-xs  text-center inline-block ">View
+                    itinerary</a>
+                </div>
+
                 <!--                <a :href="'/peru-travel-packages/' + packages.url"-->
-                <!--                   class="btn-secondary group-hover:bg-opacity-75  text-center inline-block mt-6">View-->
-                <!--                  itinerary</a>-->
+                <!--                   class="btn-ternary  group-hover:bg-opacity-75 text-xs ml-3 text-center inline-block mt-6">Book Now</a>-->
               </div>
               <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">
                 View itinerary
