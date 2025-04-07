@@ -569,9 +569,9 @@ onMounted(async () => {
       <div class="flex items-center justify-center h-52 bg-orange-700 bg-opacity-90">
         <div class="text-center">
           <h1 class="text-white text-3xl md:text-4xl font-bold mb-6 tracking-wider">SO, READY TO START?</h1>
-          <buttton class="bg-gray-900 text-white py-2 px-4 rounded text-sm cursor-pointer" @click="isModalOpen = true">
+          <button class="bg-gray-900 text-white py-2 px-4 rounded text-sm cursor-pointer" @click="isModalOpen = true">
             GET IN TOUCH
-          </buttton>
+          </button>
           <ModalSuscriptionForm :isOpen="isModalOpen" @close="isModalOpen = false"></ModalSuscriptionForm>
         </div>
       </div>
