@@ -9,6 +9,7 @@ definePageMeta({
 })
 
 import { NuxtImg } from "#components";
+import Departures from "~/components/page/Departures.vue";
 import { usePackageStore } from "~/stores/packages";
 
 const triggerButton = ref(null);
@@ -328,7 +329,9 @@ onMounted(async () => {
                     <div class="text-2xl font-bold text-gray-700 flex flex-col"
                       v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
                       From <span class="text-5xl flex">${{ getThreeStarPrice(packages.precio_paquetes) }}<span
-                          class="text-lg text-gray-500 flex flex-col">USD<span>per person</span></span></span>
+                          class="text-sm lg:text-lg text-gray-500">USD<br>per
+                          person</span>
+                      </span>
                     </div>
                     <div class="text-2xl font-bold text-gray-800 mb-2 flex flex-col" v-else>
                       get<span class="text-5xl">Inquire</span>
@@ -720,6 +723,7 @@ onMounted(async () => {
 
               </article>
 
+              <Departures></Departures>
               <article class="my-12" id="prices">
                 <h2 class="text-2xl font-bold mb-8">Dates & availability</h2>
                 <div v-for="(price, index) in packages.precio_paquetes">

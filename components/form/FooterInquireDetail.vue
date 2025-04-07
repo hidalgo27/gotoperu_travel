@@ -240,7 +240,8 @@ onMounted(async () => {
 </script>
 <template>
   <div
-    class="container md:w-2/3 2xl:w-1/3 my-24 relative z-10 bg-white/50 backdrop-grayscale-[1] p-12 shadow rounded-2xl">
+    class="container md:w-2/3 2xl:w-1/3 my-24 relative z-10 bg-white/50 backdrop-grayscale-[1] p-12 shadow rounded-2xl"
+    id="form-dream-adventure">
     <div class="w-full">
       <div class="grid grid-cols-1">
         <section class="pb-8 text-center">
