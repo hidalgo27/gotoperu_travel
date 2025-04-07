@@ -9,6 +9,7 @@ import ButtonW from "~/components/wetravel/ButtonW.vue";
 import ModalW from "~/components/wetravel/ModalW.vue";
 import MiniReviews from "~/components/sections/MiniReviews.vue";
 import DescriptionWithLine from "~/components/page/DescriptionWithLine.vue"
+import ModalSuscriptionForm from "~/components/modal/ModalSuscriptionForm.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const { $gsap } = useNuxtApp();
@@ -21,6 +22,8 @@ const getDestinations = async (url: any) => {
   listDestinations.value = res.slice(0, 7)
   // console.log(listDestinations.value)
 }
+
+const isModalOpen = ref(false);
 
 const youtube2 = ref(null);
 
@@ -566,8 +569,10 @@ onMounted(async () => {
       <div class="flex items-center justify-center h-52 bg-orange-700 bg-opacity-90">
         <div class="text-center">
           <h1 class="text-white text-3xl md:text-4xl font-bold mb-6 tracking-wider">SO, READY TO START?</h1>
-          <a class="bg-gray-900 text-white py-2 px-4 rounded text-sm" href="#form-dream-adventure">GET IN
-            TOUCH</a>
+          <buttton class="bg-gray-900 text-white py-2 px-4 rounded text-sm cursor-pointer" @click="isModalOpen = true">
+            GET IN TOUCH
+          </buttton>
+          <ModalSuscriptionForm :isOpen="isModalOpen" @close="isModalOpen = false"></ModalSuscriptionForm>
         </div>
       </div>
     </section>
