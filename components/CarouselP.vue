@@ -132,9 +132,12 @@ onMounted(async () => {
                   PAQUETE</div>
                 <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
               </div>
-              <div class="relative p-4">
-                <div class="my-3">{{ packages.duracion }} day tour</div>
-                <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}</h3>
+              <div class="relative p-4 flex flex-col h-full">
+                <div>
+                  <div class="my-3">{{ packages.duracion }} day tour</div>
+                  <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}</h3>
+                </div>
+
                 <!-- <div class="flex text-xs font-semibold gap-1 items-center">
                   <template
                     v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
@@ -156,8 +159,8 @@ onMounted(async () => {
               <div class="flex justify-between text-lg font-semibold">
 
               </div> -->
-                <div class="flex items-center gap-6">
-                  <div class="">
+                <div class="flex items-center gap-6 mt-auto">
+                  <div>
                     <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
                       <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.precio_paquetes) }}
                     </div>
@@ -169,13 +172,13 @@ onMounted(async () => {
                     class="btn-primary group-hover:bg-opacity-75 text-xs  text-center inline-block ">View
                     itinerary</a>
                 </div>
-
                 <!--                <a :href="'/peru-travel-packages/' + packages.url"-->
                 <!--                   class="btn-ternary  group-hover:bg-opacity-75 text-xs ml-3 text-center inline-block mt-6">Book Now</a>-->
               </div>
-              <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">
+              <!-- <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">
                 View itinerary
-              </button>
+              </button> -->
+
             </a>
           </template>
           <!--          </div>-->

@@ -216,9 +216,12 @@ onMounted(async () => {
             PAQUETE</div>
           <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
         </div>
-        <div class="relative p-4">
-          <div class="my-3">{{ packages.duracion }} day tour</div>
-          <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}</h3>
+        <div class="relative p-4 flex flex-col h-full">
+          <div>
+            <div class="my-3">{{ packages.duracion }} day tour</div>
+            <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}</h3>
+          </div>
+
           <!-- <div class="flex text-xs font-semibold gap-1 items-center">
             <template v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
               :key="destination.id">
@@ -229,12 +232,20 @@ onMounted(async () => {
               </svg>
             </template>
 </div> -->
-          <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
-            <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
+          <div class="flex items-center justify-between gap-6 mt-auto">
+            <div>
+              <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
+                <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.precio_paquetes) }}
+              </div>
+              <div v-else class="text-2xl font-semibold">
+                <sup class="italic light text-xs">Price </sup>Inquire
+              </div>
+            </div>
+            <button class="btn-primary group-hover:bg-opacity-75 text-xs  text-center inline-block ">View
+              itinerary</button>
           </div>
-          <div v-else class="text-2xl font-semibold">
-            <sup class="italic light text-xs">Price </sup>Inquire
-          </div>
+
+
           <!-- <div class="flex gap-2 mt-3 text-sm">
             <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
               packages.codigo_vuelo }}</span>
@@ -245,8 +256,8 @@ onMounted(async () => {
           </div> -->
 
         </div>
-        <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
-          itinerary</button>
+        <!-- <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View
+          itinerary</button> -->
       </a>
     </div>
   </section>
