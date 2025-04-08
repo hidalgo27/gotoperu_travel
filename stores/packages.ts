@@ -23,6 +23,8 @@ export const usePackageStore = defineStore('PackageStore', () => {
 
 	const paymentLink = ref("")
 
+	const packageData = ref(null)
+
 	const $reset = () => {
 		travelDate.value = ''
 		destination.value = []
@@ -360,6 +362,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		getBlogShow,
 		getFAQ,
 		saveInquire,
+		packageData,
 		showModalInquireGlobal,
 		showModalItinerary,
 		code_w,

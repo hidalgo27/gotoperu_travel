@@ -4,6 +4,8 @@
 // })
 // import InquireHome from "~/components/form/InquireHome.vue";
 
+import HeaderDetail from "~/components/page/detail/HeaderDetail.vue";
+
 definePageMeta({
   layout: 'detail',
 })
@@ -110,6 +112,7 @@ const getPackageItinerary = async (url) => {
   const res = await packageStore.getItinerary(url)
   listPackages.value = res
   packageStore.titlePackages = res[0].titulo
+  packageStore.packageData = res[0]
   console.log(listPackages.value)
 
   // if (res.token) {
@@ -199,7 +202,12 @@ const contract = (id) => {
 
 
 onMounted(async () => {
+  if (process.client) {
+    // @ts-ignore
+    import('https://static.elfsight.com/platform/platform.js').then((module) => {
 
+    });
+  }
   // loadScript()
   // console.log(route)
   await getPackageItinerary(route.params.itinerary)
@@ -238,6 +246,9 @@ onMounted(async () => {
     <!--      Book Now-->
     <!--    </button>-->
 
+    <section class=" py-12">
+    <HeaderDetail></HeaderDetail>
+    </section>
 
 
     <div v-if="listPackages && listPackages.length">
@@ -253,20 +264,20 @@ onMounted(async () => {
         <!--    </div>-->
         <!--  </header>-->
 
-        <div class="relative">
-          <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">
-            <iframe
-              src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"
-              frameborder="0" allow="autoplay; fullscreen" class=""></iframe>
-          </div>
-          <div class="absolute inset-x-0 bottom-0 text-center">
-            <h1 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)] mb-24">{{ packages.titulo
-            }}
-            </h1>
-          </div>
-        </div>
+<!--        <div class="relative">-->
+<!--          <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">-->
+<!--            <iframe-->
+<!--              src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"-->
+<!--              frameborder="0" allow="autoplay; fullscreen" class=""></iframe>-->
+<!--          </div>-->
+<!--          <div class="absolute inset-x-0 bottom-0 text-center">-->
+<!--            <h1 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)] mb-24">{{ packages.titulo-->
+<!--            }}-->
+<!--            </h1>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <section class="bg-slate-100 py-8">
+        <section class="bg-slate-100 py-8 hidden">
           <div class="container grid md:grid-cols-12 gap-12 items-center">
             <div class="md:col-span-9">
               <div class="grid grid-cols-12 md:grid-cols-3">
@@ -303,7 +314,7 @@ onMounted(async () => {
           </div>
         </section>
 
-        <section class="bg-slate-100 py-8">
+        <section class="bg-slate-100 py-8 hidden">
           <div class="container grid md:grid-cols-12 gap-12 items-center">
             <div class="md:col-span-12">
               <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
@@ -381,8 +392,8 @@ onMounted(async () => {
           </div>
         </section>
 
-        <section class="container">
-          <div class="flex gap-3 my-12 overflow-x-scroll focus:touch-pan-x">
+        <section class="container mb-12">
+          <div class="flex gap-3 overflow-x-scroll focus:touch-pan-x">
             <a href="#review"
               class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Review</a>
             <a href="#itinerary"
@@ -477,17 +488,67 @@ onMounted(async () => {
                 </div> -->
               </div>
               <div class="grid grid-cols-12 gap-4 lg:gap-12 my-8">
-                <article class="col-span-12 md:col-span-6 lg:col-span-7">
+                <article class="col-span-12 md:col-span-6 lg:col-span-6">
                   <h2 class="text-2xl font-bold mb-8">Overview</h2>
                   <div v-html="packages.descripcion">
                   </div>
-                  <img :src="packages.mapa" alt="" class="rounded-2xl mt-12 w-full">
+                  <img :src="packages.mapa" alt="" class="rounded-2xl my-12 w-full">
+
+                  <article id="included">
+                    <h2 class="text-2xl font-bold mb-8">Our Rates includes</h2>
+                    <div class="pl-6" v-html="packages.incluye"></div>
+                    <!--          <div class="grid grid-cols-4 gap-6">-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Profesional <br> Guides</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">All The Entrances & Tours</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Meals As Per Program</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Train Service</p>-->
+                    <!--            </div>-->
+                    <!--          </div>-->
+                  </article>
+
+                  <article class="my-12">
+                    <h2 class="text-2xl font-bold mb-8">Not Included</h2>
+                    <div class="pl-6" v-html="packages.noincluye"></div>
+                    <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
+                    <li>National & International Flights</li>
+                    <li>Travel Insurance</li>
+                    <li>Visas</li>
+                    <li>Tips</li>
+                  </ul>-->
+                  </article>
                 </article>
 
-                <article class="col-span-12 md:col-span-6 lg:col-span-5" id="itinerary">
-                  <h2 class="text-2xl font-bold mb-8">Itinerary</h2>
-                  <div class="">
+                <article class="col-span-12 md:col-span-6 lg:col-span-6" id="itinerary">
 
+                  <div class="sticky top-0">
+                    <h2 class="text-2xl font-bold mb-8">Itinerary</h2>
                     <div class="w-full mx-auto relative">
 
                       <div
@@ -563,55 +624,7 @@ onMounted(async () => {
                       </div>
                     </div>-->
 
-              <article id="included">
-                <h2 class="text-2xl font-bold mb-8">Our Rates includes</h2>
-                <div class="pl-6" v-html="packages.incluye"></div>
-                <!--          <div class="grid grid-cols-4 gap-6">-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">Profesional <br> Guides</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">All The Entrances & Tours</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">Meals As Per Program</p>-->
-                <!--            </div>-->
-                <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                <!--              <p class="text-sm">Train Service</p>-->
-                <!--            </div>-->
-                <!--          </div>-->
-              </article>
 
-              <article class="my-12">
-                <h2 class="text-2xl font-bold mb-8">Not Included</h2>
-                <div class="pl-6" v-html="packages.noincluye"></div>
-                <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
-                <li>National & International Flights</li>
-                <li>Travel Insurance</li>
-                <li>Visas</li>
-                <li>Tips</li>
-              </ul>-->
-              </article>
 
               <article class="my-12 hidden">
                 <h2 class="text-2xl font-bold mb-8">Hotels considered</h2>
