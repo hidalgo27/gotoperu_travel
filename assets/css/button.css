@@ -10,6 +10,9 @@
 .btn-secondary-sm{
     @apply rounded-md py-1.5 px-5 text-white bg-secondary hover:bg-opacity-95 duration-300
 }
+.btn-primary-sm{
+    @apply rounded-md py-1.5 px-5 text-white bg-primary hover:bg-opacity-95 duration-300
+}
 .btn-danger{
     @apply rounded-md py-2 px-10 text-white bg-red-500 hover:bg-red-600 duration-300
 }

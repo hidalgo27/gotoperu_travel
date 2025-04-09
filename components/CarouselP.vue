@@ -173,9 +173,9 @@ onMounted(async () => {
                 <!--                <a :href="'/peru-travel-packages/' + packages.url"-->
                 <!--                   class="btn-ternary  group-hover:bg-opacity-75 text-xs ml-3 text-center inline-block mt-6">Book Now</a>-->
               </div>
-              <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">
-                View itinerary
-              </button>
+<!--              <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">-->
+<!--                View itinerary-->
+<!--              </button>-->
             </a>
           </template>
           <!--          </div>-->

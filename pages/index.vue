@@ -189,7 +189,7 @@ onMounted(async () => {
 </script>
 <template>
   <div class="shadow">
-    <div class="relative">
+    <div class="relative m-3 rounded-lg overflow-hidden">
       <div class="h-[90vh] relative overflow-hidden vimeo-wrapper ">
         <div class="absolute bg-gradient-to-r from-gray-800 h-[90vh] opacity-20 z-10 inset-0"></div>
         <iframe

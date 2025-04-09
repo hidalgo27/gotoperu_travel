@@ -6,6 +6,8 @@
 @import "button.css";
 @import 'floating-vue/dist/style.css';
 @import 'assets/css/snow.css';
+
+
 body{
     /*@apply bg-white dark:bg-gray-900 h-full*/
     font-family: 'Lato', sans-serif;

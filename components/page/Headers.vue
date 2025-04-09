@@ -5,8 +5,8 @@ import Nav from "~/components/page/Nav.vue";
 const packageStore = usePackageStore()
 </script>
 <template>
-  <div class=" bg-white relative z-50">
-    <div class="container flex justify-between py-6 items-center">
+  <div class="m-3 px-12 py-4 rounded-lg bg-slate-100 relative z-50">
+    <div class=" flex justify-between  items-center">
       <div class="md:hidden">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6" @click="packageStore.showModalMenu = !packageStore.showModalMenu">
@@ -14,8 +14,12 @@ const packageStore = usePackageStore()
         </svg>
       </div>
       <Nav></Nav>
-      <div class="">
-        <a class="btn-secondary" href="#form-dream-adventure">Inquire Now</a>
+      <div class="flex gap-4 items-center">
+        <div class="text-right">
+          <span class="font-semibold">+1 (202) 4911478</span>
+          <p class="text-xs">Or contact your travel advisor</p>
+        </div>
+        <a href="#form-dream-adventure" class="btn-secondary">Get a Quote</a>
       </div>
     </div>
   </div>
