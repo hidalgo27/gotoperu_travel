@@ -41,65 +41,112 @@
       </div>
     </div>
 
-    <div class="container grid md:grid-cols-3 gap-12">
+    <div class="container grid md:grid-cols-4 gap-6">
 
       <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
 
-      <a :href="'/peru-travel-packages/' + packages.paquetes.url"
-        class="bg-white w-full rounded-xl my-2 shadow-md cursor-pointer group flex flex-col h-full"
-        v-for="packages in listPackages" :key="packages.paquetes.id">
+      <!--      <a :href="'/peru-travel-packages/'+packages.paquetes.url" class="p-3 bg-white w-full rounded-xl my-2 shadow-md cursor-pointer" v-for="packages in listPackages" :key="packages.paquetes.id">-->
+      <!--        <div class="relative">-->
+      <!--          <img :src="packages.paquetes.imagen" alt="" class="rounded-lg w-full">-->
+      <!--          <div class="bg-secondary px-2 py-1 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">PAQUETE</div>-->
+      <!--        </div>-->
+      <!--        <div class="">-->
+      <!--          <h3 class="text-left text-lg font-semibold my-3">{{ packages.paquetes.titulo }}</h3>-->
+      <!--          <div class="flex flex-nowrap overflow-x-auto">-->
+      <!--            <div class="flex text-xs font-semibold gap-1 items-center" v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">-->
+      <!--              <span class="truncate" :class="[destination.destinos.url == destino ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 text-gray-800']">{{destination.destinos.nombre}}</span>-->
+      <!--              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < p.length - 1">-->
+      <!--                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />-->
+      <!--              </svg>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--          <div class="flex gap-2 mt-3 text-sm">-->
+      <!--            <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{ packages.paquetes.codigo_vuelo }}</span>-->
+      <!--          </div>-->
+      <!--          <div class="border my-4"></div>-->
+      <!--          <div class="flex justify-between text-lg font-semibold">-->
+      <!--            <div>{{ packages.paquetes.duracion }} days</div>-->
+      <!--            <div v-if="getThreeStarPrice(packages.paquetes.precio_paquetes) > 0">-->
+      <!--              <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes) }}-->
+      <!--            </div>-->
+      <!--            <div v-else>-->
+      <!--              <sup class="italic light text-xs">Price </sup>Inquire-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </a>-->
+
+      <a :href="'/peru-travel-packages/' + packages.url"
+        class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full"
+        v-for="packages in listPackages" :key="packages.id">
         <div class="relative">
           <img :src="packages.paquetes.imagen" alt="" class="rounded-lg w-full">
           <div
             class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
             PAQUETE</div>
           <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+          <!--          <div class="absolute top-0 p-2 flex text-xs font-semibold gap-1 items-center">-->
+          <!--            <span class="" :class="[destination.destinos.url == destino ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 rounded-full px-2 text-gray-800']" v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">{{destination.destinos.nombre}}</span>-->
+          <!--          </div>-->
         </div>
-        <div class="relative p-4 flex flex-col h-full">
-          <div>
-            <div class="my-3">{{ packages.paquetes.duracion }} days</div>
-            <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.paquetes.titulo }}</h3>
-            <div class="flex flex-nowrap overflow-x-auto">
-              <div class="flex text-xs font-semibold gap-1 items-center"
-                v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">
-                <span class="truncate"
-                  :class="[destination.destinos.url == destino ? 'bg-[#D6DD85] rounded-full px-2 text-primary' : 'bg-gray-50 text-gray-800']">{{
-                    destination.destinos.nombre }}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                  stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < p.length - 1">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                </svg>
-              </div>
-            </div>
-          </div>
+        <div class="relative p-4">
+          <div class="my-3">{{ packages.paquetes.duracion }} day tour</div>
+          <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.paquetes.titulo }}</h3>
+
+          <!--          <div class="flex flex-nowrap overflow-x-auto scroll-hidden  mb-3">-->
+          <!--            <div class="flex text-xs font-semibold gap-1 items-center" v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">-->
+          <!--              <span class="truncate" :class="[destination.destinos.url == destino ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 text-gray-800']">{{destination.destinos.nombre}}</span>-->
+          <!--              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < p.length - 1">-->
+          <!--                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />-->
+          <!--              </svg>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
+          <!-- <div class="flex text-xs font-semibold gap-1 items-center">
+            <template v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes.paquetes_destinos)"
+              :key="destination.id">
+              {{ destination.nombre }}
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < uniqueDestinos.length - 1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+              </svg>
+            </template>
+</div> -->
+          <!--          <div v-if="getThreeStarPrice(packages.paquetes.precio_paquetes) > 0" class="text-2xl font-semibold">-->
+          <!--            <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes) }}-->
+          <!--          </div>-->
+          <!--          <div v-else class="text-2xl font-semibold">-->
+          <!--            <sup class="italic light text-xs">Price </sup>Inquire-->
+          <!--          </div>-->
 
 
-          <!-- <div class="flex gap-2 mt-3 text-sm">
-            <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
-              packages.paquetes.codigo_vuelo }}</span>
-          </div> -->
-          <!-- <div class="border my-4"></div> -->
-          <div class="flex items-item justify-between gap-6 mt-auto">
-            <div>
+
+          <div class="flex items-center gap-6">
+            <div class="">
               <div v-if="getThreeStarPrice(packages.paquetes.precio_paquetes) > 0" class="text-2xl font-semibold">
-                <span class="text-xs text-gray-400">From</span> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes)
+                <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes)
                 }}
               </div>
               <div v-else class="text-2xl font-semibold text-red-500">
                 <sup class="italic light text-xs">Price </sup>Inquire
               </div>
             </div>
-
             <a :href="'/peru-travel-packages/' + packages.paquetes.url"
               class="btn-primary group-hover:bg-opacity-75 text-xs  text-center inline-block ">View
               itinerary</a>
           </div>
+          <!-- <div class="flex gap-2 mt-3 text-sm">
+            <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
+              packages.paquetes.codigo_vuelo }}</span>
+          </div> -->
+          <!-- <div class="border my-4"></div> -->
           <!-- <div class="flex justify-between text-lg font-semibold">
-            <div>{{ packages.paquetes.duracion }} days</div>
+            <div>{{ packages.duracion }} days</div>
           </div> -->
 
         </div>
+        <!--        <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View-->
+        <!--          itinerary</button>-->
       </a>
 
 

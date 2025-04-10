@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex justify-between py-6 relative z-0 items-center">
+  <div class="m-3 px-12 py-4 rounded-lg bg-slate-100 flex justify-between  relative z-0 items-center">
     <div class="md:hidden">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6" @click="packageStore.showModalMenu = !packageStore.showModalMenu">
@@ -7,7 +7,11 @@
       </svg>
     </div>
     <Nav></Nav>
-    <div class="">
+    <div class="flex gap-4 items-center">
+      <div class="text-right">
+        <span class="font-semibold">+1 (202) 4911478</span>
+        <p class="text-xs">Or contact your travel advisor</p>
+      </div>
       <a href="#form-dream-adventure" class="btn-secondary">Get a Quote</a>
     </div>
   </div>

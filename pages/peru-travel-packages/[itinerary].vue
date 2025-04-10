@@ -13,6 +13,8 @@ definePageMeta({
 import { NuxtImg } from "#components";
 import Departures from "~/components/page/Departures.vue";
 import { usePackageStore } from "~/stores/packages";
+import HeaderDetail2 from "~/components/page/detail/HeaderDetail2.vue";
+import DestinationFull from "~/components/page/detail/DestinationFull.vue";
 
 const triggerButton = ref(null);
 const targetButton = ref(null);
@@ -213,7 +215,7 @@ onMounted(async () => {
   await getPackageItinerary(route.params.itinerary)
   listPackages.value.forEach(p => {
     // @ts-ignore
-    showCount.value[p.id] = 8;
+    showCount.value[p.id] = 18;
   });
 
   // await nextTick();
@@ -246,12 +248,12 @@ onMounted(async () => {
     <!--      Book Now-->
     <!--    </button>-->
 
-    <section class=" py-12">
-    <HeaderDetail></HeaderDetail>
+    <section class="">
+    <HeaderDetail2></HeaderDetail2>
     </section>
 
 
-    <div v-if="listPackages && listPackages.length">
+    <div v-if="listPackages && listPackages.length" >
       <div v-for="packages in listPackages" :key="packages.id">
         <!--      <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button>-->
 
@@ -392,24 +394,26 @@ onMounted(async () => {
           </div>
         </section>
 
-        <section class="container mb-12">
-          <div class="flex gap-3 overflow-x-scroll focus:touch-pan-x">
+        <section class="container  my-4">
+          <div class="flex gap-3 justify-center">
             <a href="#review"
-              class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Review</a>
+              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Review</a>
             <a href="#itinerary"
-              class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Itinerary</a>
+              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Itinerary</a>
             <a href="#included"
-              class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Included</a>
-            <!--      <a href="#hotels" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
-            <!--      <a href="included" class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
+              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Included</a>
+            <!--      <a href="#hotels" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
+            <!--      <a href="included" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
             <a href="#prices"
-              class="px-5 text-sm py-2 bg-slate-100 text-gray-800 font-medium rounded-full focus:bg-[#D6DD85] focus:text-primary">Prices</a>
+              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Prices</a>
           </div>
         </section>
 
-        <section class="shadow pb-24">
-          <div class="container grid md:grid-cols-12 gap-12">
-            <div class="md:col-span-12">
+        <hr></hr>
+
+        <section class=" mt-12 pb-24">
+          <div class="">
+            <div class="">
 
 
 
@@ -417,29 +421,29 @@ onMounted(async () => {
               <!--            <img :src="destination.imagen" alt="" class="w-full aspect-video rounded-xl shadow-xl">-->
 
               <!--          </div>-->
-              <div class="grid grid-cols-3 text-xs md:grid-cols-5  gap-6">
-                <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">
+<!--              <div class="grid grid-cols-3 text-xs md:grid-cols-5  gap-6">-->
+<!--                <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
 
-                  <div class="relative">
-                    <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">
-                    <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">
-                      {{ destination.destinos.nombre }}
-                    </div>
-                  </div>
+<!--                  <div class="relative">-->
+<!--                    <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">-->
+<!--                    <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">-->
+<!--                      {{ destination.destinos.nombre }}-->
+<!--                    </div>-->
+<!--                  </div>-->
 
-                  <!--              <div class="col-span-8 columns-4">-->
-                  <!--                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">-->
-                  <!--                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">-->
-                  <!--                  {{destino.nombre}}-->
-                  <!--                </div>-->
-                  <!--              </div>-->
+<!--                  &lt;!&ndash;              <div class="col-span-8 columns-4">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">&ndash;&gt;-->
+<!--                  &lt;!&ndash;                  {{destino.nombre}}&ndash;&gt;-->
+<!--                  &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                  &lt;!&ndash;              </div>&ndash;&gt;-->
 
-                </div>
-              </div>
+<!--                </div>-->
+<!--              </div>-->
 
 
 
-              <div class="grid my-8 space-y-2">
+              <div class="grid my-8 space-y-2 hidden">
                 <div class="flex gap-2">
                   <img src="/icons/location.svg" alt=""> <span class="font-bold">Start</span> Lima, Peru
                 </div>
@@ -487,65 +491,39 @@ onMounted(async () => {
                   <img src="/icons/search.svg" alt=""> <span class="font-bold">Code</span> {{ packages.codigo }}
                 </div> -->
               </div>
-              <div class="grid grid-cols-12 gap-4 lg:gap-12 my-8">
+              <div class="container grid grid-cols-12 gap-4 lg:gap-12 my-8">
                 <article class="col-span-12 md:col-span-6 lg:col-span-6">
-                  <h2 class="text-2xl font-bold mb-8">Overview</h2>
+                  <div class="border-title-secondary"></div>
+                  <h2 class="text-3xl font-bold mb-8 mt-2">Overview</h2>
                   <div v-html="packages.descripcion">
                   </div>
+<!--                  <div class="grid grid-cols-3 text-xs md:grid-cols-4 mt-12 gap-6">-->
+<!--                    <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
+
+<!--                      <div class="relative">-->
+<!--                        <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">-->
+<!--                        <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">-->
+<!--                          {{ destination.destinos.nombre }}-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+<!--                      &lt;!&ndash;              <div class="col-span-8 columns-4">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  {{destino.nombre}}&ndash;&gt;-->
+<!--                      &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                      &lt;!&ndash;              </div>&ndash;&gt;-->
+
+<!--                    </div>-->
+<!--                  </div>-->
+
+
                   <img :src="packages.mapa" alt="" class="rounded-2xl my-12 w-full">
-
-                  <article id="included">
-                    <h2 class="text-2xl font-bold mb-8">Our Rates includes</h2>
-                    <div class="pl-6" v-html="packages.incluye"></div>
-                    <!--          <div class="grid grid-cols-4 gap-6">-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">Profesional <br> Guides</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">All The Entrances & Tours</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">Meals As Per Program</p>-->
-                    <!--            </div>-->
-                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                    <!--              <p class="text-sm">Train Service</p>-->
-                    <!--            </div>-->
-                    <!--          </div>-->
-                  </article>
-
-                  <article class="my-12">
-                    <h2 class="text-2xl font-bold mb-8">Not Included</h2>
-                    <div class="pl-6" v-html="packages.noincluye"></div>
-                    <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
-                    <li>National & International Flights</li>
-                    <li>Travel Insurance</li>
-                    <li>Visas</li>
-                    <li>Tips</li>
-                  </ul>-->
-                  </article>
+                  
                 </article>
+                
 
-                <article class="col-span-12 md:col-span-6 lg:col-span-6" id="itinerary">
+                <article class="col-span-12 md:col-span-6 lg:col-span-6 bg-slate-100 p-6 rounded-lg" id="itinerary">
 
                   <div class="sticky top-0">
                     <h2 class="text-2xl font-bold mb-8">Itinerary</h2>
@@ -556,14 +534,13 @@ onMounted(async () => {
                         :key="itinerary.id" class="flex item">
 
                         <div class="relative w-20 text-center gap-12">
-                          <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300">
+                          <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300"></div>
+                          <div class="flex gap-1 items-center py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">
+                            <span class="-ml-1">DAY</span>
+                            <span
+                              class="rounded-full px-2 py-1  text-white" :class="{ 'bg-red-700': packages.duracion == index + 1, 'bg-primary': index + 1 == 1, 'bg-gray-500': index + 1 > 1 }">{{ index + 1 }}
+                            </span>
                           </div>
-                          <div class="bg-white py-2  font-bold text-xs"
-                            :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">DAY <span
-                              class="rounded-full px-2 py-1  text-white"
-                              :class="{ 'bg-red-700': packages.duracion == index + 1, 'bg-primary': index + 1 == 1, 'bg-gray-500': index + 1 > 1 }">{{
-                                index
-                                + 1 }}</span></div>
                         </div>
                         <div class="space-y-2 w-full " :class="[index + 1 == items.length ? 'border-y' : 'border-t']">
                           <div>
@@ -599,7 +576,65 @@ onMounted(async () => {
                 </article>
               </div>
 
+              <section>
+                <DestinationFull></DestinationFull>
+              </section>
 
+              <section class="bg-slate-100 py-12">
+              <div class="container grid md:grid-cols-12 gap-4 lg:gap-12 my-8">
+                <article class="col-span-6" id="included">
+                  <div class="border-title-secondary"></div>
+                  <h2 class="text-2xl font-bold mb-8 mt-2">Our Rates includes</h2>
+                  <div class="pl-6" v-html="packages.incluye"></div>
+                  <!--          <div class="grid grid-cols-4 gap-6">-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">Profesional <br> Guides</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">All The Entrances & Tours</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">Meals As Per Program</p>-->
+                  <!--            </div>-->
+                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                  <!--              <p class="text-sm">Train Service</p>-->
+                  <!--            </div>-->
+                  <!--          </div>-->
+                </article>
+
+                <article class="col-span-6">
+                  <div class="border-title-secondary"></div>
+                  <h2 class="text-2xl font-bold mb-8 mt-2">Not Included</h2>
+                  <div class="pl-6" v-html="packages.noincluye"></div>
+                  <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
+                  <li>National & International Flights</li>
+                  <li>Travel Insurance</li>
+                  <li>Visas</li>
+                  <li>Tips</li>
+                </ul>-->
+                </article>
+              </div>
+              </section>
               <!--        <div>
                       <div>
                         <h4>Itinerarios:</h4>
@@ -736,8 +771,10 @@ onMounted(async () => {
 
               </article>
 
+              <section class="container mt-12">
               <Departures></Departures>
-              <article class="my-12" id="prices">
+              </section>
+              <article class="my-12 hidden" id="prices">
                 <h2 class="text-2xl font-bold mb-8">Dates & availability</h2>
                 <div v-for="(price, index) in packages.precio_paquetes">
                   <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 grid grid-cols-3 mb-4 items-center"
@@ -813,6 +850,13 @@ onMounted(async () => {
                          <button type="button" class="rounded-lg py-2 w-full px-6 text-primary border border-primary hover:bg-primary hover:text-white duration-300 mt-3">Write Us</button>
               </div>
             </div> -->
+          </div>
+        </section>
+
+        <section class="py-24 bg-gray-100">
+          <div class="container">
+            <!--        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>-->
+            <div class="elfsight-app-0205a974-5637-4472-a992-5e12bca31e38" data-elfsight-app-lazy></div>
           </div>
         </section>
 

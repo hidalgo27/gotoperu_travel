@@ -41,17 +41,17 @@ const filteredDepartures = computed(() => {
     <h2 class="text-2xl font-bold">Departures</h2>
     <!-- Botones de meses -->
     <div class="flex my-4 flex-wrap gap-2 justify-center lg:justify-start">
-      <button v-for="month in months" :key="month" @click="toggleMonth(month)"
+      <button type="button" v-for="month in months" :key="month" @click="toggleMonth(month)"
         class="px-4 py-2 border rounded-md transition duration-300 ease-in-out text-xs md:text-base"
-        :class="{ 'bg-primary text-white': selectedMonths.has(month), 'bg-gray-200': !selectedMonths.has(month) }">
+        :class="{ 'btn-ternary !px-4 !text-sm': selectedMonths.has(month), 'btn-disabled !px-4 !text-sm': !selectedMonths.has(month) }">
         {{ month }}
       </button>
     </div>
     <!-- Tabla de resultados -->
-    <div class=" border rounded-md">
-      <table class="w-full table-fixed">
-        <thead class="bg-primary p-2 text-white text-left">
-          <tr>
+    <div class="rounded-t-lg overflow-hidden">
+      <table class="w-full table-fixed ">
+        <thead class="bg-gray-700 p-2 text-white text-left rounded-t">
+          <tr class="">
             <th class="px-2 py-4">Dates</th>
             <th class="px-2 py-4">Availability</th>
             <th class=" px-2 py-4">Price</th>
@@ -65,7 +65,7 @@ const filteredDepartures = computed(() => {
             <template v-for="(departure, index) in filteredDepartures" :key="departure.date">
               <!-- Separador por mes -->
               <tr v-if="index === 0 || filteredDepartures[index - 1].month !== departure.month">
-                <td colspan="4" class="bg-primary bg-opacity-75 font-semibold text-white p-2 text-xs md:text-base">
+                <td colspan="4" class="bg-primary/20 font-semibold text-primary p-2 text-xs md:text-base">
                   {{ departure.month }}
                 </td>
               </tr>
@@ -79,11 +79,11 @@ const filteredDepartures = computed(() => {
                 <td class="border p-2 text-xs md:text-base">${{ departure.price }}</td>
                 <td class="border p-2 text-xs md:text-base">
                   <div class="flex flex-col items-center gap-2">
-                    <button v-if="departure.available > 0" class="btn-secondary text-center rounded inline-block">
+                    <button v-if="departure.available > 0" class="btn-primary-sm text-sm text-center rounded inline-block">
                       Book Now
                     </button>
                     <a v-else href="#form-dream-adventure"
-                      class="rounded-md py-1.5 px-4 md:py-3 md:px-10 text-white bg-primary hover:bg-opacity-95 duration-300 text-center  inline-block">
+                      class="rounded-md py-1.5 px-4 md:py-3 md:px-10 text-white btn-secondary-sm !text-sm hover:bg-opacity-95 duration-300 text-center  inline-block">
                       Get a Quote
                     </a>
                   </div>
