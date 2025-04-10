@@ -89,9 +89,12 @@
           <!--            <span class="" :class="[destination.destinos.url == destino ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 rounded-full px-2 text-gray-800']" v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">{{destination.destinos.nombre}}</span>-->
           <!--          </div>-->
         </div>
-        <div class="relative p-4">
-          <div class="my-3">{{ packages.paquetes.duracion }} day tour</div>
-          <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.paquetes.titulo }}</h3>
+        <div class="relative p-4 flex flex-col h-full">
+          <div>
+            <div class="my-3">{{ packages.paquetes.duracion }} day tour</div>
+            <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.paquetes.titulo }}
+            </h3>
+          </div>
 
           <!--          <div class="flex flex-nowrap overflow-x-auto scroll-hidden  mb-3">-->
           <!--            <div class="flex text-xs font-semibold gap-1 items-center" v-for="(destination, index) in p = packages.paquetes.paquetes_destinos" :key="destination.id">-->
@@ -118,10 +121,7 @@
           <!--          <div v-else class="text-2xl font-semibold">-->
           <!--            <sup class="italic light text-xs">Price </sup>Inquire-->
           <!--          </div>-->
-
-
-
-          <div class="flex items-center gap-6">
+          <div class="flex items-center gap-6 mt-auto">
             <div class="">
               <div v-if="getThreeStarPrice(packages.paquetes.precio_paquetes) > 0" class="text-2xl font-semibold">
                 <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes)
@@ -148,8 +148,6 @@
         <!--        <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">View-->
         <!--          itinerary</button>-->
       </a>
-
-
     </div>
   </section>
 </template>
