@@ -33,14 +33,13 @@ onMounted(async () => {
 <template>
   <div class="w-full">
     <div class="md:border-b border-opacity-20">
-      <div class=" flex justify-between items-center">
+      <div class="flex justify-between items-center">
         <div class="flex gap-4 items-center">
           <div>
             <nuxt-link to="/"><img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png"
                 class="w-[150px] md:w-[240px]"></nuxt-link>
           </div>
         </div>
-
         <div class="flex gap-3 items-center">
           <div class="text-right hidden md:block">
             <span class="font-semibold">+1 (202) 4911478</span>

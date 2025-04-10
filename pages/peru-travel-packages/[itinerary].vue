@@ -18,7 +18,7 @@ import DestinationFull from "~/components/page/detail/DestinationFull.vue";
 
 const triggerButton = ref(null);
 const targetButton = ref(null);
-
+const { $gsap } = useNuxtApp()
 const packageStore = usePackageStore()
 
 const route = useRoute()
@@ -86,11 +86,57 @@ const items = ref([
   { title: 'Título 6', content: 'Contenido 6' },
   { title: 'Título 7', content: 'Contenido 7' },
 ]);
-const toggleItem = (index) => {
-  if (currentItem.value === index) {
-    currentItem.value = null;
+
+const openIndexes = ref<number[]>([]);
+const contentRefs = ref<Record<number, HTMLElement | null>>({});
+
+const isOpen = (index: number) => openIndexes.value.includes(index);
+
+const setContentRef = (el: HTMLElement | null, index: number) => {
+  if (el) contentRefs.value[index] = el;
+};
+
+
+const toggleItem = (index: number) => {
+  const contentRef = contentRefs.value[index];
+  if (!contentRef) return;
+
+  if (isOpen(index)) {
+    const fullHeight = contentRef.scrollHeight;
+    $gsap.fromTo(contentRef, { height: fullHeight }, {
+      height: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power3.inOut',
+      onComplete() {
+        openIndexes.value = openIndexes.value.filter(i => i !== index);
+      }
+    });
   } else {
-    currentItem.value = index;
+    const fullHeight = contentRef.scrollHeight;
+    $gsap.set(contentRef, {
+      height: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      opacity: 0,
+      overflow: 'hidden',
+      display: 'block'
+    });
+
+    $gsap.to(contentRef, {
+      height: fullHeight,
+      opacity: 1,
+      paddingTop: '1.5rem',
+      paddingBottom: '1.5rem',
+      duration: 0.5,
+      ease: 'power3.inOut',
+      onComplete() {
+        contentRef.style.height = 'auto';
+        openIndexes.value.push(index);
+      },
+    });
   }
 };
 
@@ -249,11 +295,11 @@ onMounted(async () => {
     <!--    </button>-->
 
     <section class="">
-    <HeaderDetail2></HeaderDetail2>
+      <HeaderDetail2></HeaderDetail2>
     </section>
 
 
-    <div v-if="listPackages && listPackages.length" >
+    <div v-if="listPackages && listPackages.length">
       <div v-for="packages in listPackages" :key="packages.id">
         <!--      <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button>-->
 
@@ -266,18 +312,18 @@ onMounted(async () => {
         <!--    </div>-->
         <!--  </header>-->
 
-<!--        <div class="relative">-->
-<!--          <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">-->
-<!--            <iframe-->
-<!--              src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"-->
-<!--              frameborder="0" allow="autoplay; fullscreen" class=""></iframe>-->
-<!--          </div>-->
-<!--          <div class="absolute inset-x-0 bottom-0 text-center">-->
-<!--            <h1 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)] mb-24">{{ packages.titulo-->
-<!--            }}-->
-<!--            </h1>-->
-<!--          </div>-->
-<!--        </div>-->
+        <!--        <div class="relative">-->
+        <!--          <div class="h-[75vh] relative overflow-hidden vimeo-wrapper">-->
+        <!--            <iframe-->
+        <!--              src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"-->
+        <!--              frameborder="0" allow="autoplay; fullscreen" class=""></iframe>-->
+        <!--          </div>-->
+        <!--          <div class="absolute inset-x-0 bottom-0 text-center">-->
+        <!--            <h1 class="text-white text-xl md:text-4xl drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)] mb-24">{{ packages.titulo-->
+        <!--            }}-->
+        <!--            </h1>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
         <section class="bg-slate-100 py-8 hidden">
           <div class="container grid md:grid-cols-12 gap-12 items-center">
@@ -396,20 +442,17 @@ onMounted(async () => {
 
         <section class="container  my-4">
           <div class="flex gap-3 justify-center">
-            <a href="#review"
-              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Review</a>
-            <a href="#itinerary"
-              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Itinerary</a>
-            <a href="#included"
-              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Included</a>
+            <a href="#review" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Review</a>
+            <a href="#itinerary" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Itinerary</a>
+            <a href="#included" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Included</a>
             <!--      <a href="#hotels" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
             <!--      <a href="included" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
-            <a href="#prices"
-              class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Prices</a>
+            <a href="#prices" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Prices</a>
           </div>
         </section>
 
-        <hr></hr>
+        <hr>
+        </hr>
 
         <section class=" mt-12 pb-24">
           <div class="">
@@ -421,25 +464,25 @@ onMounted(async () => {
               <!--            <img :src="destination.imagen" alt="" class="w-full aspect-video rounded-xl shadow-xl">-->
 
               <!--          </div>-->
-<!--              <div class="grid grid-cols-3 text-xs md:grid-cols-5  gap-6">-->
-<!--                <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
+              <!--              <div class="grid grid-cols-3 text-xs md:grid-cols-5  gap-6">-->
+              <!--                <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
 
-<!--                  <div class="relative">-->
-<!--                    <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">-->
-<!--                    <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">-->
-<!--                      {{ destination.destinos.nombre }}-->
-<!--                    </div>-->
-<!--                  </div>-->
+              <!--                  <div class="relative">-->
+              <!--                    <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">-->
+              <!--                    <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">-->
+              <!--                      {{ destination.destinos.nombre }}-->
+              <!--                    </div>-->
+              <!--                  </div>-->
 
-<!--                  &lt;!&ndash;              <div class="col-span-8 columns-4">&ndash;&gt;-->
-<!--                  &lt;!&ndash;                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">&ndash;&gt;-->
-<!--                  &lt;!&ndash;                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">&ndash;&gt;-->
-<!--                  &lt;!&ndash;                  {{destino.nombre}}&ndash;&gt;-->
-<!--                  &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--                  &lt;!&ndash;              </div>&ndash;&gt;-->
+              <!--                  &lt;!&ndash;              <div class="col-span-8 columns-4">&ndash;&gt;-->
+              <!--                  &lt;!&ndash;                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">&ndash;&gt;-->
+              <!--                  &lt;!&ndash;                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">&ndash;&gt;-->
+              <!--                  &lt;!&ndash;                  {{destino.nombre}}&ndash;&gt;-->
+              <!--                  &lt;!&ndash;                </div>&ndash;&gt;-->
+              <!--                  &lt;!&ndash;              </div>&ndash;&gt;-->
 
-<!--                </div>-->
-<!--              </div>-->
+              <!--                </div>-->
+              <!--              </div>-->
 
 
 
@@ -492,53 +535,53 @@ onMounted(async () => {
                 </div> -->
               </div>
               <div class="container grid grid-cols-12 gap-4 lg:gap-12 my-8">
-                <article class="col-span-12 md:col-span-6 lg:col-span-6">
+                <article class="col-span-12 md:col-span-6 lg:col-span-6" id="review">
                   <div class="border-title-secondary"></div>
                   <h2 class="text-3xl font-bold mb-8 mt-2">Overview</h2>
                   <div v-html="packages.descripcion">
                   </div>
-<!--                  <div class="grid grid-cols-3 text-xs md:grid-cols-4 mt-12 gap-6">-->
-<!--                    <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
+                  <!--                  <div class="grid grid-cols-3 text-xs md:grid-cols-4 mt-12 gap-6">-->
+                  <!--                    <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
 
-<!--                      <div class="relative">-->
-<!--                        <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">-->
-<!--                        <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">-->
-<!--                          {{ destination.destinos.nombre }}-->
-<!--                        </div>-->
-<!--                      </div>-->
+                  <!--                      <div class="relative">-->
+                  <!--                        <img :src="destination.destinos.imagen" alt="" class=" h-full object-cover rounded-xl shadow-xl">-->
+                  <!--                        <div class="absolute inset-x-0 bottom-0 p-3 text-white bg-gradient-to-t from-gray-800 rounded-b-xl">-->
+                  <!--                          {{ destination.destinos.nombre }}-->
+                  <!--                        </div>-->
+                  <!--                      </div>-->
 
-<!--                      &lt;!&ndash;              <div class="col-span-8 columns-4">&ndash;&gt;-->
-<!--                      &lt;!&ndash;                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">&ndash;&gt;-->
-<!--                      &lt;!&ndash;                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">&ndash;&gt;-->
-<!--                      &lt;!&ndash;                  {{destino.nombre}}&ndash;&gt;-->
-<!--                      &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--                      &lt;!&ndash;              </div>&ndash;&gt;-->
+                  <!--                      &lt;!&ndash;              <div class="col-span-8 columns-4">&ndash;&gt;-->
+                  <!--                      &lt;!&ndash;                <div v-for="destino in obtenerDestinosPorPais(pais.id)" :key="destino.id">&ndash;&gt;-->
+                  <!--                      &lt;!&ndash;                  <img :src="destino.imagen" alt="" class="w-full  rounded-xl shadow-xl">&ndash;&gt;-->
+                  <!--                      &lt;!&ndash;                  {{destino.nombre}}&ndash;&gt;-->
+                  <!--                      &lt;!&ndash;                </div>&ndash;&gt;-->
+                  <!--                      &lt;!&ndash;              </div>&ndash;&gt;-->
 
-<!--                    </div>-->
-<!--                  </div>-->
+                  <!--                    </div>-->
+                  <!--                  </div>-->
 
 
                   <img :src="packages.mapa" alt="" class="rounded-2xl my-12 w-full">
-                  
+
                 </article>
-                
+
 
                 <article class="col-span-12 md:col-span-6 lg:col-span-6 bg-slate-100 p-6 rounded-lg" id="itinerary">
-
                   <div class="sticky top-0">
                     <h2 class="text-2xl font-bold mb-8">Itinerary</h2>
                     <div class="w-full mx-auto relative">
-
                       <div
                         v-for="(itinerary, index) in iti = packages.paquete_itinerario.slice(0, showCount[packages.id])"
                         :key="itinerary.id" class="flex item">
-
                         <div class="relative w-20 text-center gap-12">
-                          <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300"></div>
-                          <div class="flex gap-1 items-center py-2  font-bold text-xs" :class="[currentItem == index ? 'text-secondary' : 'text-slate-500']">
+                          <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300">
+                          </div>
+                          <div class="flex gap-1 items-center py-2  font-bold text-xs duration-300 transition"
+                            :class="[isOpen(index) ? 'text-secondary' : 'text-slate-500']">
                             <span class="-ml-1">DAY</span>
-                            <span
-                              class="rounded-full px-2 py-1  text-white" :class="{ 'bg-red-700': packages.duracion == index + 1, 'bg-primary': index + 1 == 1, 'bg-gray-500': index + 1 > 1 }">{{ index + 1 }}
+                            <span class="rounded-full px-2 py-1  text-white duration-300 transition"
+                              :class="{ 'bg-red-700': packages.duracion == index + 1, 'bg-primary': index + 1 == 1, 'bg-gray-500': index + 1 > 1, ' bg-secondary  ': isOpen(index) }">
+                              {{ index + 1 }}
                             </span>
                           </div>
                         </div>
@@ -548,14 +591,11 @@ onMounted(async () => {
                               class="w-full text-left p-4 flex justify-between items-center hover:bg-gray-200">
                               {{ itinerary.itinerarios.titulo }}
                               <span>
-                                {{ currentItem == index ? '-' : '+' }}
+                                {{ isOpen(index) ? '-' : '+' }}
                               </span>
                             </button>
-                            <transition name="bottom">
-                              <div v-if="currentItem === index" class="p-4" v-html="itinerary.itinerarios.resumen">
-
-                              </div>
-                            </transition>
+                            <div :ref="el => setContentRef(el, index)" class="overflow-hidden px-4 text-start hidden"
+                              v-html="itinerary.itinerarios.resumen"></div>
                           </div>
                         </div>
                       </div>
@@ -570,7 +610,6 @@ onMounted(async () => {
                         class="px-4 py-2 w-full mt-2 rounded text-gray-400 hover:text-primary">
                         View Less
                       </button>
-
                     </div>
                   </div>
                 </article>
@@ -581,59 +620,59 @@ onMounted(async () => {
               </section>
 
               <section class="bg-slate-100 py-12">
-              <div class="container grid md:grid-cols-12 gap-4 lg:gap-12 my-8">
-                <article class="col-span-6" id="included">
-                  <div class="border-title-secondary"></div>
-                  <h2 class="text-2xl font-bold mb-8 mt-2">Our Rates includes</h2>
-                  <div class="pl-6" v-html="packages.incluye"></div>
-                  <!--          <div class="grid grid-cols-4 gap-6">-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">Profesional <br> Guides</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">All The Entrances & Tours</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">Meals As Per Program</p>-->
-                  <!--            </div>-->
-                  <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
-                  <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
-                  <!--              <p class="text-sm">Train Service</p>-->
-                  <!--            </div>-->
-                  <!--          </div>-->
-                </article>
+                <div class="container grid md:grid-cols-12 gap-4 lg:gap-12 my-8">
+                  <article class="col-span-6" id="included">
+                    <div class="border-title-secondary"></div>
+                    <h2 class="text-2xl font-bold mb-8 mt-2">Our Rates includes</h2>
+                    <div class="pl-6" v-html="packages.incluye"></div>
+                    <!--          <div class="grid grid-cols-4 gap-6">-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Private transport Airport - Hotel</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Profesional <br> Guides</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Train Ollantaytambo - Machupicchu</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Helpline 24 hours a day, 7 days a week</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">All The Entrances & Tours</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">41 Nights With 3 Stars hotel</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Meals As Per Program</p>-->
+                    <!--            </div>-->
+                    <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
+                    <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
+                    <!--              <p class="text-sm">Train Service</p>-->
+                    <!--            </div>-->
+                    <!--          </div>-->
+                  </article>
 
-                <article class="col-span-6">
-                  <div class="border-title-secondary"></div>
-                  <h2 class="text-2xl font-bold mb-8 mt-2">Not Included</h2>
-                  <div class="pl-6" v-html="packages.noincluye"></div>
-                  <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
+                  <article class="col-span-6">
+                    <div class="border-title-secondary"></div>
+                    <h2 class="text-2xl font-bold mb-8 mt-2">Not Included</h2>
+                    <div class="pl-6" v-html="packages.noincluye"></div>
+                    <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
                   <li>National & International Flights</li>
                   <li>Travel Insurance</li>
                   <li>Visas</li>
                   <li>Tips</li>
                 </ul>-->
-                </article>
-              </div>
+                  </article>
+                </div>
               </section>
               <!--        <div>
                       <div>
@@ -771,8 +810,8 @@ onMounted(async () => {
 
               </article>
 
-              <section class="container mt-12">
-              <Departures></Departures>
+              <section class="container mt-12" id="prices">
+                <Departures></Departures>
               </section>
               <article class="my-12 hidden" id="prices">
                 <h2 class="text-2xl font-bold mb-8">Dates & availability</h2>

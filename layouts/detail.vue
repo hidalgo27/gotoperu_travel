@@ -7,13 +7,6 @@
       </svg>
     </div>
     <Nav></Nav>
-    <div class="flex gap-4 items-center">
-      <div class="text-right">
-        <span class="font-semibold">+1 (202) 4911478</span>
-        <p class="text-xs">Or contact your travel advisor</p>
-      </div>
-      <a href="#form-dream-adventure" class="btn-secondary">Get a Quote</a>
-    </div>
   </div>
   <slot />
   <modal-menu></modal-menu>
