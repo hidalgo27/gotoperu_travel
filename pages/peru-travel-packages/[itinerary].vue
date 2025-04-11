@@ -15,10 +15,12 @@ import Departures from "~/components/page/Departures.vue";
 import { usePackageStore } from "~/stores/packages";
 import HeaderDetail2 from "~/components/page/detail/HeaderDetail2.vue";
 import DestinationFull from "~/components/page/detail/DestinationFull.vue";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 const triggerButton = ref(null);
 const targetButton = ref(null);
 const { $gsap } = useNuxtApp()
+$gsap.registerPlugin(ScrollToPlugin);
 const packageStore = usePackageStore()
 
 const route = useRoute()
@@ -31,6 +33,7 @@ const viewButton = ref(false)
 
 const listPackages = ref([])
 
+const itemRefs = ref({})
 const showCount = ref({})
 
 const currentItem = ref(null); //
@@ -140,6 +143,17 @@ const toggleItem = (index: number) => {
   }
 };
 
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId.substring(1));
+  if (!element) return;
+
+  $gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: element, offsetY: 155 },
+    ease: "power3.inOut"
+  });
+};
+
 const displayedItems = ref(listPackages.value.slice(0, 2));
 
 const loadMore = () => {
@@ -161,7 +175,6 @@ const getPackageItinerary = async (url) => {
   listPackages.value = res
   packageStore.titlePackages = res[0].titulo
   packageStore.packageData = res[0]
-  console.log(listPackages.value)
 
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
@@ -221,21 +234,63 @@ const getGroupedByCountry = (arr) => {
 //   });
 //   return destinos;
 // };
+watch(listPackages, (newVal) => {
+  if (!newVal || !newVal.length) return
 
+  newVal.forEach(pkg => {
+    if (showCount.value[pkg.id] == null) showCount.value[pkg.id] = 4
+    if (!itemRefs.value[pkg.id]) itemRefs.value[pkg.id] = []
+  })
+}, { immediate: true })
 
-const expand = (id) => {
-  // @ts-ignore
-  const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length;
-  // @ts-ignore
-  showCount.value[id] = Math.min(showCount.value[id] + 8, totalLength); // Aumentar de 2 en 2
-};
+const registerItemRef = (el, id) => {
+  if (!el) return
+  if (!itemRefs.value[id]) itemRefs.value[id] = []
+  if (!itemRefs.value[id].includes(el)) itemRefs.value[id].push(el)
+}
 
+const expand = async (id) => {
+  const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length
+  const prevCount = showCount.value[id] || 0
+  const newCount = Math.min(prevCount + 4, totalLength)
 
-const contract = (id) => {
-  // @ts-ignore
-  showCount.value[id] = Math.max(4, showCount.value[id] - 4); // Reducir de 2 en 2, mínimo 2
-};
+  showCount.value[id] = newCount
+  await nextTick()
 
+  const newItems = itemRefs.value[id]?.slice(prevCount, newCount)
+  if (newItems?.length) {
+    $gsap.fromTo(
+      newItems,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power3.out' }
+    )
+  }
+}
+
+const contract = async (id) => {
+  if (!showCount.value[id]) {
+    // Si no está inicializado, asumimos que está en 4 (valor mínimo)
+    showCount.value[id] = 4
+    return // nada que contraer
+  }
+
+  const currentCount = showCount.value[id]
+  const newCount = Math.max(4, currentCount - 4)
+
+  const toRemove = itemRefs.value[id]?.slice(newCount, currentCount)
+
+  if (toRemove?.length) {
+    await $gsap.to(
+      toRemove,
+      { opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: 'power2.in' }
+    )
+  }
+
+  showCount.value[id] = newCount
+  await nextTick()
+
+  itemRefs.value[id] = itemRefs.value[id].slice(0, newCount)
+}
 
 // const loadScript = () => {
 //   const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
@@ -442,12 +497,12 @@ onMounted(async () => {
 
         <section class="container  my-4">
           <div class="flex gap-3 justify-center">
-            <a href="#review" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Review</a>
-            <a href="#itinerary" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Itinerary</a>
-            <a href="#included" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Included</a>
+            <a href="#review" @click.prevent="scrollToSection('#review')">Review</a>
+            <a href="#itinerary" @click.prevent="scrollToSection('#itinerary')">Itinerary</a>
+            <a href="#included" @click.prevent="scrollToSection('#included')">Included</a>
             <!--      <a href="#hotels" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
             <!--      <a href="included" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Hotels</a>-->
-            <a href="#prices" class="px-5 text-sm py-2  focus:bg-[#D6DD85] focus:text-primary">Prices</a>
+            <a href="#prices" @click.prevent="scrollToSection('#prices')">Prices</a>
           </div>
         </section>
 
@@ -572,7 +627,7 @@ onMounted(async () => {
                     <div class="w-full mx-auto relative">
                       <div
                         v-for="(itinerary, index) in iti = packages.paquete_itinerario.slice(0, showCount[packages.id])"
-                        :key="itinerary.id" class="flex item">
+                        :key="itinerary.id" class="flex item" :ref="el => registerItemRef(el, packages.id)">
                         <div class="relative w-20 text-center gap-12">
                           <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300">
                           </div>
@@ -600,13 +655,13 @@ onMounted(async () => {
                         </div>
                       </div>
 
-                      <button @click="expand(packages.id)"
-                        v-if="showCount[packages.id] < packages.paquete_itinerario.length"
-                        class="mt-4 p-4 bg-[#ffeece] mt-2 font-bold text-secondary rounded w-full hover:bg-secondary hover:text-white">
+                      <button v-if="showCount[packages.id] < packages.paquete_itinerario.length"
+                        @click="expand(packages.id)"
+                        class="mt-4 p-4 bg-[#ffeece] font-bold text-secondary rounded w-full hover:bg-secondary hover:text-white">
                         View More
                       </button>
 
-                      <button @click="contract(packages.id)" v-if="showCount[packages.id] > 4"
+                      <button v-if="showCount[packages.id] > 4" @click="contract(packages.id)"
                         class="px-4 py-2 w-full mt-2 rounded text-gray-400 hover:text-primary">
                         View Less
                       </button>
