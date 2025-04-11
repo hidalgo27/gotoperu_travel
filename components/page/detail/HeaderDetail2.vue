@@ -72,21 +72,24 @@ const scrollToSection = (sectionId: string) => {
 
 <template>
   <header class="relative gap-6  mx-3">
-    <ClientOnly>
-      <div class=" rounded-lg  bg-gray-500  overflow-hidden">
-        <nuxt-img v-if="packageData?.imagen_paquetes[0]" :src="packageData?.imagen_paquetes[0]"
-          :placeholder="[50, 25, 75, 5]" class="object-cover h-[700px] w-full" />
-        <carousel v-else :wrap-around="true" :breakpoints="breakpoints">
+    <div class=" rounded-lg  bg-gray-500  overflow-hidden">
+      <nuxt-img v-if="packageData?.imagen_paquetes[0]" :src="packageData?.imagen_paquetes[0]"
+        :placeholder="[50, 25, 75, 5]" class="object-cover h-[700px] w-full" />
+      <ClientOnly v-else>
+        <carousel :wrap-around="true" :breakpoints="breakpoints">
           <slide v-for="imagen in imagesList" :key="imagen.id">
             <nuxt-img :src="imagen.src" :alt="imagen.alt" :placeholder="[50, 25, 75, 5]"
               class="object-cover h-[700px] w-full" />
           </slide>
         </carousel>
+      </ClientOnly>
 
-        <!--      <div class="absolute inset-x-0 bottom-0 bg-gray-600 h-40 w-full bg-gradient-to-r from-indigo-500">-->
+
+      <!--      <div class="absolute inset-x-0 bottom-0 bg-gray-600 h-40 w-full bg-gradient-to-r from-indigo-500">-->
 
 
-        <!--      </div>-->
+      <!--      </div>-->
+      <<ClientOnly>
         <div
           class="absolute left-0 bottom-0 py-12 pl-12 pr-24 bg-gray-400 z-0 bg-gradient-to-t from-gray-800/50 bg-opacity-10 w-full">
           <h1 class="text-3xl text-white font-semibold">{{ packageData?.titulo }}</h1>
@@ -149,9 +152,11 @@ const scrollToSection = (sectionId: string) => {
 
             <!--         Special Offers-->
             <div class="mt-4 border-t text-xs pt-3">
-              <p>Contact our travel advisor to use this itinerary (or others) as a base to design together your perfect
+              <p>Contact our travel advisor to use this itinerary (or others) as a base to design together your
+                perfect
                 peruvian adventure!</p>
-              <p><span class="font-semibold text-secondary">For Example:</span> add one day / reduce the program lenght
+              <p><span class="font-semibold text-secondary">For Example:</span> add one day / reduce the program
+                lenght
                 /
                 upgrades hotels / add all meals / upgrade to private tours</p>
               <!--          <h3 class="text-gray-600 font-semibold">Special Offers</h3>-->
@@ -172,14 +177,12 @@ const scrollToSection = (sectionId: string) => {
 
           </div>
         </div>
-      </div>
+        </ClientOnly>
 
-      <div class="container flex justify-end">
+    </div>
 
-      </div>
-    </ClientOnly>
+    <div class="container flex justify-end">
 
-
-
+    </div>
   </header>
 </template>

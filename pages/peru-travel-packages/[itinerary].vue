@@ -272,12 +272,10 @@ const contract = async (id) => {
   if (!showCount.value[id]) {
     // Si no está inicializado, asumimos que está en 4 (valor mínimo)
     showCount.value[id] = 4
-    return // nada que contraer
   }
 
   const currentCount = showCount.value[id]
   const newCount = Math.max(4, currentCount - 4)
-
   const toRemove = itemRefs.value[id]?.slice(newCount, currentCount)
 
   if (toRemove?.length) {
@@ -286,7 +284,6 @@ const contract = async (id) => {
       { opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: 'power2.in' }
     )
   }
-
   showCount.value[id] = newCount
   await nextTick()
 
@@ -315,9 +312,10 @@ onMounted(async () => {
   // loadScript()
   // console.log(route)
   await getPackageItinerary(route.params.itinerary)
+  const defaultCount = listPackages.value[0]?.paquete_itinerario.length || 4
   listPackages.value.forEach(p => {
     // @ts-ignore
-    showCount.value[p.id] = 18;
+    showCount.value[p.id] = defaultCount;
   });
 
   // await nextTick();
