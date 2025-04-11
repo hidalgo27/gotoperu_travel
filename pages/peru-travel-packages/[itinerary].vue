@@ -174,6 +174,7 @@ const getPackageItinerary = async (url) => {
   const res = await packageStore.getItinerary(url)
   listPackages.value = res
   packageStore.titlePackages = res[0].titulo
+  packageStore.imgPackages = res[0].imagen
   packageStore.packageData = res[0]
 
   // if (res.token) {

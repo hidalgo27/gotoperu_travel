@@ -14,6 +14,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 	const hotelDetail = ref([])
 
 	const titlePackages = ref("")
+	const imgPackages = ref("")
 
 	const btnDetail = ref("")
 
@@ -345,6 +346,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		travelDate,
 		destination,
 		titlePackages,
+		imgPackages,
 		btnDetail,
 		hotelDetail,
 		showModalMenu,

@@ -3,6 +3,8 @@ import { Carousel, Slide } from "vue3-carousel"
 import { usePackageStore } from "~/stores/packages";
 const packageStore = usePackageStore()
 const { packageData } = storeToRefs(packageStore)
+
+const { $gsap } = useNuxtApp()
 const breakpoints = {
   // 500px and up
   350: {
@@ -56,6 +58,16 @@ const precioDosEstrellas = computed(() => {
   return precio?.precio_d || null
 })
 
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId.substring(1));
+  if (!element) return;
+
+  $gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: element, offsetY: 155 },
+    ease: "power3.inOut"
+  });
+};
 </script>
 
 <template>
@@ -130,7 +142,7 @@ const precioDosEstrellas = computed(() => {
             </button>
 
             <!-- Wishlist button -->
-            <button
+            <button @click="scrollToSection('#form-dream-adventure')"
               class="rounded-md py-3 px-5 text-gray-800 border bg-white hover:bg-gray-200 hover:text-gray-500 duration-300 w-full mt-3">
               Inquire now
             </button>

@@ -14,6 +14,7 @@ const packageStore = usePackageStore()
 const ipStore = useIpStore()
 
 const package_title = ref()
+const package_imagen = ref()
 
 const showLoader = ref(false)
 const today = new Date();
@@ -211,6 +212,7 @@ onMounted(async () => {
   await getPais()
 
   package_title.value = packageStore.titlePackages
+  package_imagen.value = packageStore.imgPackages
 
   if (process.client) {
     // @ts-ignore
@@ -254,8 +256,10 @@ onMounted(async () => {
         <div class="text-left mt-6">
           <h2 class="text-lg text-tertiary mb-5">Get a quote on this travel package:</h2>
           <h2
-            class="text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg">
-            {{ package_title }}</h2>
+            class="flex items-center justify-center text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg gap-2">
+            <NuxtImg :src="package_imagen" :alt="package_title" class="size-10 rounded-md inline-block" />
+            {{ package_title }}
+          </h2>
           <h3 class="text-lg text-tertiary font-semibold mt-5 text-center">Hotel Category</h3>
           <h3 class="text-xs text-tertiary text-center">(OPTIONAL. You may choose more than one)</h3>
           <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
