@@ -239,7 +239,7 @@ onMounted(async () => {
           <!--            <sup class="italic light text-xs">Price </sup>Inquire-->
           <!--          </div>-->
 
-          <div class="flex items-center gap-6 mt-auto">
+          <div class="flex items-center gap-6 mt-auto justify-between">
             <div class="">
               <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
                 <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.precio_paquetes) }}

@@ -84,7 +84,7 @@ onMounted(async () => {
       <!--      </div>-->
 
       <div class="col-span-7 md:col-span-7">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
           <!--        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">-->
           <!--          <div v-for="packages in listPackages" :key="packages.id">-->
@@ -159,7 +159,7 @@ onMounted(async () => {
               <div class="flex justify-between text-lg font-semibold">
 
               </div> -->
-                <div class="flex items-center gap-6 mt-auto">
+                <div class="flex items-center gap-6 mt-auto justify-between">
                   <div>
                     <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
                       <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.precio_paquetes) }}

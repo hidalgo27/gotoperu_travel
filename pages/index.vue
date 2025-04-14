@@ -198,10 +198,8 @@ onMounted(async () => {
       </div>
       <div class="absolute inset-x-0 bottom-12 z-10 h-full   flex  items-end">
         <div class="container text-center">
-
-          <button class="backdrop-blur-md text-white px-4 py-2 rounded-md ">
-            <span class="mr-2">See our 4,778 reviews on</span>
-            <span class="text-green-400 font-bold">Trustpilot</span>
+          <button class="backdrop-blur-md text-white p-1 rounded-md ">
+            <div class="elfsight-app-19a38dd6-cb79-4354-ab2e-57709a6ad7e7" data-elfsight-app-lazy></div>
           </button>
 
           <!--        <h1-->

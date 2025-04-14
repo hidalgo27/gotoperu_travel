@@ -4,7 +4,7 @@
     <div class="py-2 px-4 sm:inline-flex md:hidden">
       <a href="#form-dream-adventure">
         <div class="flex items-center">
-          <span class="bg-gray-800 text-white py-2 px-4 rounded-lg border-2 border-secondary -mr-3">
+          <span class="bg-gray-800 text-white py-2 px-4 rounded-lg border-2 border-secondary">
             Start my quote
           </span>
           <nuxt-img src="/images/home/operator5.jpg" alt="User Image"

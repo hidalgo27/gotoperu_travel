@@ -40,7 +40,7 @@ const filteredDepartures = computed(() => {
   <article class="">
     <h2 class="text-2xl font-bold">Departures</h2>
     <!-- Botones de meses -->
-    <div class="flex my-4 flex-wrap gap-2 justify-center lg:justify-start">
+    <div class="flex my-4 gap-2 p-2 justify-start overflow-x-scroll focus:touch-pan-x">
       <button type="button" v-for="month in months" :key="month" @click="toggleMonth(month)"
         class="px-4 py-2 border rounded-md transition duration-300 ease-in-out text-xs md:text-base"
         :class="{ 'btn-ternary !px-4 !text-sm': selectedMonths.has(month), 'btn-disabled !px-4 !text-sm': !selectedMonths.has(month) }">

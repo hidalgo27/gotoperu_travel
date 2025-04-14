@@ -89,12 +89,12 @@ const scrollToSection = (sectionId: string) => {
 
 
       <!--      </div>-->
-      <<ClientOnly>
+      <ClientOnly>
         <div
-          class="absolute left-0 bottom-0 py-12 pl-12 pr-24 bg-gray-400 z-0 bg-gradient-to-t from-gray-800/50 bg-opacity-10 w-full">
+          class="absolute flex md:block justify-center md:left-0 bottom-0 lg:py-12 p-2 md:pl-12 md:pr-24 bg-gray-400 z-0 bg-gradient-to-t from-gray-800/50 bg-opacity-10 w-full">
           <h1 class="text-3xl text-white font-semibold">{{ packageData?.titulo }}</h1>
         </div>
-        <div class="w-[450px] absolute right-0 bottom-0 m-12 z-0">
+        <div class="md:w-[450px] absolute right-0 top-12 md:bottom-0 m-2 md:m-12 z-0">
           <div class="bg-white/95 backdrop-grayscale-[1] py-12 px-6  rounded-lg">
 
             <!-- Top seller badge -->
@@ -177,7 +177,7 @@ const scrollToSection = (sectionId: string) => {
 
           </div>
         </div>
-        </ClientOnly>
+      </ClientOnly>
 
     </div>
 

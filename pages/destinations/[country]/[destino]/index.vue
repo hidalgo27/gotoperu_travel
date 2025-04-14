@@ -26,15 +26,14 @@
     </div>
 
     <div
-      class="container col-span-12 md:col-span-10 flex justify-center my-9 md:grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
+      class="container col-span-12 md:col-span-10 flex justify-center py-2 my-9 md:grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
       <div class="flex" v-for="destino2 in listDestination">
-
         <nuxt-link :to="destino2.url" :for="destino2.id"
-          class="w-full text-center gap-2 select-none cursor-pointer  text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out grayscale peer-checked:grayscale-0 peer-checked:text-primary"
+          class="w-full text-center gap-2 select-none cursor-pointer  text-gray-800 rounded-full px-5 py-2 transition-colors duration-200 ease-in-out grayscale peer-checked:grayscale-0 peer-checked:text-primary "
           :class="[destino2.url == destino ? 'bg-[#D6DD85]' : 'bg-gray-100']">
 
           <!--                  <img :src="destino.imagen" alt="" class=" w-8 h-8 rounded-full shadow-lg float-left">-->
-          <span class="overflow-auto">{{ destino2.nombre }}</span>
+          <span class="whitespace-nowrap">{{ destino2.nombre }}</span>
 
         </nuxt-link>
 
@@ -121,7 +120,7 @@
           <!--          <div v-else class="text-2xl font-semibold">-->
           <!--            <sup class="italic light text-xs">Price </sup>Inquire-->
           <!--          </div>-->
-          <div class="flex items-center gap-6 mt-auto">
+          <div class="flex items-center gap-6 mt-auto justify-between">
             <div class="">
               <div v-if="getThreeStarPrice(packages.paquetes.precio_paquetes) > 0" class="text-2xl font-semibold">
                 <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes)
