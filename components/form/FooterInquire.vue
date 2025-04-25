@@ -269,7 +269,7 @@ onMounted(async () => {
 
             </div>
             <div
-              class="col-span-12 md:col-span-10 grid grid-cols-2 md:grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
+              class="col-span-12 md:col-span-10 grid grid-cols-2 md:grid-cols-3 gap-3 overflow-x-auto focus:touch-pan-x">
               <!--              {{listDestination}}-->
               <div class="flex" v-for="destino in listDestination">
 
@@ -307,7 +307,7 @@ onMounted(async () => {
 
           <h3 class="text-lg text-tertiary font-semibold mt-5 text-center">HOTEL CATEGORY</h3>
           <h3 class="text-xs text-tertiary text-center">(OPTIONAL. You may choose more than one)</h3>
-          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
+          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-auto focus:touch-pan-x">
             <div
               class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -316,7 +316,7 @@ onMounted(async () => {
                   d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
               </svg>
             </div>
-            <div class="col-span-12 md:col-span-10 grid grid-cols-3 gap-3 overflow-x-scroll focus:touch-pan-x">
+            <div class="col-span-12 md:col-span-10 grid grid-cols-3 gap-3 overflow-x-auto focus:touch-pan-x">
 
               <div class="flex flex-col">
                 <input type="checkbox" id="hotel_5" class="peer hidden" value="5" v-model="hotel" />
@@ -377,7 +377,7 @@ onMounted(async () => {
 
           <h3 class="text-xs text-tertiary hidden  mt-3">You can choose one or more destinations</h3>
           <h3 class="text-lg text-tertiary font-semibold text-center pt-2">NUMBER OF TRAVELERS</h3>
-          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
+          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-auto focus:touch-pan-x">
 
             <div
               class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-500">
@@ -408,7 +408,7 @@ onMounted(async () => {
 
 
           <h3 class="text-lg text-tertiary font-semibold text-center pt-2">TRIP LENGTH</h3>
-          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-scroll focus:touch-pan-x">
+          <div class="grid grid-cols-12 gap-6 my-3 overflow-x-auto focus:touch-pan-x">
 
             <div
               class="col-span-12 hidden md:col-span-2 border md:flex justify-center items-center rounded-l-xl bg-gray-500">
@@ -427,7 +427,7 @@ onMounted(async () => {
             <!--          </div>-->
 
             <div
-              class="col-span-12 md:col-span-10 grid grid-cols-6 md:grid-cols-6 gap-3 overflow-x-scroll focus:touch-pan-x">
+              class="col-span-12 md:col-span-10 grid grid-cols-6 md:grid-cols-6 gap-3 overflow-x-auto focus:touch-pan-x">
               <div class="flex">
                 <input type="checkbox" :id="'radio_t_1'" class="peer hidden" value="3-7" v-model="trip_length" />
                 <label :for="'radio_t_1'"

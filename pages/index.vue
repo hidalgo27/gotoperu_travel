@@ -206,10 +206,8 @@ onMounted(async () => {
           <!--          class="text-white/80 drop-shadow-[0_0_1px_rgba(255,255,255,0.5)] leading-tight text-4xl 2xl:text-7xl tracking-wide font-semibold my-12">-->
           <!--          DO WILD THINGS-->
           <!--        </h1>-->
-          <h2 class="text-white text-xl mt-4 md:text-3xl  drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST VACATION
-
-            IN <span class="text-primary">PERU</span> <span class="text-secondary">WITH THE BEST</span> PERUVIAN
-            OPERATOR
+          <h2 class="text-white text-xl mt-4 md:text-3xl  drop-shadow-[0_3px_6px_rgba(0,0,0,0.7)]">THE BEST OF PERU
+            <span class="text-primary">DESIGNED BY</span> <span class="text-secondary">PERUVIANS</span> JUST FOR YOU
           </h2>
           <div class="mt-6 justify-center flex">
             <NuxtLink to="/peru-travel-packages" class="btn-primary hover:bg-opacity-75 duration-500 transition">
