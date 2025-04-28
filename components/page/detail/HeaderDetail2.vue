@@ -73,7 +73,7 @@ const scrollToSection = (sectionId: string) => {
 <template>
   <header class="relative gap-6  mx-3">
     <div class=" rounded-lg  bg-gray-500  overflow-hidden">
-      <nuxt-img v-if="packageData?.imagen_paquetes[0]" :src="packageData?.imagen_paquetes[0]"
+      <nuxt-img v-if="packageData?.imagen_paquetes[0]" :src="packageData?.imagen_paquetes[0].nombre"
         :placeholder="[50, 25, 75, 5]" class="object-cover h-[700px] w-full" />
       <ClientOnly v-else>
         <carousel :wrap-around="true" :breakpoints="breakpoints">
