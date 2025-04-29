@@ -6,6 +6,7 @@ import { useIpStore } from "~/stores/ip";
 import { Notification, NotificationGroup, notify } from "notiwind";
 import moment from "moment-timezone";
 
+const route = useRoute()
 const { dataLayer } = useScriptGoogleTagManager()
 
 const { $device } = useNuxtApp()
@@ -15,6 +16,7 @@ const ipStore = useIpStore()
 
 const package_title = ref()
 const package_imagen = ref()
+const package_price = computed(() => packageStore.packagePriceSelected)
 
 const showLoader = ref(false)
 const today = new Date();
@@ -256,10 +258,12 @@ onMounted(async () => {
         <div class="text-left mt-6">
           <h2 class="text-lg text-tertiary mb-5">Get a quote on this travel package:</h2>
           <h2
-            class="flex items-center justify-center text-xl text-tertiary mb-5 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg gap-2">
-            <NuxtImg :src="package_imagen" :alt="package_title" class="size-10 rounded-md inline-block" />
+            class="flex items-center justify-center text-xl text-tertiary mb-1 text-center px-5 py-2 border border-gray-300 text-primary font-semibold rounded-lg gap-2">
+            <NuxtImg v-if="package_imagen" :src="package_imagen" :alt="package_title"
+              class="size-10 rounded-md inline-block" />
             {{ package_title }}
           </h2>
+          <h2 v-if="package_price" class="italic mx-auto flex justify-center mb-5">Price: ${{ package_price }}</h2>
           <h3 class="text-lg text-tertiary font-semibold mt-5 text-center">Hotel Category</h3>
           <h3 class="text-xs text-tertiary text-center">(OPTIONAL. You may choose more than one)</h3>
           <div class="grid grid-cols-12 gap-6 my-3 overflow-x-auto focus:touch-pan-x">

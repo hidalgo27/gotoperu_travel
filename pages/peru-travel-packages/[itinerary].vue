@@ -332,7 +332,9 @@ onMounted(async () => {
 //   }
 // });
 
-
+onBeforeRouteLeave(() => {
+  packageStore.$reset()
+})
 </script>
 <template>
   <div>

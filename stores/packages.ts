@@ -25,6 +25,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 	const paymentLink = ref("")
 
 	const packageData = ref(null)
+	const packagePriceSelected = ref(0)
 
 	const $reset = () => {
 		travelDate.value = ''
@@ -32,6 +33,8 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		hotelDetail.value = []
 		// titlePackages.value = ""
 		btnDetail.value = ""
+		packageData.value = null
+		packagePriceSelected.value = 0
 	}
 	const getPackage = async () => {
 		let headers = new Headers();
@@ -350,6 +353,7 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		btnDetail,
 		hotelDetail,
 		showModalMenu,
+		packagePriceSelected,
 		getPackage,
 		getItinerary,
 		getDestination,
