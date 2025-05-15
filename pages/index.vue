@@ -568,6 +568,7 @@ onMounted(async () => {
           <button class="bg-gray-900 text-white py-2 px-4 rounded text-sm cursor-pointer" @click="isModalOpen = true">
             GET IN TOUCH
           </button>
+
           <ModalSuscriptionForm :isOpen="isModalOpen" @close="isModalOpen = false"></ModalSuscriptionForm>
         </div>
       </div>

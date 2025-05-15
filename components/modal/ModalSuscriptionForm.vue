@@ -88,9 +88,14 @@ function getBrowserName() {
 }
 
 const getIp = async () => {
-  const res = await ipStore.getIp();
-  geoIp.value = res;
+  try {
+    const res = await ipStore.getIp();
+    geoIp.value = res;
+  } catch (error) {
+    console.error('Fallo al llamar a ipStore.getIp():', error);
+  }
 };
+
 
 const handleSubmit = async () => {
   $v.value.$validate();
@@ -262,7 +267,11 @@ let intlTelInput;
 onMounted(async () => {
   // await getCountries();
   // await getCategories();
-  await getIp();
+  // try {
+  //   await getIp();
+  // } catch (error) {
+  //   console.error('Error al obtener IP:', error);
+  // }
   // @ts-ignore
   // if (process.client) import("intl-tel-input/build/js/intlTelInput.min.js").then((module) => {
   //   intlTelInput = module.default;
@@ -437,6 +446,7 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+  <client-only>
   <NotificationGroup group="foo">
     <div class="fixed inset-0 flex items-start justify-end p-6 px-4 py-6 pointer-events-none" style="z-index: 9999">
       <div class="w-full max-w-sm">
@@ -483,6 +493,7 @@ onMounted(async () => {
       </div>
     </div>
   </NotificationGroup>
+  </client-only>
 </template>
 <style>
 @import 'intl-tel-input/build/css/intlTelInput.css';
