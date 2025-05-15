@@ -589,4 +589,7 @@ onMounted(async () => {
 </template>
 <style>
 @import 'intl-tel-input/build/css/intlTelInput.css';
+.iti__selected-dial-code{
+  padding-top: 12px;
+}
 </style>
