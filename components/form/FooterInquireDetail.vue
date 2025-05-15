@@ -8,7 +8,7 @@ import moment from "moment-timezone";
 import TelInput from "~/components/form/TelInput.vue";
 
 const route = useRoute()
-const { dataLayer } = useScriptGoogleTagManager()
+// const { dataLayer } = useScriptGoogleTagManager()
 
 const { $device } = useNuxtApp()
 
@@ -145,18 +145,18 @@ const handleSubmit = async () => {
       dialCode: ''
     }
 
-    dataLayer.push({
-      user_properties: {
-        "user_id": { "value": crypto.randomUUID() },
-        'email': { "value": userEmail.value },
-        'full_name': { "value": fullName.value },
-        'tentative_date': { "value": travelDate.value ? moment(travelDate.value).format('YYYY-MM-DD') : null, },
-      },
-      'event': 'generate_lead',
-      'Package': packageStore.titlePackages,
-      'HotelCategory': hotel.value,
-      'NumberTravelers': traveller.value,
-    });
+    // dataLayer.push({
+    //   user_properties: {
+    //     "user_id": { "value": crypto.randomUUID() },
+    //     'email': { "value": userEmail.value },
+    //     'full_name': { "value": fullName.value },
+    //     'tentative_date': { "value": travelDate.value ? moment(travelDate.value).format('YYYY-MM-DD') : null, },
+    //   },
+    //   'event': 'generate_lead',
+    //   'Package': packageStore.titlePackages,
+    //   'HotelCategory': hotel.value,
+    //   'NumberTravelers': traveller.value,
+    // });
 
     await packageStore.getInquire(obj).then(async (res) => {
       if (res) {

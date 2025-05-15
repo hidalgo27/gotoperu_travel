@@ -18,7 +18,7 @@ const getDestinations = async (url: any) => {
 const menu = ref({
   title: "Peru",
   items: listDestination,
-  image: "http://gotoperu-mx.s3-us-west-1.amazonaws.com/destinations/1574357091600valle_1574357088.jpg",
+  image: "https://gotoperu-mx.s3-us-west-1.amazonaws.com/destinations/1574357091600valle_1574357088.jpg",
   url: "/destinations/peru",
 });
 

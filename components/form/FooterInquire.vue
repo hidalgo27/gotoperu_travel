@@ -7,7 +7,7 @@ import { Notification, NotificationGroup, notify } from "notiwind";
 import moment from "moment-timezone";
 import TelInput from "~/components/form/TelInput.vue";
 
-const { dataLayer } = useScriptGoogleTagManager()
+// const { dataLayer } = useScriptGoogleTagManager()
 
 const { $device } = useNuxtApp()
 
@@ -141,22 +141,29 @@ const handleSubmit = async () => {
       dialCode: ''
     }
 
-    dataLayer.push({
-      user_properties: {
-        "user_id": { "value": crypto.randomUUID() },
-        'email': { "value": userEmail.value },
-        'full_name': { "value": fullName.value },
-        'tentative_date': { "value": travelDate.value ? moment(travelDate.value).format('YYYY-MM-DD') : null, },
-      },
-      'event': 'generate_lead',
-      'HotelCategory': hotel.value,
-      'NumberTravelers': traveller.value,
-      'TripLength': trip_length.value + ' day',
-    });
+    // dataLayer.push({
+    //   user_properties: {
+    //     "user_id": { "value": crypto.randomUUID() },
+    //     'email': { "value": userEmail.value },
+    //     'full_name': { "value": fullName.value },
+    //     'tentative_date': { "value": travelDate.value ? moment(travelDate.value).format('YYYY-MM-DD') : null, },
+    //   },
+    //   'event': 'generate_lead',
+    //   'HotelCategory': hotel.value,
+    //   'NumberTravelers': traveller.value,
+    //   'TripLength': trip_length.value + ' day',
+    // });
 
     await packageStore.getInquire(obj).then(async (res) => {
       try {
         if (res) {
+          notify({
+            group: "foo",
+            title: 'Well done',
+            type: "success",
+            text: "Your trip has been successfully created 🙂",
+          }, 4000) // 4s
+
           await saveInquire(obj, obj2)
 
           showLoader.value = false
@@ -178,19 +185,32 @@ const handleSubmit = async () => {
 
           $v.value.$reset()
 
-          notify({
-            group: "foo",
-            title: 'Well done',
-            type: "success",
-            text: "Your trip has been successfully created 🙂",
-          }, 4000) // 4s
+
         } else {
           packageStore.$reset()
+          notify({
+            group: "foo",
+            title: 'Error',
+            type: "error",
+            text: "Error :(",
+          }, 4000) // 4s
         }
       } catch (error) {
         console.log(error)
+        notify({
+          group: "foo",
+          title: 'Error',
+          type: "error",
+          text: "Error :(",
+        }, 4000) // 4s
       }
     }).catch((err) => {
+      notify({
+        group: "foo",
+        title: 'Error',
+        type: "error",
+        text: "Error :(",
+      }, 4000) // 4s
       showLoader.value = false
       packageStore.showModalInquireGlobal = false
 
@@ -209,12 +229,7 @@ const handleSubmit = async () => {
 
       $v.value.$reset()
 
-      notify({
-        group: "foo",
-        title: 'Error',
-        type: "error",
-        text: "Error :(",
-      }, 4000) // 4s
+
     })
 
 
