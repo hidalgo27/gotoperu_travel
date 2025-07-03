@@ -7,7 +7,7 @@ const faq = ref([])
 const getFAQ = async () => {
   const res: any = await packageStore.getFAQ()
   faq.value = res
-  console.log(faq.value)
+  // console.log(faq.value)
 }
 
 const activeIndex = ref(null);

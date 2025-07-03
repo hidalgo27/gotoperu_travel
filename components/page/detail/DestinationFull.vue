@@ -24,7 +24,7 @@ const breakpoints = {
 
 const imagesList = computed(() => {
   if (!packageData.value) return []
-  console.log(packageData.value.paquetes_destinos)
+  // console.log(packageData.value.paquetes_destinos)
   return packageData.value.paquetes_destinos.flatMap(destino =>
     destino.destinos.destino_imagen.map(imagen => ({
       id: imagen.id,
