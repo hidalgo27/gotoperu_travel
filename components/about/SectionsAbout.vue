@@ -8,15 +8,15 @@ const gridItems = [
     imageUrl: "https://storage.googleapis.com/a1aa/image/cccae178-5777-429b-3be7-69115e5fd1a6.jpg",
     altText: "Underwater scene with a school of striped fish swimming in blue water",
     title: "Travel Packages",
-    url: "/travel-packages",
+    url: "/peru-travel-packages",
     buttonText: "Explore More"
   },
   {
     id: 2,
     imageUrl: "https://images.unsplash.com/photo-1620658927695-c33df6fb8130?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y29zdGElMjByaWNhfGVufDB8fDB8fHww",
     altText: "Group of elephants walking on grassy savannah under a clear sky",
-    title: "Colombia",
-    url: "/destinations",
+    title: "Peru",
+    url: "/destinations/peru",
     buttonText: "Discover Destinations",
   },
   {
