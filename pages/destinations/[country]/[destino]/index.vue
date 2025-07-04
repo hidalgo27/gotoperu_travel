@@ -79,7 +79,7 @@
         class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full"
         v-for="packages in listPackages" :key="packages.id">
         <div class="relative">
-          <img :src="packages.paquetes.imagen" alt="" class="rounded-lg w-full">
+          <img :src="packages.imagen" alt="" class="rounded-lg w-full">
           <div
             class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
             PAQUETE</div>
@@ -90,8 +90,8 @@
         </div>
         <div class="relative p-4 flex flex-col h-full">
           <div>
-            <div class="my-3">{{ packages.paquetes.duracion }} day tour</div>
-            <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.paquetes.titulo }}
+            <div class="my-3">{{ packages.duracion }} day tour</div>
+            <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}
             </h3>
           </div>
 
@@ -122,15 +122,15 @@
           <!--          </div>-->
           <div class="flex items-center gap-6 mt-auto justify-between">
             <div class="">
-              <div v-if="getThreeStarPrice(packages.paquetes.precio_paquetes) > 0" class="text-2xl font-semibold">
-                <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.paquetes.precio_paquetes)
+              <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
+                <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.precio_paquetes)
                 }}
               </div>
               <div v-else class="text-2xl font-semibold text-red-500">
                 <sup class="italic light text-xs">Price </sup>Inquire
               </div>
             </div>
-            <a :href="'/peru-travel-packages/' + packages.paquetes.url"
+            <a :href="'/peru-travel-packages/' + packages.url"
               class="btn-primary group-hover:bg-opacity-75 text-xs  text-center inline-block ">View
               itinerary</a>
           </div>
@@ -192,9 +192,9 @@ const nextSlide = () => {
 }
 
 const getPackage = async () => {
-  const res: any = await packageStore.getCountryShow('peru', 'cusco')
+  const res: any = await packageStore.getCountryShow(route.params.destino as string)
   // console.log(res.paquetes)
-  listPackages.value = res
+  listPackages.value = res.destino.paquetes
 
   // if (res.token) {
   //   policyStore['tokenLogin'] = res.token
@@ -243,7 +243,7 @@ const getDestinations = async (url: any) => {
 
 onMounted(async () => {
   await getPackage()
-  destino.value = route.params.destino
+  destino.value = route.params.destino as string
   await getDestinations(route.params.country)
 
 })

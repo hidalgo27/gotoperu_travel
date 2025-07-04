@@ -231,13 +231,13 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
-	const getCountryShow = async (urlCountry: any, urlDestino: any) => {
+	const getCountryShow = async (urlDestino: any) => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 
 		return new Promise(async (resolve, reject) => {
 			try {
-				const res = await fetch(config.public.apiBase + "/destinations/" + urlCountry + "/" + urlDestino, {
+				const res = await fetch(config.public.apiBase + "/destinations/region/" + urlDestino, {
 					method: 'GET',
 					headers: headers,
 				})
