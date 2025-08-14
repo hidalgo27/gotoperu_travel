@@ -3,7 +3,12 @@ import { Carousel, Slide } from "vue3-carousel"
 import { usePackageStore } from "~/stores/packages";
 const packageStore = usePackageStore()
 const { packageData } = storeToRefs(packageStore)
-
+defineProps({
+  tripUuid: {
+    type: String,
+    required: true
+  }
+});
 const { $gsap } = useNuxtApp()
 const breakpoints = {
   // 500px and up
@@ -71,6 +76,7 @@ const scrollToSection = (sectionId: string) => {
 </script>
 
 <template>
+
   <header class="relative gap-6  mx-3">
     <div class=" rounded-lg  bg-gray-500  overflow-hidden">
       <nuxt-img v-if="packageData?.imagen_paquetes[0]" :src="packageData?.imagen_paquetes[0].nombre"
@@ -89,7 +95,7 @@ const scrollToSection = (sectionId: string) => {
 
 
       <!--      </div>-->
-      <ClientOnly>
+
         <div
           class="absolute flex md:block justify-center md:left-0 bottom-0 lg:py-12 p-2 md:pl-12 md:pr-24 bg-gray-400 z-0 bg-gradient-to-t from-gray-800/50 bg-opacity-10 w-full">
           <h1 class="text-3xl text-white font-semibold">{{ packageData?.titulo }}</h1>
@@ -140,9 +146,13 @@ const scrollToSection = (sectionId: string) => {
             </div>
 
             <!-- Book Now Button -->
-            <button class="btn-primary  w-full mt-3">
-              Book now
-            </button>
+<!--            <button class="btn-primary  w-full mt-3">-->
+<!--              Book now-->
+<!--            </button>-->
+
+            <div class="" v-if="tripUuid">
+            <wetravel-we-travel-checkout-button :trip-uuid="`${tripUuid}`"></wetravel-we-travel-checkout-button>
+            </div>
 
             <!-- Wishlist button -->
             <button @click="scrollToSection('#form-dream-adventure')"
@@ -177,7 +187,7 @@ const scrollToSection = (sectionId: string) => {
 
           </div>
         </div>
-      </ClientOnly>
+
 
     </div>
 

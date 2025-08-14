@@ -64,13 +64,13 @@ function generateDepartures() {
 }
 
 onMounted(() => {
-  packagePrice.value = packageStore.packageData.precio_paquetes
-  packageDuration.value = packageStore.packageData.duracion
+  packagePrice.value = packageStore.packageData?.precio_paquetes
+  packageDuration.value = packageStore.packageData?.duracion
 
   generateDepartures()
 
-  const priceThreeStars = packagePrice.value.find(p => p.estrellas === 3 && p.precio_d > 0);
-  const priceFiveStars = packagePrice.value.find(p => p.estrellas === 5 && p.precio_d > 0);
+  const priceThreeStars = packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 3 && p.precio_d > 0);
+  const priceFiveStars = packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 5 && p.precio_d > 0);
 
   departures.value = departures.value.map(dep => {
     if (priceThreeStars) {
