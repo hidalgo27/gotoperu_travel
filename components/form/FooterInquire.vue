@@ -121,7 +121,7 @@ const handleSubmit = async () => {
 
     const obj2 = {
       product_id: 8,
-      package: packageStore.titlePackages,
+      package: '',
       hotel_category: hotel.value,
       destinations: packageStore.destination,
       passengers: String(traveller.value),
@@ -606,7 +606,7 @@ onMounted(async () => {
                   <!--                  </VMenu>-->
 
                   <client-only>
-                    <VDatePicker v-model="travelDate" mode="date" :min-date="today">
+                    <VDatePicker v-model="travelDate" mode="date" :min-date="today" locale="en">
                       <template #default="{ togglePopover }">
                         <button type="button" class="is-input-ico peer text-left relative z-50" @click="togglePopover">
 

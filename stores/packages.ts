@@ -121,6 +121,35 @@ export const usePackageStore = defineStore('PackageStore', () => {
 		})
 	}
 
+	// const getItinerary = async (url: any) => {
+	// 	let headers = new Headers();
+	// 	headers.append('Content-Type', 'application/json');
+	//
+	// 	return new Promise(async (resolve, reject) => {
+	// 		try {
+	// 			const res = await fetch(config.public.apiBase + "/latam-travel-packages/" + url, {
+	// 				method: 'GET',
+	// 				headers: headers,
+	// 			})
+	// 			const data = await res.json()
+	//
+	// 			// 🔽 Normaliza: si viene array, toma el primer item; si viene objeto, úsalo tal cual
+	// 			const item = Array.isArray(data) ? (data[0] ?? null) : data
+	//
+	// 			// Guarda en el store para uso directo en la vista
+	// 			packageData.value = item
+	//
+	// 			if (item) {
+	// 				resolve(item) // devuelve objeto (no array)
+	// 			} else {
+	// 				reject(new Error('No se encontró el paquete'))
+	// 			}
+	// 		} catch (error) {
+	// 			reject(error)
+	// 		}
+	// 	})
+	// }
+
 	const getDestination = async () => {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');

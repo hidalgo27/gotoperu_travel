@@ -16,9 +16,8 @@ import { usePackageStore } from "~/stores/packages";
 import HeaderDetail2 from "~/components/page/detail/HeaderDetail2.vue";
 import DestinationFull from "~/components/page/detail/DestinationFull.vue";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import ItineraryDetail from "~/components/page/detail/ItineraryDetail.vue";
 
-const triggerButton = ref(null);
-const targetButton = ref(null);
 const { $gsap } = useNuxtApp()
 $gsap.registerPlugin(ScrollToPlugin);
 const packageStore = usePackageStore()
@@ -32,53 +31,19 @@ const viewButton = ref(false)
 
 
 const listPackages = ref([])
+const listPackages2 = ref(null)
 
 const itemRefs = ref({})
 const showCount = ref({})
 
-const currentItem = ref(null); //
-const viewPopover = ref()// índice del ítem actualmente abierto
-
-const randomColorClasses = ['bg-primary', 'bg-secondary', 'bg-gray-800', 'bg-yellow-500', 'bg-indigo-500'];
 
 const randomColorBorder = ['border-primary', 'border-primary', 'border-secondary', 'border-gray-800', 'border-yellow-500', 'border-indigo-500'];
-
-const clickOtherButton = async (item: any) => {
-  // @ts-ignore
-  codeWetravel.value = item
-  await nextTick();
-  targetButton.value.click();
-};
-
-const targetAction = () => {
-  console.log('Botón objetivo clickeado!');
-};
 
 const getQuote = (item) => {
   router.push("#form-dream-adventure")
   packageStore.hotelDetail = item
 }
 
-function openPopover(val) {
-  if (val) {
-    viewPopover.value = val
-  } else {
-    viewPopover.value = 0
-  }
-}
-function closePopover(val) {
-  setTimeout(() => {
-    if (mouseIsOverPopover) {
-      if (val) {
-        viewPopover.value = 0
-      }
-    }
-  }, 100);
-
-}
-
-
-const mouseIsOverPopover = ref(false)
 
 const items = ref([
   { title: 'Título 1', content: 'Contenido 1' },
@@ -90,58 +55,6 @@ const items = ref([
   { title: 'Título 7', content: 'Contenido 7' },
 ]);
 
-const openIndexes = ref<number[]>([]);
-const contentRefs = ref<Record<number, HTMLElement | null>>({});
-
-const isOpen = (index: number) => openIndexes.value.includes(index);
-
-const setContentRef = (el: HTMLElement | null, index: number) => {
-  if (el) contentRefs.value[index] = el;
-};
-
-
-const toggleItem = (index: number) => {
-  const contentRef = contentRefs.value[index];
-  if (!contentRef) return;
-
-  if (isOpen(index)) {
-    const fullHeight = contentRef.scrollHeight;
-    $gsap.fromTo(contentRef, { height: fullHeight }, {
-      height: 0,
-      paddingTop: 0,
-      paddingBottom: 0,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power3.inOut',
-      onComplete() {
-        openIndexes.value = openIndexes.value.filter(i => i !== index);
-      }
-    });
-  } else {
-    const fullHeight = contentRef.scrollHeight;
-    $gsap.set(contentRef, {
-      height: 0,
-      paddingTop: 0,
-      paddingBottom: 0,
-      opacity: 0,
-      overflow: 'hidden',
-      display: 'block'
-    });
-
-    $gsap.to(contentRef, {
-      height: fullHeight,
-      opacity: 1,
-      paddingTop: '1.5rem',
-      paddingBottom: '1.5rem',
-      duration: 0.5,
-      ease: 'power3.inOut',
-      onComplete() {
-        contentRef.style.height = 'auto';
-        openIndexes.value.push(index);
-      },
-    });
-  }
-};
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId.substring(1));
@@ -154,87 +67,18 @@ const scrollToSection = (sectionId: string) => {
   });
 };
 
-const displayedItems = ref(listPackages.value.slice(0, 2));
-
-const loadMore = () => {
-  let nextItems = items.value.slice(displayedItems.value.length, displayedItems.value.length + 2);
-  // @ts-ignore
-  displayedItems.value = [...displayedItems.value, ...nextItems];
-};
-const loadLess = () => {
-  displayedItems.value = displayedItems.value.slice(0, displayedItems.value.length - 2);
-};
-
-const canLoadLess = computed(() => displayedItems.value.length > 2);
-
-const canLoadMore = computed(() => items.value.length > displayedItems.value.length);
-
 
 const getPackageItinerary = async (url) => {
   const res = await packageStore.getItinerary(url)
   listPackages.value = res
+  listPackages2.value = res[0]
   packageStore.titlePackages = res[0].titulo
   packageStore.imgPackages = res[0].imagen
   packageStore.packageData = res[0]
 
-  // if (res.token) {
-  //   policyStore['tokenLogin'] = res.token
-  //   loadingUser.value = false
-  // }
 }
 
 
-const getThreeStarPrice = (arr: any) => {
-  const price = arr.find((priceInfo: { estrellas: number; }) => priceInfo.estrellas === 3);
-  return price ? price.precio_d : 'No disponible';
-}
-
-/*const capitalizeFirstLetter = (string) => {
-  return string
-      ? string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
-      : '';
-};*/
-
-const getGroupedByCountry = (arr) => {
-  const grouped = {};
-  for (const paqueteDestino of arr) {
-    const { destinos } = paqueteDestino;
-    const { pais, nombre, id } = destinos;
-    // @ts-ignore
-    if (!grouped[pais]) {
-      // @ts-ignore
-      grouped[pais] = [];
-    }
-    // @ts-ignore
-    grouped[pais].push({ nombre, id });
-  }
-  return grouped;
-};
-
-// const paisesUnicos = (destinos:any) => {
-//   const paisesVistos = new Set();
-//   return destinos.filter((destino: { destinos: { pais: any; }; }) => {
-//     const pais = destino.destinos.pais;
-//     if (!paisesVistos.has(pais.id)) {
-//       paisesVistos.add(pais.id);
-//       return true;
-//     }
-//     return false;
-//   }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
-// };
-
-
-// const obtenerDestinosPorPais = (paisId:number) => {
-//   const destinos: any[] = [];
-//   listPackages.value.forEach(paquete => {
-//     paquete.paquetes_destinos.forEach((destino: { destinos: { pais: { id: number; }; }; }) => {
-//       if (destino.destinos.pais.id === paisId) {
-//         destinos.push(destino.destinos);
-//       }
-//     });
-//   });
-//   return destinos;
-// };
 watch(listPackages, (newVal) => {
   if (!newVal || !newVal.length) return
 
@@ -250,58 +94,6 @@ const registerItemRef = (el, id) => {
   if (!itemRefs.value[id].includes(el)) itemRefs.value[id].push(el)
 }
 
-const expand = async (id) => {
-  const totalLength = listPackages.value.find(p => p.id === id).paquete_itinerario.length
-  const prevCount = showCount.value[id] || 0
-  const newCount = Math.min(prevCount + 4, totalLength)
-
-  showCount.value[id] = newCount
-  await nextTick()
-
-  const newItems = itemRefs.value[id]?.slice(prevCount, newCount)
-  if (newItems?.length) {
-    $gsap.fromTo(
-      newItems,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power3.out' }
-    )
-  }
-}
-
-const contract = async (id) => {
-  if (!showCount.value[id]) {
-    // Si no está inicializado, asumimos que está en 4 (valor mínimo)
-    showCount.value[id] = 4
-  }
-
-  const currentCount = showCount.value[id]
-  const newCount = Math.max(4, currentCount - 4)
-  const toRemove = itemRefs.value[id]?.slice(newCount, currentCount)
-
-  if (toRemove?.length) {
-    await $gsap.to(
-      toRemove,
-      { opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: 'power2.in' }
-    )
-  }
-  showCount.value[id] = newCount
-  await nextTick()
-
-  itemRefs.value[id] = itemRefs.value[id].slice(0, newCount)
-}
-
-// const loadScript = () => {
-//   const scriptExists = document.querySelector('script[src="https://cdn.wetravel.com/widgets/embed_checkout.js"]') !== null;
-//   if (!scriptExists) {
-//     const script = document.createElement('script');
-//     script.src = 'https://cdn.wetravel.com/widgets/embed_checkout.js';
-//     script.type = 'text/javascript';
-//     script.async = true;
-//     document.head.appendChild(script);
-//   }
-// }
-
-
 onMounted(async () => {
   if (process.client) {
     // @ts-ignore
@@ -309,8 +101,6 @@ onMounted(async () => {
 
     });
   }
-  // loadScript()
-  // console.log(route)
   await getPackageItinerary(route.params.itinerary)
   const defaultCount = listPackages.value[0]?.paquete_itinerario.length || 4
   listPackages.value.forEach(p => {
@@ -319,7 +109,7 @@ onMounted(async () => {
   });
 
   // await nextTick();
-  codeWetravel.value = packageStore.code_w
+  codeWetravel.value = packageStore.packageData?.codigo_f || ''
   viewButton.value = true
 
 })
@@ -338,26 +128,26 @@ onBeforeRouteLeave(() => {
 </script>
 <template>
   <div>
-    <!--    <button-->
-    <!--        class="btn-primary wtrvl-checkout_button hidden z-10 "-->
-    <!--        id="wetravel_button_widget"-->
-    <!--        data-env="https://www.wetravel.com"-->
-    <!--        data-version="v0.3"-->
-    <!--        data-uid="239346"-->
-    <!--        :data-uuid="''+packageStore.code_w"-->
-    <!--        :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"-->
-    <!--        ref="targetButton" @click="targetAction">-->
-    <!--      Book Now-->
-    <!--    </button>-->
+<!--    {{codeWetravel}}-->
+<!--        <button-->
+<!--            class="btn-primary wtrvl-checkout_button  z-10 "-->
+<!--            id="wetravel_button_widget"-->
+<!--            data-env="https://www.wetravel.com"-->
+<!--            data-version="v0.3"-->
+<!--            data-uid="239346"-->
+<!--            :data-uuid="''+codeWetravel"-->
+<!--            :href="'https://www.wetravel.com/checkout_embed?uuid='+codeWetravel"-->
+<!--            ref="targetButton" @click="targetAction">-->
+<!--          Book Now-->
+<!--        </button>-->
 
     <section class="">
-      <HeaderDetail2></HeaderDetail2>
+      <HeaderDetail2 :trip-uuid="`${codeWetravel}`"></HeaderDetail2>
     </section>
 
 
-    <div v-if="listPackages && listPackages.length">
-      <div v-for="packages in listPackages" :key="packages.id">
-        <!--      <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button>-->
+<!--    <wetravel-we-travel-checkout-button :trip-uuid="`${codeWetravel}`"></wetravel-we-travel-checkout-button>-->
+
 
         <!--  <header class="h-[75vh] relative">-->
         <!--    <img src="/images/banners/banner-lg.png" alt="" class="object-cover w-screen h-full">-->
@@ -381,14 +171,15 @@ onBeforeRouteLeave(() => {
         <!--          </div>-->
         <!--        </div>-->
 
+
         <section class="bg-slate-100 py-8 hidden">
           <div class="container grid md:grid-cols-12 gap-12 items-center">
             <div class="md:col-span-9">
               <div class="grid grid-cols-12 md:grid-cols-3">
                 <div class="col-span-6 md:col-span-1">
                   <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg"
-                      alt="" class="opacity-70"> TRIP</h3>
-                  <h2 class="md:text-2xl font-semibold">{{ packages.titulo }}</h2>
+                                                                                                    alt="" class="opacity-70"> TRIP</h3>
+                  <h2 class="md:text-2xl font-semibold">{{ listPackages2?.titulo }}</h2>
                 </div>
                 <!-- <div class="col-span-3 md:col-span-1">
                   <h3 class="text-gray-400 text-xs flex gap-1 font-semibold mb-2 items-center"><img src="/icons/map.svg"
@@ -418,83 +209,7 @@ onBeforeRouteLeave(() => {
           </div>
         </section>
 
-        <section class="bg-slate-100 py-8 hidden">
-          <div class="container grid md:grid-cols-12 gap-12 items-center">
-            <div class="md:col-span-12">
-              <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-                <div class="flex flex-col md:flex-row ">
-                  <div class="md:w-2/3 relative">
-                    <NuxtImg alt="Trip image" class="w-full h-full object-cover" :src="packages.imagen" />
-                    <!-- <div class="absolute top-4 left-4 bg-yellow-200 text-gray-800 px-2 py-1 rounded">
-                      {{ packages.subtitulo }}
-                    </div> -->
-                    <!-- <div class="absolute top-4 right-4 bg-white text-gray-800 px-2 py-1 rounded-full shadow-lg">
-                      <i class="fas fa-map"></i> MAP
-                    </div> -->
-                  </div>
-                  <div class="md:w-1/3 p-6 gap-6 flex flex-col">
-                    <!-- <div
-                      class="bg-purple-700 text-white text-xs font-bold uppercase px-2 py-1 rounded-full inline-block mb-4">
-                      Top Seller
-                    </div> -->
-                    <h2 class="md:text-2xl font-semibold">{{ packages.duracion }}D/{{ packages.duracion - 1 }}N</h2>
-                    <!-- <p class="text-gray-600 mb-4">
-                      {{ packages.origen }} to {{ packages.destino }}
-                    </p> -->
-                    <div class="text-2xl font-bold text-gray-700 flex flex-col"
-                      v-if="getThreeStarPrice(packages.precio_paquetes) > 0">
-                      From <span class="text-5xl flex">${{ getThreeStarPrice(packages.precio_paquetes) }}<span
-                          class="text-sm lg:text-lg text-gray-500">USD<br>per
-                          person</span>
-                      </span>
-                    </div>
-                    <div class="text-2xl font-bold text-gray-800 mb-2 flex flex-col" v-else>
-                      get<span class="text-5xl">Inquire</span>
-                    </div>
-                    <!-- <p class="text-gray-500 text-sm mb-4">
-                      Valid on {{ packages.fecha_valida }}
-                    </p> -->
-                    <!-- <p class="text-gray-500 text-sm mb-4 line-through" v-if="packages.precio_original">
-                      was ${{ packages.precio_original }}
-                    </p> -->
-                    <p class="text-gray-500 text-sm mb-4">
-                      Trip Code: {{ packages.codigo }}
-                    </p>
 
-                    <div class="md:col-span-3 hidden md:block">
-                      <a href="#form-dream-adventure" class="btn-primary text-center block w-full">Get a Quote</a>
-                      <button class="btn-ternary mt-2 block w-full" ref="triggerButton"
-                        @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
-                        Book Now
-                      </button>
-                    </div>
-                    <!-- <button class="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-full w-full mb-4">
-                      <i class="fas fa-heart"></i> Save to wish list
-                    </button> -->
-                    <!-- <div class="text-gray-800">
-                      <h3 class="text-lg font-bold mb-2">Special Offers</h3>
-                      <ul class="text-sm">
-                        <li class="mb-2" v-for="offer in packages.ofertas" :key="offer.codigo">
-                          {{ offer.descripcion }}
-                          <br v-if="offer.codigo" />
-                          <span v-if="offer.codigo">Expires in {{ offer.expira_en }} days | Promo Code {{ offer.codigo
-                          }}</span>
-                        </li>
-                      </ul>
-                    </div> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="md:col-span-3 hidden md:block">
-              <a href="#form-dream-adventure" class="btn-primary text-center block w-full">Get a Quote</a>
-              <button class="btn-ternary mt-2 block w-full" ref="triggerButton"
-                @click="clickOtherButton(packages.codigo_f)" v-if="packages.codigo_f">
-                Book Now
-              </button>
-            </div> -->
-          </div>
-        </section>
 
         <section class="container  my-4">
           <div class="flex gap-3 justify-center">
@@ -542,59 +257,12 @@ onBeforeRouteLeave(() => {
 
 
 
-              <div class="grid my-8 space-y-2 hidden">
-                <div class="flex gap-2">
-                  <img src="/icons/location.svg" alt=""> <span class="font-bold">Start</span> Lima, Peru
-                </div>
-                <!--          <div class="flex gap-2">-->
-                <!--            <img src="/icons/location.svg" alt=""> <span class="font-bold">Finish</span> La Paz, Bolivia-->
-                <!--          </div>-->
-                <div class="flex gap-2">
-                  <img src="/icons/location.svg" alt="">
-                  <span class="font-bold">Destinations</span>
 
-
-                  <span class="badged-sm" :class="randomColorClasses[index % randomColorClasses.length]"
-                    v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">
-                    {{ destination.destinos.nombre }}
-                  </span>
-
-                  <!--            <div class="flex flex-nowrap overflow-x-auto">-->
-                  <!--              <div class="flex text-xs font-semibold gap-1 items-center" v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
-                  <!--&lt;!&ndash;                <span class="truncate" :class="[destination.destinos.nombre.toLowerCase() == destino.replace('-',' ') ? 'bg-[#D6DD85] rounded-full px-2 text-primary':'bg-gray-50 text-gray-800']">{{destination.destinos.nombre}}</span>&ndash;&gt;-->
-                  <!--                {{destination.destinos.nombre}}-->
-                  <!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < p.length - 1">-->
-                  <!--                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />-->
-                  <!--                </svg>-->
-                  <!--              </div>-->
-                  <!--            </div>-->
-
-                  <!--            <span class="badged-sm bg-primary">Perú</span>
-                            <span class="badged-sm bg-secondary">Bolivia</span>
-                            <span class="badged-sm bg-primary">Chile</span>
-                            <span class="badged-sm bg-secondary">Brasil</span>
-                            <span class="badged-sm bg-gray-800">Colombia</span>-->
-                </div>
-
-                <!--          <div v-for="(destinos, pais) in getGroupedByCountry(packages.paquetes_destinos)" :key="pais">
-                          <p :class="randomColorClasses[destinos[0].id % randomColorClasses.length]">
-                            {{ pais }}
-                          </p>
-                          <ul>
-                            <li v-for="destino in destinos" :key="destino.id">
-                              {{ destino.nombre }}
-                            </li>
-                          </ul>
-                        </div>-->
-                <!-- <div class="flex gap-2">
-                  <img src="/icons/search.svg" alt=""> <span class="font-bold">Code</span> {{ packages.codigo }}
-                </div> -->
-              </div>
               <div class="container grid grid-cols-12 gap-4 lg:gap-12 my-8">
                 <article class="col-span-12 md:col-span-6 lg:col-span-6" id="review">
                   <div class="border-title-secondary"></div>
                   <h2 class="text-3xl font-bold mb-8 mt-2">Overview</h2>
-                  <div v-html="packages.descripcion">
+                  <div v-html="listPackages2?.descripcion">
                   </div>
                   <!--                  <div class="grid grid-cols-3 text-xs md:grid-cols-4 mt-12 gap-6">-->
                   <!--                    <div v-for="(destination, index) in p = packages.paquetes_destinos" :key="destination.id">-->
@@ -617,57 +285,18 @@ onBeforeRouteLeave(() => {
                   <!--                  </div>-->
 
 
-                  <img :src="packages.mapa" alt="" class="rounded-2xl my-12 w-full">
+                  <img :src="listPackages2?.mapa" alt="" class="rounded-2xl my-12 w-full">
 
                 </article>
 
 
                 <article class="col-span-12 md:col-span-6 lg:col-span-6 bg-slate-100 p-6 rounded-lg" id="itinerary">
-                  <div class="sticky top-0">
-                    <h2 class="text-2xl font-bold mb-8">Itinerary</h2>
-                    <div class="w-full mx-auto relative">
-                      <div
-                        v-for="(itinerary, index) in iti = packages.paquete_itinerario.slice(0, showCount[packages.id])"
-                        :key="itinerary.id" class="flex item" :ref="el => registerItemRef(el, packages.id)">
-                        <div class="relative w-20 text-center gap-12">
-                          <div class="absolute -z-10 left-1/2 top-0 bottom-0 border-l-2 border-dashed border-slate-300">
-                          </div>
-                          <div class="flex gap-1 items-center py-2  font-bold text-xs duration-300 transition"
-                            :class="[isOpen(index) ? 'text-secondary' : 'text-slate-500']">
-                            <span class="-ml-1">DAY</span>
-                            <span class="rounded-full px-2 py-1  text-white duration-300 transition"
-                              :class="{ 'bg-red-700': packages.duracion == index + 1, 'bg-primary': index + 1 == 1, 'bg-gray-500': index + 1 > 1, ' bg-secondary  ': isOpen(index) }">
-                              {{ index + 1 }}
-                            </span>
-                          </div>
-                        </div>
-                        <div class="space-y-2 w-full " :class="[index + 1 == items.length ? 'border-y' : 'border-t']">
-                          <div>
-                            <button @click="toggleItem(index)"
-                              class="w-full text-left p-4 flex justify-between items-center hover:bg-gray-200">
-                              {{ itinerary.itinerarios.titulo }}
-                              <span>
-                                {{ isOpen(index) ? '-' : '+' }}
-                              </span>
-                            </button>
-                            <div :ref="el => setContentRef(el, index)" class="overflow-hidden px-4 text-start hidden"
-                              v-html="itinerary.itinerarios.resumen"></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <button v-if="showCount[packages.id] < packages.paquete_itinerario.length"
-                        @click="expand(packages.id)"
-                        class="mt-4 p-4 bg-[#ffeece] font-bold text-secondary rounded w-full hover:bg-secondary hover:text-white">
-                        View More
-                      </button>
-
-                      <button v-if="showCount[packages.id] > 4" @click="contract(packages.id)"
-                        class="px-4 py-2 w-full mt-2 rounded text-gray-400 hover:text-primary">
-                        View Less
-                      </button>
-                    </div>
-                  </div>
+                  <ItineraryDetail
+                      :itinerary="listPackages2?.paquete_itinerario || []"
+                      :pkg-id="packages?.id || null"
+                      :duration="packages?.duracion || 0"
+                      :initial-count="34"
+                  />
                 </article>
               </div>
 
@@ -680,7 +309,7 @@ onBeforeRouteLeave(() => {
                   <article class="col-span-6" id="included">
                     <div class="border-title-secondary"></div>
                     <h2 class="text-2xl font-bold mb-8 mt-2">Our Rates includes</h2>
-                    <div class="pl-6" v-html="packages.incluye"></div>
+                    <div class="pl-6" v-html="listPackages2?.incluye"></div>
                     <!--          <div class="grid grid-cols-4 gap-6">-->
                     <!--            <div class="rounded-2xl p-4 bg-slate-100 text-gray-800 hover:bg-primary hover:text-white">-->
                     <!--              <img src="/icons/star.svg" alt="" class="mb-3 w-6">-->
@@ -720,7 +349,7 @@ onBeforeRouteLeave(() => {
                   <article class="col-span-6">
                     <div class="border-title-secondary"></div>
                     <h2 class="text-2xl font-bold mb-8 mt-2">Not Included</h2>
-                    <div class="pl-6" v-html="packages.noincluye"></div>
+                    <div class="pl-6" v-html="listPackages2?.noincluye"></div>
                     <!--<ul class="list-inside list-image-[url(/icons/star.svg)]">
                   <li>National & International Flights</li>
                   <li>Travel Insurance</li>
@@ -756,124 +385,15 @@ onBeforeRouteLeave(() => {
 
 
 
-              <article class="my-12 hidden">
-                <h2 class="text-2xl font-bold mb-8">Hotels considered</h2>
-                <div class="flex justify-between">
-                  <div class="flex items-center gap-2">
-                    <img src="/icons/hotel.svg" alt=""> Overnight
-                  </div>
-                  <div class="flex gap-2 items-center">
-                    Category:
-                    <div class="relative col-span-2">
-                      <input type="text" class="is-input-ico rounded-right-0 border-right-0 peer" placeholder=" "
-                        @focus="openPopover(1)" @blur="closePopover(1)">
-                      <label class="is-input-ico-label">Choose Category</label>
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                        <img src="/icons/search.svg" alt="">
-                      </div>
-                      <div class="absolute z-10 inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                          stroke="currentColor" class="w-6 h-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                        </svg>
-                      </div>
-                      <transition name="top" appear>
-                        <div class="box-option-select" v-show="viewPopover == 1" @mouseover="mouseIsOverPopover = true"
-                          @mouseleave="mouseIsOverPopover = false">
-                          <div class="grid items-start text-left">
-                            <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer flex gap-2">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                            </div>
-                            <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer flex gap-2">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                            </div>
-                            <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer flex gap-2">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                            </div>
-                            <div class="py-2 px-3 hover:bg-secondary hover:text-white cursor-pointer flex gap-2">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                              <img src="/icons/star.svg" alt="">
-                            </div>
-                          </div>
-                        </div>
-                      </transition>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="hidden" id="price2s">
-                <div class="grid grid-cols-12 bg-gray-800 rounded-t-xl py-3 text-white divide-x items-center">
-                  <div class="col-span-2 text-center pl-6">
-                    Nights
-                  </div>
-                  <div class="col-span-4 pl-6">
-                    <div>
-                      City
-                    </div>
-                  </div>
-                  <div class="col-span-6 pl-6">
-                    <div>
-                      Hotel
-                    </div>
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-12 py-2 bg-slate-100 divide-x divide-slate-300 items-center my-2">
-                  <div class="col-span-2 pl-6 leading-none text-primary text-center">
-                    <span class="text-xs">Nights</span><br>
-                    <span class="text-2xl font-bold">04</span>
-                  </div>
-                  <div class="col-span-4 pl-6">
-                    Quito
-                  </div>
-                  <div class="col-span-6 pl-6">
-                    Vieja Cuba
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-12 py-2 bg-slate-100 divide-x divide-slate-300 items-center my-2">
-                  <div class="col-span-2 pl-6 leading-none text-primary text-center">
-                    <span class="text-xs">Nights</span><br>
-                    <span class="text-2xl font-bold">04</span>
-                  </div>
-                  <div class="col-span-4 pl-6">
-                    Quito
-                  </div>
-                  <div class="col-span-6 pl-6">
-                    Vieja Cuba
-                  </div>
-                </div>
-
-                <button @click="loadMore" v-if="canLoadMore"
-                  class=" p-4 bg-[#eff2d6] font-bold text-primary rounded w-full hover:bg-primary hover:text-white">
-                  View More
-                </button>
-
-                <button @click="loadLess" v-if="canLoadLess"
-                  class="px-4 py-2 w-full mt-2 rounded text-gray-400 hover:text-primary">
-                  View Less
-                </button>
-
-              </article>
 
               <section class="container mt-12" id="prices">
                 <Departures></Departures>
               </section>
               <article class="my-12 hidden" id="prices">
                 <h2 class="text-2xl font-bold mb-8">Dates & availability</h2>
-                <div v-for="(price, index) in packages.precio_paquetes">
+                <div v-for="(price, index) in listPackages2?.precio_paquetes">
                   <div class="p-4 border-l-8 rounded-l-lg bg-slate-100 grid grid-cols-3 mb-4 items-center"
-                    :class="randomColorBorder[index % randomColorBorder.length]" v-if="price.estrellas > 2">
+                       :class="randomColorBorder[index % randomColorBorder.length]" v-if="price.estrellas > 2">
                     <div class="">
                       <div class="text-lg font-bold">Price {{ price.estrellas }} Stars</div>
                       <div class="flex items-center gap-2">
@@ -894,11 +414,11 @@ onBeforeRouteLeave(() => {
                     <div class="">
                       <!--              <button type="button" class="btn-secondary w-full mb-3">Get a Quote</button>-->
                       <button type="button" class="btn-primary-outline w-full" v-if="price.estrellas == 3"
-                        @click="getQuote(['3'])">Get a Quote</button>
+                              @click="getQuote(['3'])">Get a Quote</button>
                       <button type="button" class="btn-secondary-outline w-full" v-if="price.estrellas == 4"
-                        @click="getQuote(['4'])">Get a Quote</button>
+                              @click="getQuote(['4'])">Get a Quote</button>
                       <button type="button" class="btn-ternary-outline w-full" v-if="price.estrellas == 5"
-                        @click="getQuote(['5'])">Get a Quote</button>
+                              @click="getQuote(['5'])">Get a Quote</button>
                     </div>
                   </div>
                 </div>
@@ -957,6 +477,5 @@ onBeforeRouteLeave(() => {
 
         <!--    <ModalItinerary></ModalItinerary>-->
       </div>
-    </div>
-  </div>
+
 </template>
