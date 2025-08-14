@@ -1,190 +1,269 @@
-<script setup lang="ts" name="CarouselP">
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide } from "vue3-carousel";
+<script setup lang="ts">
+import { ref, computed } from 'vue';
 import { usePackageStore } from "~/stores/packages";
 
-const packageStore = usePackageStore()
+const packageStore = usePackageStore();
+const allPackages = ref([]);
+const activeDayFilter = ref('machu-picchu');
+const isLoading = ref(true);
 
-const listPackages = ref([])
+// Categorías para los filtros de 1 día
+const dayTourCategories = [
+  { id: 'machu-picchu', name: 'MACHU PICCHU' },
+  // { id: 'cusco', name: 'CUSCO' },
+  { id: 'huacachina', name: 'HUACACHINA' },
+  // { id: 'amazon', name: 'AMAZON' },
+  // { id: 'lima', name: 'LIMA' }
+];
 
-const breakpoints = {
-  // 500px and up
-  350: {
-    itemsToShow: 1.2,
-    snapAlign: 'start',
-  },
-  // 700px and up
-  700: {
-    itemsToShow: 2.2,
-    snapAlign: 'center',
-  },
-  // 1024 and up
-  1024: {
-    itemsToShow: 2.2,
-    snapAlign: 'start',
-  },
-}
-
-const carouselRef = ref();
-
-const prevSlide = () => {
-  carouselRef.value.prev();
-}
-
-const nextSlide = () => {
-  carouselRef.value.next();
-}
-
-const getPackage = async () => {
-  const res: any = await packageStore.getPackageTop()
-  listPackages.value = res.slice(0, 7)
-  // console.log(listPackages.value)
-  // if (res.token) {
-  //   policyStore['tokenLogin'] = res.token
-  //   loadingUser.value = false
-  // }
-}
-
-interface Item {
-  id: number;
-  name: string;
-}
-
-const paisesUnicos = (destinos: any) => {
-  const paisesVistos = new Set();
-  return destinos.filter((destino: { destinos: { pais: any; }; }) => {
-    const pais = destino.destinos.pais;
-    if (!paisesVistos.has(pais.id)) {
-      paisesVistos.add(pais.id);
-      return true;
-    }
-    return false;
-  }).map((destino: { destinos: { pais: any; }; }) => destino.destinos.pais);
+// Obtener todos los paquetes
+const fetchAllPackages = async () => {
+  try {
+    isLoading.value = true;
+    const res: any = await packageStore.getPackageTop();
+    allPackages.value = res;
+  } catch (error) {
+    console.error('Error fetching packages:', error);
+  } finally {
+    isLoading.value = false;
+  }
 };
 
+// Filtrado computado
+const filteredPackages = computed(() => {
+  // Primero filtramos por duración para cada sección
+  const oneDayPackages = allPackages.value.filter(pkg => pkg.duracion === 1);
+  const fourToSevenPackages = allPackages.value.filter(pkg => pkg.duracion >= 4 && pkg.duracion <= 7);
+  const eightToFourteenPackages = allPackages.value.filter(pkg => pkg.duracion >= 8 && pkg.duracion <= 14);
+  const fifteenPlusPackages = allPackages.value.filter(pkg => pkg.duracion >= 15);
+  console.log(oneDayPackages);
+  // Aplicamos filtro adicional para los paquetes de 1 día
+  const filteredOneDay = oneDayPackages.filter(pkg => {
+    return pkg.paquetes_destinos?.some(destino => {
+      // Accedemos correctamente a la URL del destino
+      return destino.destinos?.url === activeDayFilter.value;
+    });
+  });
+
+  console.log(filteredOneDay)
+
+  return {
+    oneDay: filteredOneDay,
+    fourToSeven: fourToSevenPackages,
+    eightToFourteen: eightToFourteenPackages,
+    fifteenPlus: fifteenPlusPackages
+  };
+});
+
 const getThreeStarPrice = (arr: any) => {
+  if (!arr) return 'Inquire';
   const price = arr.find((priceInfo: { estrellas: number; }) => priceInfo.estrellas === 3);
-  return price ? price.precio_d : 'No disponible';
-}
+  return price ? `$${price.precio_d}` : 'Inquire';
+};
 
 onMounted(async () => {
-  await getPackage()
-})
+  await fetchAllPackages();
+});
 </script>
+
 <template>
-  <div class="">
-    <div class="grid grid-cols-7">
-      <!--      <div class="col-span-7 md:col-span-2">-->
-      <!--        <h2 class="text-3xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>-->
-      <!--        <p class="my-6 hidden md:block">Explore LATAM's most <br> captivating destinations <br> with our top tour selection</p>-->
+  <div class="container mx-auto px-4 py-8">
+    <!-- Loading state -->
+    <div v-if="isLoading" class="text-center py-12">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+      <p class="mt-2">Loading packages...</p>
+    </div>
 
-      <!--        <h2 class="text-3xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>-->
-      <!--        <p class="my-6 md:hidden">Explore LATAM's most captivating destinations with our top tour selection</p>-->
+    <!-- Content when loaded -->
+    <template v-else>
+      <!-- Sección de 1 día con filtros -->
+      <section class="mb-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6">
+          <h2 class="text-3xl font-bold mb-4 md:mb-0">DAY TOURS</h2>
+          <div class="flex space-x-2 overflow-x-auto pb-2">
+            <button v-for="category in dayTourCategories" :key="category.id" @click="activeDayFilter = category.id"
+              :class="{
+                'bg-primary text-white': activeDayFilter === category.id,
+                'bg-gray-100 text-gray-800': activeDayFilter !== category.id
+              }" class="px-4 py-2 rounded-full z-10 text-sm font-medium whitespace-nowrap transition-colors">
+              {{ category.name }}
+            </button>
+          </div>
+        </div>
 
-      <!--      </div>-->
-
-      <div class="col-span-7 md:col-span-7">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-          <!--        <Carousel  ref="carouselRef" :wrap-around="true" :breakpoints="breakpoints">-->
-          <!--          <div v-for="packages in listPackages" :key="packages.id">-->
-          <!-- Aquí puedes poner el contenido de cada slide, por ejemplo: -->
-
-          <!--          <div class="bg-white md:col-span-2 w-full rounded-xl my-2 block shadow-md relative overflow-hidden">-->
-
-          <!--            <a href="/peru-travel-packages/Amazing-Peru-9-days"><img src="/images/banners/banner-navidad.jpg" alt="" class="object-cover  h-full">-->
-          <!--&lt;!&ndash;            <div class="absolute p-6 mt-12 text-white top-0 inset-x-0 z-10">&ndash;&gt;-->
-          <!--&lt;!&ndash;              <h2 class="text-6xl font-bold mt-12 md:mt-0 hidden md:block">Top <br>Tours</h2>&ndash;&gt;-->
-          <!--&lt;!&ndash;              <p class="my-6 hidden text-xl md:block">Discover the most popular destinations in Peru with <br> the best selection of Peru travel packages.</p>&ndash;&gt;-->
-
-          <!--&lt;!&ndash;              <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary">View all</nuxt-link>&ndash;&gt;-->
-
-          <!--&lt;!&ndash;              <h2 class="text-4xl font-bold mt-12 md:mt-0 md:hidden">Top Tours</h2>&ndash;&gt;-->
-          <!--&lt;!&ndash;              <p class="my-6 md:hidden">Discover the most popular destinations in Peru with the best selection of Peru travel packages.</p>&ndash;&gt;-->
-          <!--&lt;!&ndash;            </div>&ndash;&gt;-->
-          <!--            <div class="absolute inset-0 bg-gradient-to-b to-70% from-gray-900 from-0% opacity-50"></div></a>-->
-          <!--          </div>-->
-          <template v-for="(packages, index) in listPackages" :key="packages.id">
-            <div v-if="index === 2"
-              class="relative col-span-1 w-full rounded-xl shadow-md group flex flex-col h-full overflow-hidden">
-
-              <!-- Imagen -->
-              <NuxtImg src="/images/packages/package1.png" alt="Banner"
-                class="w-full h-full object-cover rounded-xl shadow-md brightness-75" />
-
-              <!-- Contenido sobre la imagen -->
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
-                <div class="bg-black bg-opacity-50 p-4 rounded-lg">
-                  <NuxtImg src="/images/packages/best-offer-tag.webp" alt="Offer"
-                    class="w-full h-full object-cover rounded-xl shadow-md" />
+        <div v-if="filteredPackages.oneDay.length > 0"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <a v-for="pack in filteredPackages.oneDay" :href="'/peru-travel-packages/' + pack.url"
+            class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full">
+            <div class="relative">
+              <img :src="pack.imagen" alt="" class="w-full rounded-lg">
+              <div
+                class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
+                PAQUETE</div>
+              <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+            </div>
+            <div class="relative p-4 flex flex-col h-full">
+              <div>
+                <div class="my-3">{{ pack.duracion }} day tour</div>
+                <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ pack.titulo }}</h3>
+              </div>
+              <div class="flex items-center gap-6 mt-auto justify-between">
+                <div>
+                  <div v-if="getThreeStarPrice(pack.precio_paquetes) > 0" class="text-2xl font-semibold">
+                    <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(pack.precio_paquetes) }}
+                  </div>
+                  <div v-else class="text-2xl font-semibold text-red-500">
+                    <sup class="italic light text-xs">Price </sup>Inquire
+                  </div>
                 </div>
-                <p class="mt-4 text-lg font-semibold">Book before 8th April</p>
-                <button class="mt-4 bg-white text-gray-900 font-bold py-2 px-4 rounded-full">DEALS THIS WAY</button>
+                <a :href="'/peru-travel-packages/' + pack.url"
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
               </div>
             </div>
-
-            <a :href="'/peru-travel-packages/' + packages.url"
-              class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full">
-              <div class="relative">
-                <img :src="packages.imagen" alt="" class="w-full rounded-lg">
-                <div
-                  class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
-                  PAQUETE</div>
-                <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
-              </div>
-              <div class="relative p-4 flex flex-col h-full">
-                <div>
-                  <div class="my-3">{{ packages.duracion }} day tour</div>
-                  <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ packages.titulo }}</h3>
-                </div>
-
-                <!-- <div class="flex text-xs font-semibold gap-1 items-center">
-                  <template
-                    v-for="(destination, index, array) in uniqueDestinos = paisesUnicos(packages.paquetes_destinos)"
-                    :key="destination.id">
-                    {{ destination.nombre }}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                      stroke="currentColor" class="w-5 h-5 text-orange-400" v-if="index < uniqueDestinos.length - 1">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                    </svg>
-                  </template>
-</div> -->
-
-                <!-- <div class="flex gap-2 mt-3 text-sm">
-                <img src="/icons/map-location.svg" alt=""> Starting Airport <span class="text-primary font-semibold">{{
-                  packages.codigo_vuelo }}</span>
-              </div> -->
-                <!-- <div class="border my-4"></div>
-              <div class="flex justify-between text-lg font-semibold">
-
-              </div> -->
-                <div class="flex items-center gap-6 mt-auto justify-between">
-                  <div>
-                    <div v-if="getThreeStarPrice(packages.precio_paquetes) > 0" class="text-2xl font-semibold">
-                      <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(packages.precio_paquetes) }}
-                    </div>
-                    <div v-else class="text-2xl font-semibold text-red-500">
-                      <sup class="italic light text-xs">Price </sup>Inquire
-                    </div>
-                  </div>
-                  <a :href="'/peru-travel-packages/' + packages.url"
-                    class="btn-primary group-hover:bg-opacity-75 text-xs  text-center inline-block ">View
-                    itinerary</a>
-                </div>
-                <!--                <a :href="'/peru-travel-packages/' + packages.url"-->
-                <!--                   class="btn-ternary  group-hover:bg-opacity-75 text-xs ml-3 text-center inline-block mt-6">Book Now</a>-->
-              </div>
-              <!-- <button class="m-2 btn-secondary group-hover:bg-opacity-75 mt-auto text-center">
-                View itinerary
-              </button> -->
-
-            </a>
-          </template>
-          <!--          </div>-->
+          </a>
         </div>
-        <!--        </Carousel>-->
-      </div>
-    </div>
+        <div v-else class="text-center py-8 bg-gray-50 rounded-lg">
+          <p>No day tours available for this filter</p>
+        </div>
+      </section>
+
+      <!-- Sección 4-7 días -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold mb-6">4-7 DAYS TRAVEL PACKAGES</h2>
+
+        <div v-if="filteredPackages.fourToSeven.length > 0"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <a v-for="pack in filteredPackages.fourToSeven" :href="'/peru-travel-packages/' + pack.url"
+            class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full">
+            <div class="relative">
+              <img :src="pack.imagen" alt="" class="w-full rounded-lg">
+              <div
+                class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
+                PAQUETE</div>
+              <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+            </div>
+            <div class="relative p-4 flex flex-col h-full">
+              <div>
+                <div class="my-3">{{ pack.duracion }} day tour</div>
+                <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ pack.titulo }}</h3>
+              </div>
+              <div class="flex items-center gap-6 mt-auto justify-between">
+                <div>
+                  <div v-if="getThreeStarPrice(pack.precio_paquetes) > 0" class="text-2xl font-semibold">
+                    <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(pack.precio_paquetes) }}
+                  </div>
+                  <div v-else class="text-2xl font-semibold text-red-500">
+                    <sup class="italic light text-xs">Price </sup>Inquire
+                  </div>
+                </div>
+                <a :href="'/peru-travel-packages/' + pack.url"
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div v-else class="text-center py-8 bg-gray-50 rounded-lg">
+          <p>No packages available in this duration</p>
+        </div>
+      </section>
+
+      <!-- Sección 8-14 días -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold mb-6">8-14 DAYS TRAVEL PACKAGES</h2>
+
+        <div v-if="filteredPackages.eightToFourteen.length > 0"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <a v-for="pack in filteredPackages.eightToFourteen" :href="'/peru-travel-packages/' + pack.url"
+            class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full">
+            <div class="relative">
+              <img :src="pack.imagen" alt="" class="w-full rounded-lg">
+              <div
+                class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
+                PAQUETE</div>
+              <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+            </div>
+            <div class="relative p-4 flex flex-col h-full">
+              <div>
+                <div class="my-3">{{ pack.duracion }} day tour</div>
+                <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ pack.titulo }}</h3>
+              </div>
+              <div class="flex items-center gap-6 mt-auto justify-between">
+                <div>
+                  <div v-if="getThreeStarPrice(pack.precio_paquetes) > 0" class="text-2xl font-semibold">
+                    <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(pack.precio_paquetes) }}
+                  </div>
+                  <div v-else class="text-2xl font-semibold text-red-500">
+                    <sup class="italic light text-xs">Price </sup>Inquire
+                  </div>
+                </div>
+                <a :href="'/peru-travel-packages/' + pack.url"
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div v-else class="text-center py-8 bg-gray-50 rounded-lg">
+          <p>No packages available in this duration</p>
+        </div>
+      </section>
+
+      <!-- Sección 15+ días -->
+      <section class="mb-12">
+        <h2 class="text-3xl font-bold mb-6">15 DAYS + TRAVEL PACKAGES</h2>
+
+        <div v-if="filteredPackages.fifteenPlus.length > 0"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <a v-for="pack in filteredPackages.fifteenPlus" :href="'/peru-travel-packages/' + pack.url"
+            class="bg-white col-span-1 w-full rounded-xl  shadow-md cursor-pointer group flex flex-col h-full">
+            <div class="relative">
+              <img :src="pack.imagen" alt="" class="w-full rounded-lg">
+              <div
+                class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0 -mb-2 m-2 text-[9px] font-semibold text-white">
+                PAQUETE</div>
+              <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
+            </div>
+            <div class="relative p-4 flex flex-col h-full">
+              <div>
+                <div class="my-3">{{ pack.duracion }} day tour</div>
+                <h3 class="text-left lowercase font-semibold text-gray-500 my-3">{{ pack.titulo }}</h3>
+              </div>
+              <div class="flex items-center gap-6 mt-auto justify-between">
+                <div>
+                  <div v-if="getThreeStarPrice(pack.precio_paquetes) > 0" class="text-2xl font-semibold">
+                    <sup class="text-xs text-gray-400">From</sup> ${{ getThreeStarPrice(pack.precio_paquetes) }}
+                  </div>
+                  <div v-else class="text-2xl font-semibold text-red-500">
+                    <sup class="italic light text-xs">Price </sup>Inquire
+                  </div>
+                </div>
+                <a :href="'/peru-travel-packages/' + pack.url"
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div v-else class="text-center py-8 bg-gray-50 rounded-lg">
+          <p>No packages available in this duration</p>
+        </div>
+      </section>
+    </template>
   </div>
 </template>
+
+<style scoped>
+/* Estilos adicionales para mejor apariencia */
+.container {
+  max-width: 1200px;
+}
+
+/* Efecto hover para las tarjetas */
+a:hover h3 {
+  color: #3b82f6;
+  /* Cambia al color primary en hover */
+}
+
+/* Transición suave para los botones de filtro */
+button {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+</style>
