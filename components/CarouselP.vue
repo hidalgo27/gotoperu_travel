@@ -67,7 +67,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <div class="">
     <!-- Loading state -->
     <div v-if="isLoading" class="text-center py-12">
       <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
@@ -77,9 +77,14 @@ onMounted(async () => {
     <!-- Content when loaded -->
     <template v-else>
       <!-- Sección de 1 día con filtros -->
-      <section class="mb-12">
+      <section class="mb-16">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6">
-          <h2 class="text-3xl font-bold mb-4 md:mb-0">DAY TOURS</h2>
+          <div class="flex items-end mb-4 gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-secondary mb-0.5">
+              <path fill-rule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clip-rule="evenodd" />
+            </svg>
+            <h2 class="text-3xl font-semibold mb-4 md:mb-0">Day tours</h2>
+          </div>
           <div class="flex space-x-2 overflow-x-auto pb-2">
             <button v-for="category in dayTourCategories" :key="category.id" @click="activeDayFilter = category.id"
               :class="{
@@ -117,7 +122,7 @@ onMounted(async () => {
                   </div>
                 </div>
                 <a :href="'/peru-travel-packages/' + pack.url"
-                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">View Itinerary</a>
               </div>
             </div>
           </a>
@@ -128,8 +133,13 @@ onMounted(async () => {
       </section>
 
       <!-- Sección 4-7 días -->
-      <section class="mb-12">
-        <h2 class="text-3xl font-bold mb-6">4-7 DAYS TRAVEL PACKAGES</h2>
+      <section class="mb-16">
+        <div class="flex items-end mb-8 gap-2 bg-white/50 p-4 rounded-lg ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-primary mb-0.5">
+            <path fill-rule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clip-rule="evenodd" />
+          </svg>
+          <h2 class="text-3xl font-semibold mb-4 md:mb-0">4-7 Days Travel Packages</h2>
+        </div>
 
         <div v-if="filteredPackages.fourToSeven.length > 0"
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -157,7 +167,7 @@ onMounted(async () => {
                   </div>
                 </div>
                 <a :href="'/peru-travel-packages/' + pack.url"
-                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">View Itinerary</a>
               </div>
             </div>
           </a>
@@ -168,8 +178,14 @@ onMounted(async () => {
       </section>
 
       <!-- Sección 8-14 días -->
-      <section class="mb-12">
-        <h2 class="text-3xl font-bold mb-6">8-14 DAYS TRAVEL PACKAGES</h2>
+      <section class="mb-16">
+
+        <div class="flex items-end mb-8 gap-2 bg-white/50 p-4 rounded-lg ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-secondary mb-0.5">
+            <path fill-rule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clip-rule="evenodd" />
+          </svg>
+          <h2 class="text-3xl font-semibold mb-4 md:mb-0">8-14 Days Travel Packages</h2>
+        </div>
 
         <div v-if="filteredPackages.eightToFourteen.length > 0"
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -197,7 +213,7 @@ onMounted(async () => {
                   </div>
                 </div>
                 <a :href="'/peru-travel-packages/' + pack.url"
-                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">View Itinerary</a>
               </div>
             </div>
           </a>
@@ -208,8 +224,13 @@ onMounted(async () => {
       </section>
 
       <!-- Sección 15+ días -->
-      <section class="mb-12">
-        <h2 class="text-3xl font-bold mb-6">15 DAYS + TRAVEL PACKAGES</h2>
+      <section class="mb-16">
+        <div class="flex items-end mb-8 gap-2 bg-white/50 p-4 rounded-lg ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-secondary mb-0.5">
+            <path fill-rule="evenodd" d="M4.5 7.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9Z" clip-rule="evenodd" />
+          </svg>
+          <h2 class="text-3xl font-semibold mb-4 md:mb-0">15 Days + Days Travel Packages</h2>
+        </div>
 
         <div v-if="filteredPackages.fifteenPlus.length > 0"
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -237,7 +258,7 @@ onMounted(async () => {
                   </div>
                 </div>
                 <a :href="'/peru-travel-packages/' + pack.url"
-                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">Book Now</a>
+                  class="btn-primary group-hover:bg-opacity-75 text-sm  text-center inline-block ">View Itinerary</a>
               </div>
             </div>
           </a>

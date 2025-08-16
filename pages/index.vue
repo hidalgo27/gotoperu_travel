@@ -287,7 +287,7 @@ onMounted(async () => {
         <!--          </div>-->
         <!--        </div>-->
         <!--      </section>-->
-        <div class="-mt-32">
+        <div class="-mt-72">
           <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
             <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
               stroke-dasharray="0.1 8" class=" text-secondary"></line>
@@ -542,7 +542,8 @@ onMounted(async () => {
     <section class="py-24 bg-gray-100">
       <div class="container">
         <!--        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>-->
-        <div class="elfsight-app-0205a974-5637-4472-a992-5e12bca31e38" data-elfsight-app-lazy></div>
+<!--        <div class="elfsight-app-0205a974-5637-4472-a992-5e12bca31e38" data-elfsight-app-lazy></div>-->
+        <div class="elfsight-app-5eb4043b-fced-4876-890c-bcac70bb6720" data-elfsight-app-lazy></div>
       </div>
     </section>
 
