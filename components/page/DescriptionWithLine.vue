@@ -149,7 +149,7 @@ onMounted(async () => {
     <!--    </div>-->
 
     <div class="text-center grid space-y-3">
-      <NuxtImg src="/images/banners/banner-detail.png" alt="" class="w-96 mx-auto mb-12" />
+      <!-- <NuxtImg src="/images/banners/banner-detail.png" alt="" class="w-96 mx-auto mb-12" /> -->
       <div class="border-title-secondary mx-auto"></div>
       <h2 class="font-bold text-4xl">Must-Experience Peru: Our Top Travel Packages</h2>
       <!--          <h2 class="font-bold text-4xl mt-2"></h2>-->
