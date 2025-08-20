@@ -106,9 +106,13 @@ onMounted(async () => {
                 class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute top-2 mx-2  font-semibold text-white text-sm">
                 Special Offer</div>
               <img :src="pack.imagen" alt="" class="w-full rounded-lg">
-              <div
+              <div v-if="pack.precio_paquetes[1].precio_d"
                 class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0  mb-2 left-1/2 transform -translate-x-1/2 font-semibold text-black text-lg">
-                $ 199</div>
+                {{ getThreeStarPrice(pack.precio_paquetes) }}
+              </div>
+              <div v-else
+                class="bg-secondary px-2 py-1 z-10 rounded w-auto absolute bottom-0  mb-2 left-1/2 transform -translate-x-1/2 font-semibold text-black text-lg">
+                Please Inquire</div>
               <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-40"></div>
             </div>
             <div class="relative p-4 flex flex-col h-full">
