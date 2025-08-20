@@ -15,11 +15,11 @@
 
     <!-- Botón de WhatsApp -->
     <div class="flex justify-end px-6 py-5">
-      <div class="relative h-10 w-10">
+      <div class="relative h-14 w-14">
         <span class="animate-ping absolute inset-0 rounded-full bg-gray-400 opacity-75"></span>
         <a href="https://api.whatsapp.com/send?phone=51912668025" target="_blank"
           class="absolute inset-0 flex items-center justify-center">
-          <nuxt-img src="/icons/whatsapp.png" alt="WhatsApp" class="w-8" />
+          <nuxt-img src="/icons/whatsapp.png" alt="WhatsApp" class="w-14" />
         </a>
       </div>
     </div>

@@ -11,6 +11,7 @@ import MiniReviews from "~/components/sections/MiniReviews.vue";
 import DescriptionWithLine from "~/components/page/DescriptionWithLine.vue"
 import ModalSuscriptionForm from "~/components/modal/ModalSuscriptionForm.vue";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import OffersSlide from "~/components/OffersSlide.vue";
 
 const { $gsap } = useNuxtApp();
 $gsap.registerPlugin(ScrollTrigger);
@@ -219,6 +220,7 @@ onMounted(async () => {
       </div>
       <div class="absolute inset-0 bg-gradient-to-t to-70% from-gray-900 from-0% opacity-50"></div>
     </div>
+    <OffersSlide></OffersSlide>
     <Benefits></Benefits>
 
     <!-- <wetravel-we-travel-checkout-button :trip-uuid="`${55842886}`"></wetravel-we-travel-checkout-button> -->
@@ -287,8 +289,8 @@ onMounted(async () => {
         <!--          </div>-->
         <!--        </div>-->
         <!--      </section>-->
-        <div class="-mt-72">
-          <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
+        <div class="-mt-72 flex justify-center items-center text-center">
+          <svg class="md:w-[35rem]" viewBox="0 0 400 200">
             <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
               stroke-dasharray="0.1 8" class=" text-secondary"></line>
             <g class="g-svg-down">
@@ -299,7 +301,7 @@ onMounted(async () => {
             </g>
           </svg>
         </div>
-        <div class="container text-center ">
+        <div class="container text-center mt-6">
           <nuxt-link to="/peru-travel-packages" type="button" class="btn-ternary inline-block mt-4">View all travel
             packages</nuxt-link>
         </div>
@@ -354,8 +356,8 @@ onMounted(async () => {
     <section class="py-24 ">
       <div class="container">
         <destinations></destinations>
-        <div class="-mt-32">
-          <svg class="mx-auto w-[35rem]" viewBox="0 0 400 200">
+        <div class="-mt-32 flex justify-center items-center text-center">
+          <svg class=" md:w-[35rem]" viewBox="0 0 400 200">
             <line x1="200" y1="143" x2="200" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
               stroke-dasharray="0.1 8" class="animatedSvgDown text-primary"></line>
             <g class="g-svg-down">
@@ -542,7 +544,7 @@ onMounted(async () => {
     <section class="py-24 bg-gray-100">
       <div class="container">
         <!--        <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>-->
-<!--        <div class="elfsight-app-0205a974-5637-4472-a992-5e12bca31e38" data-elfsight-app-lazy></div>-->
+        <!--        <div class="elfsight-app-0205a974-5637-4472-a992-5e12bca31e38" data-elfsight-app-lazy></div>-->
         <div class="elfsight-app-5eb4043b-fced-4876-890c-bcac70bb6720" data-elfsight-app-lazy></div>
       </div>
     </section>
