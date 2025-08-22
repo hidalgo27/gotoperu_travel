@@ -19,10 +19,16 @@ const package_title = ref()
 const package_imagen = ref()
 const package_price = computed(() => packageStore.packagePriceSelected)
 
+const travelDate = computed({
+  get: () => packageStore.dateSelected ? moment(packageStore.dateSelected).toDate() : null,
+  set: (val) => {
+    packageStore.dateSelected = moment(val).format('YYYY-MM-DD')
+  }
+})
+
 const showLoader = ref(false)
 const today = new Date();
 
-const travelDate = ref()
 const traveller = ref()
 const hotel = ref([])
 const destination = ref([])
@@ -111,7 +117,7 @@ const handleSubmit = async () => {
       el_email: userEmail.value,
       el_fecha: travelDate.value ? moment(travelDate.value).format('YYYY-MM-DD') : null,
       el_telefono: phone.value,
-      el_textarea: comment.value,
+      el_textarea: packageStore.departureSelected ? 'From Departures Section: ' + comment.value : comment.value,
 
       country: country2.value,
       codigo_pais: country_code2.value,
@@ -250,7 +256,7 @@ const handlePhoneChange = ({ number, isValid, country, country_code, dialCode })
 
   country2.value = String(country)
 
-  country_code2.value = dialCode+' +'+country_code
+  country_code2.value = dialCode + ' +' + country_code
 
   phoneError.value = !isValid
 }
@@ -424,14 +430,14 @@ onMounted(async () => {
               </div>
 
               <div class="grid md:grid-cols-2 gap-3">
-<!--                <div class="relative">-->
-<!--                  <div class="relative">-->
-<!--                    <input type="text" class="is-input-ico peer" placeholder=" " autocomplete="off" v-model="phone"-->
-<!--                      ref="phoneInputRef" id="phoneNumber" />-->
-<!--                    <label class="is-input-ico-label">Phone Number</label>-->
-<!--                    <div v-if="$v.phone.$error" class="text-xs text-red-500">El nombre es requerido</div>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                <div class="relative">-->
+                <!--                  <div class="relative">-->
+                <!--                    <input type="text" class="is-input-ico peer" placeholder=" " autocomplete="off" v-model="phone"-->
+                <!--                      ref="phoneInputRef" id="phoneNumber" />-->
+                <!--                    <label class="is-input-ico-label">Phone Number</label>-->
+                <!--                    <div v-if="$v.phone.$error" class="text-xs text-red-500">El nombre es requerido</div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
 
                 <div>
                   <TelInput @updatePhone="handlePhoneChange"></TelInput>
@@ -539,57 +545,58 @@ onMounted(async () => {
   </div>
 
   <client-only>
-  <NotificationGroup group="foo">
-    <div class="fixed inset-0 flex z-100 items-start justify-end p-6 px-4 py-6 pointer-events-none">
-      <div class="w-full max-w-sm">
-        <Notification v-slot="{ notifications }" enter="transform ease-out duration-300 transition"
-          enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
-          enter-to="translate-y-0 opacity-100 sm:translate-x-0" leave="transition ease-in duration-500"
-          leave-from="opacity-100" leave-to="opacity-0" move="transition duration-500" move-delay="delay-300">
-          <div v-for="notification in notifications" :key="notification.id">
-            <div v-if="notification.type === 'success'"
-              class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md">
-              <div class="flex items-center justify-center w-12 bg-green-500">
-                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-                </svg>
+    <NotificationGroup group="foo">
+      <div class="fixed inset-0 flex z-100 items-start justify-end p-6 px-4 py-6 pointer-events-none">
+        <div class="w-full max-w-sm">
+          <Notification v-slot="{ notifications }" enter="transform ease-out duration-300 transition"
+            enter-from="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
+            enter-to="translate-y-0 opacity-100 sm:translate-x-0" leave="transition ease-in duration-500"
+            leave-from="opacity-100" leave-to="opacity-0" move="transition duration-500" move-delay="delay-300">
+            <div v-for="notification in notifications" :key="notification.id">
+              <div v-if="notification.type === 'success'"
+                class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md">
+                <div class="flex items-center justify-center w-12 bg-green-500">
+                  <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                  </svg>
+                </div>
+
+                <div class="px-4 py-2 -mx-3">
+                  <div class="mx-3">
+                    <span class="font-semibold text-green-500">{{ notification.title }}</span>
+                    <p class="text-sm text-gray-600">{{ notification.text }}</p>
+                  </div>
+                </div>
               </div>
 
-              <div class="px-4 py-2 -mx-3">
-                <div class="mx-3">
-                  <span class="font-semibold text-green-500">{{ notification.title }}</span>
-                  <p class="text-sm text-gray-600">{{ notification.text }}</p>
+              <div class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
+                v-if="notification.type === 'error'">
+                <div class="flex items-center justify-center w-12 bg-red-500">
+                  <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+                  </svg>
+                </div>
+
+                <div class="px-4 py-2 -mx-3">
+                  <div class="mx-3">
+                    <span class="font-semibold text-red-500">{{ notification.title }}</span>
+                    <p class="text-sm text-gray-600">{{ notification.text }}</p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div class="flex w-full max-w-sm mx-auto mt-4 overflow-hidden bg-white rounded-lg shadow-md"
-              v-if="notification.type === 'error'">
-              <div class="flex items-center justify-center w-12 bg-red-500">
-                <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
-                </svg>
-              </div>
-
-              <div class="px-4 py-2 -mx-3">
-                <div class="mx-3">
-                  <span class="font-semibold text-red-500">{{ notification.title }}</span>
-                  <p class="text-sm text-gray-600">{{ notification.text }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Notification>
+          </Notification>
+        </div>
       </div>
-    </div>
-  </NotificationGroup>
+    </NotificationGroup>
   </client-only>
 </template>
 <style>
 @import 'intl-tel-input/build/css/intlTelInput.css';
-.iti__selected-dial-code{
+
+.iti__selected-dial-code {
   padding-top: 12px;
 }
 </style>

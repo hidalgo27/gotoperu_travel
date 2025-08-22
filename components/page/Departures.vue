@@ -3,10 +3,28 @@ import { usePackageStore } from '@/stores/packages'
 import moment from 'moment'
 
 const packageStore = usePackageStore()
-const packagePrice = ref()
-const packageDuration = ref()
+const packageStars = computed(() => {
+  return packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 3 && p.precio_d > 0)?.estrellas
+    || packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 5 && p.precio_d > 0)?.estrellas
+    || 0
+})
+
+const packagePrice = computed(() => {
+  return packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 3 && p.precio_d > 0)?.precio_d
+    || packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 5 && p.precio_d > 0)?.precio_d
+    || 0
+})
+
+const packageDuration = computed(() => packageStore.packageData?.duracion || 0)
+
+
+watch([packageStars, packagePrice, packageDuration], () => {
+  generateDepartures()
+})
+
+
 // Lista de meses disponibles
-const months = ref(['MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'])
+const months = ref([])
 
 // Meses seleccionados (pueden ser varios)
 const selectedMonths = ref(new Set())
@@ -25,12 +43,21 @@ const toggleMonth = (month) => {
 
 // Filtrar las salidas según los meses seleccionados
 const filteredDepartures = computed(() => {
-  if (selectedMonths.value.size === 0) return departures.value // Si no hay filtros, mostrar todo
+  if (selectedMonths.value.size === 0) return departures.value
   return departures.value.filter(d => selectedMonths.value.has(d.month))
 })
 
-const isPriceSelected = (packagePrice) => {
-  packageStore.packagePriceSelected = packagePrice
+const isPriceSelected = (departure) => {
+  packageStore.packagePriceSelected = departure.price
+  packageStore.dateSelected = departure.startDate
+  packageStore.departureSelected = true
+}
+
+function generateMonths() {
+  const today = moment()
+  const allMonths = moment.months().map(m => m.toUpperCase())
+  const currentMonthIndex = today.month()
+  months.value = allMonths.slice(currentMonthIndex)
 }
 
 function generateDepartures() {
@@ -40,7 +67,7 @@ function generateDepartures() {
 
   for (let i = 0; i < months.value.length; i++) {
     const monthName = months.value[i]
-    const monthIndex = moment().month(monthName).month() // Convertir nombre a índice (0-11)
+    const monthIndex = moment().month(monthName).month()
     const baseDays = [1, 7, 15, 20, 28]
 
     baseDays.forEach(day => {
@@ -53,9 +80,10 @@ function generateDepartures() {
 
       generated.push({
         date: `${start.format('ddd, DD MMM')} - ${end.format('ddd, DD MMM')}`,
+        startDate: start.format('YYYY-MM-DD'),
         month: monthName,
-        stars: 0,
-        price: 0
+        stars: packageStars.value,
+        price: packagePrice.value,
       })
     })
   }
@@ -64,35 +92,36 @@ function generateDepartures() {
 }
 
 onMounted(() => {
-  packagePrice.value = packageStore.packageData?.precio_paquetes
-  packageDuration.value = packageStore.packageData?.duracion
+  // packagePrice.value = packageStore.packageData?.precio_paquetes
+  // packageDuration.value = packageStore.packageData?.duracion
 
+  generateMonths()
   generateDepartures()
 
-  const priceThreeStars = packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 3 && p.precio_d > 0);
-  const priceFiveStars = packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 5 && p.precio_d > 0);
+  // const priceThreeStars = packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 3 && p.precio_d > 0);
+  // const priceFiveStars = packageStore.packageData?.precio_paquetes.find(p => p.estrellas === 5 && p.precio_d > 0);
 
-  departures.value = departures.value.map(dep => {
-    if (priceThreeStars) {
-      return {
-        ...dep,
-        price: priceThreeStars.precio_d,
-        stars: 3
-      }
-    } else if (priceFiveStars) {
-      return {
-        ...dep,
-        price: priceFiveStars.precio_d,
-        stars: 5
-      }
-    } else {
-      return {
-        ...dep,
-        price: 0,
-        stars: 0
-      }
-    }
-  });
+  // departures.value = departures.value.map(dep => {
+  //   if (priceThreeStars) {
+  //     return {
+  //       ...dep,
+  //       price: priceThreeStars.precio_d,
+  //       stars: 3
+  //     }
+  //   } else if (priceFiveStars) {
+  //     return {
+  //       ...dep,
+  //       price: priceFiveStars.precio_d,
+  //       stars: 5
+  //     }
+  //   } else {
+  //     return {
+  //       ...dep,
+  //       price: 0,
+  //       stars: 0
+  //     }
+  //   }
+  // });
 })
 </script>
 
@@ -146,11 +175,11 @@ onMounted(() => {
                 </td>
                 <td class="border p-2 text-xs md:text-base">
                   <div class="flex flex-col items-center gap-2">
-                    <a @click="isPriceSelected(departure.price)" href="#form-dream-adventure" v-if="departure.stars > 0"
+                    <a @click="isPriceSelected(departure)" href="#form-dream-adventure" v-if="departure.stars > 0"
                       class="btn-primary-sm text-sm text-center rounded inline-block">
                       Book Now
                     </a>
-                    <a v-else href="#form-dream-adventure"
+                    <a @click="isPriceSelected(departure)" v-else href="#form-dream-adventure"
                       class="rounded-md py-1.5 px-4 md:py-3 md:px-10 text-white btn-secondary-sm !text-sm hover:bg-opacity-95 duration-300 text-center  inline-block">
                       Get a Quote
                     </a>
